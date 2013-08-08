@@ -1,0 +1,40 @@
+package kr.licubeclub.zionhs;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
+
+import com.fima.cardsui.objects.Card;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+
+import com.fima.cardsui.objects.Card;
+
+public class MyCard extends Card {
+
+	public MyCard(String title, String description){
+		super(title, description);
+	}
+
+	@Override
+	public View getCardContent(Context context) {
+		View view = LayoutInflater.from(context).inflate(R.layout.card_ex, null);
+
+		((TextView) view.findViewById(R.id.title)).setText(title);
+		((TextView) view.findViewById(R.id.description)).setText(desc);
+		
+		return view;
+	}
+
+	
+	
+	
+}

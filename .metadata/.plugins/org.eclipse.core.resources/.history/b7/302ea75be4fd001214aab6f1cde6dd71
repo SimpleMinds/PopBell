@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Zion High School</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+<string name="title">Title</string>
+    <string name="desc">Description</string>
+	<string name="overflow">Menu Overflow</string>
+	<string name="color_stripe">Color Stripe</string>
+	<string name="dash_title_notices">Notices</string>
+	<string name="dash_desc_notices">Recent Notices from The School</string>
+	<string name="dash_title_meal">Meal </string>
+	<string name="dash_desc_meal">Check out the lunch and dinner menu</string>
+	<string name="dash_title_sched">Schedules</string>
+
+</resources>

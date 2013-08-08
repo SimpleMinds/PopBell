@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+
+    <com.fima.cardsui.views.CardUI
+        android:id="@+id/cardsview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include1" >
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/dash_header" 
+            />
+
+    </com.fima.cardsui.views.CardUI>
+</FrameLayout>

@@ -1,0 +1,61 @@
+package kr.licubeclub.zionhs;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.support.v4.app.NavUtils;
+import android.annotation.TargetApi;
+import android.os.Build;
+
+public class Meal extends Activity{
+	private Handler handler;
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_launchmenu);
+
+
+
+		handler = new Handler();  
+		new Thread(runnable).start();
+
+	}
+
+
+	Runnable runnable = new Runnable(){
+		public void run(){
+			final Calendar c = Calendar.getInstance();
+			int Year = c.get(Calendar.YEAR);
+			int Month = c.get(Calendar.MONTH);
+			int Day = c.get(Calendar.DAY_OF_MONTH);
+			int DayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+			String stringDayOfWeek[] = { "", "일", "월", "화", "수", "목", "금", "토" };
+			String stringDayOfMonth[] = { "", "1", "2", "3", "4", "5", "6", "7" , "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
+			String MonthData[] = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
+			final String stringDayAndTimeFormat = String.format("%4d년 %d월 %d일 " + stringDayOfWeek[DayOfWeek] + "요일\n", Year, Month+1, Day);
+			String date = String.format("http://bcilsin.ms.kr/?act=lunch.main2&month=" + "%4d" + "." + MonthData[Month] + "." + stringDayOfMonth[Day] + "&mcode=" , Year);
+			String url = date;
+			String Link;
+			Link = JSpiner_parser.getfile(url, "euc-kr");
+			final String[] meal;
+			meal = JSpiner_parser.parsedataarray(Link, "p", 1);
+			handler.post(new Runnable(){
+				public void run(){
+					String outdata="";
+					for(int i=1;i<=2;i++){
+						outdata+=meal[i+1]+"\n";
+					}
+					outdata = outdata.replace("<br />", "\n");
+					outdata = outdata.replace(">", "");
+					outdata = outdata.replace("<", "");
+					outdata = outdata.replace("\nnull", "오늘 급식은 없습니다.");
+					outdata = stringDayAndTimeFormat + outdata; 
+					TextView DB = (TextView)findViewById(R.id.textView1);
+					DB.setText(outdata);
+				}
+			});
+		}  
+	};
+
+
+		}

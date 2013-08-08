@@ -1,0 +1,54 @@
+package kr.licubeclub.zionhs;
+
+import toast.library.meal.MealLibrary;
+import android.os.Bundle;
+import android.os.Handler;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.support.v4.app.NavUtils;
+import android.annotation.TargetApi;
+import android.os.Build;
+
+public class Meal extends Activity{
+	 Handler handler;
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_meal);
+		
+
+		handler = new Handler();  
+		new Thread(runnable).start();
+
+	}
+
+
+	Runnable runnable = new Runnable(){
+		public void run(){
+
+			String[] meal = new String[6];
+			meal = MealLibrary.getMeal("goe.go.kr", "J100000659", "4", "04", "1");
+			
+			
+			handler.post(new Runnable(){
+				public void run(){
+					
+					String outdata="";
+					for(int i=1;i<=2;i++){
+						outdata+=meal[i+1]+"\n";
+					}
+					outdata = outdata.replace("<br />", "\n");
+					outdata = outdata.replace(">", "");
+					outdata = outdata.replace("<", "");
+					outdata = outdata.replace("\nnull", "오늘 급식은 없습니다.");
+					TextView DB = (TextView)findViewById(R.id.textView1);
+					DB.setText(outdata);
+
+				}
+			});
+		}  
+	};
+
+
+		}

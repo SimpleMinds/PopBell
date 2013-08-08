@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Zion High School</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="noti_title">Notices</string>
+    <string name="noti_desc">Check Out Recent Notices from the school</string>
+    <string name="meal_title">Meal Menu</string>
+    <string name="meal_desc">Check Out Lunch menu and Dinner menu, which school provide today</string>
+    <string name="sched_title">Schedules</string>
+    <string name="sched_desc">Check Out Schhol Schedule of This Year</string>
+    <string name="contact_title">Contact</string>
+    <string name="contact_desc">Phone Number, Fax, E-Mail Adress.. etc...</string>
+    <string name="notiparent_title">Notices For Parents</string>
+    <string name="notiparent_desc">Check Out Recent Notices for parents from school</string>
+    <string name="schoolinfo_title">About the School</string>
+    <string name="schoolinfo_desc">More Information About the School</string>
+    <string name="appinfo_title">About the App</string>
+    <string name="appinfo_desc">More Information About This App</string>
+
+</resources>
