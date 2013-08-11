@@ -8,35 +8,35 @@ package wei.mark.standout;
 
 public final class R {
 	public static final class drawable {
-		public static final int border = 0x7f020000;
-		public static final int border_focused = 0x7f020001;
-		public static final int close = 0x7f020002;
-		public static final int corner = 0x7f020003;
-		public static final int hide = 0x7f020004;
-		public static final int maximize = 0x7f020006;
+		public static final int border = 0x7f020057;
+		public static final int border_focused = 0x7f020058;
+		public static final int close = 0x7f020059;
+		public static final int corner = 0x7f02005a;
+		public static final int hide = 0x7f02005b;
+		public static final int maximize = 0x7f02005d;
 	}
 	public static final class id {
-		public static final int body = 0x7f080009;
-		public static final int close = 0x7f080008;
-		public static final int content = 0x7f080002;
-		public static final int corner = 0x7f08000a;
-		public static final int description = 0x7f080001;
-		public static final int hide = 0x7f080006;
-		public static final int icon = 0x7f080000;
-		public static final int maximize = 0x7f080007;
-		public static final int title = 0x7f080005;
-		public static final int titlebar = 0x7f080003;
-		public static final int window_icon = 0x7f080004;
+		public static final int body = 0x7f050049;
+		public static final int close = 0x7f050048;
+		public static final int content = 0x7f050043;
+		public static final int corner = 0x7f05004a;
+		public static final int description = 0x7f050042;
+		public static final int hide = 0x7f050046;
+		public static final int icon = 0x7f050028;
+		public static final int maximize = 0x7f050047;
+		public static final int title = 0x7f050029;
+		public static final int titlebar = 0x7f050044;
+		public static final int window_icon = 0x7f050045;
 	}
 	public static final class layout {
-		public static final int drop_down_list_item = 0x7f030001;
-		public static final int system_window_decorators = 0x7f030002;
+		public static final int drop_down_list_item = 0x7f030019;
+		public static final int system_window_decorators = 0x7f03001b;
 	}
 	public static final class string {
-		public static final int close = 0x7f040002;
-		public static final int corner = 0x7f040003;
-		public static final int hide = 0x7f040001;
-		public static final int maximize = 0x7f040004;
-		public static final int window_icon = 0x7f040000;
+		public static final int close = 0x7f0a000f;
+		public static final int corner = 0x7f0a0010;
+		public static final int hide = 0x7f0a000e;
+		public static final int maximize = 0x7f0a0011;
+		public static final int window_icon = 0x7f0a000d;
 	}
 }
