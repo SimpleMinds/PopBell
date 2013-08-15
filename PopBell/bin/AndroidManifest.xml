@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         
-        <service android:name="com.simplemidns.popbell.NotiDetector"
+        <service android:name="com.simpleminds.popbell.NotiDetector"
          android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
          android:canRetrieveWindowContent="true">
          <intent-filter>

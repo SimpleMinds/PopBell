@@ -118,8 +118,8 @@ public class NotiDetector extends AccessibilityService {
          
         public static final String EXTRA_MESSAGE = "extra_message"; 
         public static final String EXTRA_PACKAGE = "extra_package";
-        public static final String ACTION_CATCH_TOAST = "com.mytest.accessibility.CATCH_TOAST"; 
-        public static final String ACTION_CATCH_NOTIFICATION = "com.mytest.accessibility.CATCH_NOTIFICATION";   
+        public static final String ACTION_CATCH_TOAST = "com.simpleminds.popbell.CATCH_TOAST"; 
+        public static final String ACTION_CATCH_NOTIFICATION = "com.simpleminds.popbell.CATCH_NOTIFICATION";   
     }
      
     /**
@@ -130,7 +130,7 @@ public class NotiDetector extends AccessibilityService {
      */
     public static boolean isAccessibilitySettingsOn(Context mContext) {
         int accessibilityEnabled = 0;
-        final String service = "com.mytest.accessibility/com.mytest.accessibility.MyAccessibilityService";
+        final String service = "com.simpleminds.popbell/com.simpleminds.popbell.NotiDetector";
          
         boolean accessibilityFound = false;
         try {
