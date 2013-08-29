@@ -5,6 +5,7 @@ import wei.mark.standout.StandOutWindow.StandOutLayoutParams;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.app.Instrumentation;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.KeyEvent;
@@ -13,11 +14,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 public class SimpleWindow extends StandOutWindow {
 	
 	String[] array;
 	
+	public void onReceive(Context arg0, Intent intent) {
+		LayoutInflater inflater = (LayoutInflater) getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+		FrameLayout frameLayout = (FrameLayout) inflater.inflate( R.layout.simple, null );
+	     String sysnotitext = intent.getStringExtra("sysnotitext");
+	     TextView tv = (TextView)frameLayout.findViewById(R.id.textView2);
+	     tv.setText(sysnotitext);
+	     }
+	 
 	@Override
 	public String getAppName() {
 		return "SimpleWindow";
@@ -30,9 +40,12 @@ public class SimpleWindow extends StandOutWindow {
 
 	@Override
 	public void createAndAttachView(int id, FrameLayout frame) {
+		
 		// create a new layout from body.xml
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.simple, frame, true);
+		
+	
 		/*Button back = (Button)view.findViewById(R.id.button1);
 		back.setOnClickListener(new OnClickListener() {
 			@Override
@@ -44,8 +57,11 @@ public class SimpleWindow extends StandOutWindow {
 				}).start();
 			}
 		});*/
+		
+		
 	}
-
+	
+	
 	// the window will be centered
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
