@@ -4,6 +4,8 @@ package com.simpleminds.popbell;
 
 import java.util.List;
 
+import wei.mark.standout.StandOutWindow;
+
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Notification;
@@ -28,7 +30,10 @@ public class NotiDetector extends AccessibilityService {
 	        System.out.println("notification: " + event.getText());
 	    }
 	    try {   
+	    	StandOutWindow.closeAll(this, SimpleWindow.class);
+			// show a MultiWindow, SimpleWindow
 
+			StandOutWindow.show(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID);
 	        Intent intent = new Intent(this, SimpleWindow.class);  
 	      
 	        intent.putExtra("sysnotitext", (Intent) event.getText());
