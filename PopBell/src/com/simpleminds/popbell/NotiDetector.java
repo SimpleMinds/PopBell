@@ -28,23 +28,25 @@ public class NotiDetector extends AccessibilityService {
 	    System.out.println("onAccessibilityEvent");
 	    if (event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
 	        System.out.println("notification: " + event.getText());
+	        
+	        try {   
+		    	StandOutWindow.closeAll(this, SimpleWindow.class);
+				// show a MultiWindow, SimpleWindow
+
+				
+		        Intent intent = new Intent(this, SimpleWindow.class);  
+		      
+		        intent.putExtra("sysnotitext", (Intent) event.getText());
+		        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+		    
+		        //Log.e("ALARM", "time of millis: "+System.currentTimeMillis());
+		  
+
+		        } catch (Exception e) {
+		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
+		        }
 	    }
-	    try {   
-	    	StandOutWindow.closeAll(this, SimpleWindow.class);
-			// show a MultiWindow, SimpleWindow
-
-			StandOutWindow.show(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID);
-	        Intent intent = new Intent(this, SimpleWindow.class);  
-	      
-	        intent.putExtra("sysnotitext", (Intent) event.getText());
-	        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
 	    
-	        //Log.e("ALARM", "time of millis: "+System.currentTimeMillis());
-	  
-
-	        } catch (Exception e) {
-	            Log.e("ALARM", "ERROR IN CODE:"+e.toString());
-	        }
 	    }
 	
 	@Override
