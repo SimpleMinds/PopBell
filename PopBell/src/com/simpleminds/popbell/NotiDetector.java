@@ -36,8 +36,8 @@ public class NotiDetector extends AccessibilityService {
 				
 		        Intent intent = new Intent(this, SimpleWindow.class);  
 		      
-		        intent.putExtra("sysnotitext", (Intent) event.getText());
-		        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+		        intent.putExtra("sysnotitext", (CharSequence) event.getText());
+		        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(), 0, intent, 0);
 		    
 		        //Log.e("ALARM", "time of millis: "+System.currentTimeMillis());
 		  
