@@ -2,6 +2,7 @@
 
 package com.simpleminds.popbell;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wei.mark.standout.StandOutWindow;
@@ -29,6 +30,8 @@ public class NotiDetector extends AccessibilityService {
 	    if (event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
 	        System.out.println("notification: " + event.getText());
 	        
+	        
+	        
 	        try {   
 		    	StandOutWindow.closeAll(this, SimpleWindow.class);
 				// show a MultiWindow, SimpleWindow
@@ -36,8 +39,10 @@ public class NotiDetector extends AccessibilityService {
 				
 		        Intent intent = new Intent(this, SimpleWindow.class);  
 		      
+		        
+		        
 		        intent.putExtra("sysnotitext", (CharSequence) event.getText());
-		        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(), 0, intent, 0);
+		        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
 		    
 		        //Log.e("ALARM", "time of millis: "+System.currentTimeMillis());
 		  

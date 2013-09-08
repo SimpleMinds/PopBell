@@ -5,6 +5,7 @@ import wei.mark.standout.StandOutWindow.StandOutLayoutParams;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.app.Instrumentation;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,14 +21,18 @@ public class SimpleWindow extends StandOutWindow {
 	
 	String[] array;
 	
+	BroadcastReceiver SysnotiReceiver = new BroadcastReceiver(){
+	
 	public void onReceive(Context arg0, Intent intent) {
 		LayoutInflater inflater = (LayoutInflater) getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 		FrameLayout frameLayout = (FrameLayout) inflater.inflate( R.layout.simple, null );
-	     String sysnotitext = intent.getStringExtra("sysnotitext");
+	     CharSequence sysnotitext = intent.getCharSequenceExtra("sysnotitext");
 	     TextView tv = (TextView)frameLayout.findViewById(R.id.textView2);
-	     tv.setText(sysnotitext);
+	     tv.setText(sysnotitext.toString());
 	     }
 	 
+	};
+	
 	@Override
 	public String getAppName() {
 		return "SimpleWindow";
