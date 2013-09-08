@@ -26,9 +26,9 @@ public class SimpleWindow extends StandOutWindow {
 	public void onReceive(Context arg0, Intent intent) {
 		LayoutInflater inflater = (LayoutInflater) getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 		FrameLayout frameLayout = (FrameLayout) inflater.inflate( R.layout.simple, null );
-	     CharSequence sysnotitext = intent.getCharSequenceExtra("sysnotitext");
+	     String sysnotistring = intent.getStringExtra("sysnotitext");
 	     TextView tv = (TextView)frameLayout.findViewById(R.id.textView2);
-	     tv.setText(sysnotitext.toString());
+	     tv.setText(sysnotistring);
 	     }
 	 
 	};

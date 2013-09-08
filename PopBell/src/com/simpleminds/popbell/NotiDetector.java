@@ -35,18 +35,18 @@ public class NotiDetector extends AccessibilityService {
 	        try {   
 		    	StandOutWindow.closeAll(this, SimpleWindow.class);
 				// show a MultiWindow, SimpleWindow
-
+		    	
 				
 		        Intent intent = new Intent(this, SimpleWindow.class);  
 		      
 		        
 		        
-		        intent.putExtra("sysnotitext", (CharSequence) event.getText());
-		        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
+		        intent.putExtra("sysnotitext", event.getText().toString());
+		        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
 		    
 		        //Log.e("ALARM", "time of millis: "+System.currentTimeMillis());
 		  
-
+		        StandOutWindow.show(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID);
 		        } catch (Exception e) {
 		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
 		        }
