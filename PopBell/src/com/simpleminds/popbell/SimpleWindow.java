@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,17 +22,6 @@ public class SimpleWindow extends StandOutWindow {
 	
 	String[] array;
 	
-	BroadcastReceiver SysnotiReceiver = new BroadcastReceiver(){
-	
-	public void onReceive(Context arg0, Intent intent) {
-		LayoutInflater inflater = (LayoutInflater) getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-		FrameLayout frameLayout = (FrameLayout) inflater.inflate( R.layout.simple, null );
-	     String sysnotistring = intent.getStringExtra("sysnotitext");
-	     TextView tv = (TextView)frameLayout.findViewById(R.id.textView2);
-	     tv.setText(sysnotistring);
-	     }
-	 
-	};
 	
 	@Override
 	public String getAppName() {
@@ -92,5 +82,13 @@ public class SimpleWindow extends StandOutWindow {
 	@Override
 	public Intent getPersistentNotificationIntent(int id) {
 		return StandOutWindow.getCloseIntent(this, SimpleWindow.class, id);
+	}
+	
+	
+	@Override
+	public void onReceiveData(int id, int requestCode, Bundle data,
+			Class<? extends StandOutWindow> fromCls, int fromId)
+	{
+	
 	}
 }
