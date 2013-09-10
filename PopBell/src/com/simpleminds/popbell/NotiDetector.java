@@ -3,8 +3,6 @@
 package com.simpleminds.popbell;
 
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 import wei.mark.standout.StandOutWindow;
 
@@ -16,8 +14,6 @@ import android.view.accessibility.AccessibilityEvent;
 
 public class NotiDetector extends AccessibilityService {
 	
-	private TimerTask mTask;
-    private Timer mTimer;
     
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
