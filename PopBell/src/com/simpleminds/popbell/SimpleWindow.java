@@ -1,5 +1,8 @@
 package com.simpleminds.popbell;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.StandOutWindow.StandOutLayoutParams;
 import wei.mark.standout.constants.StandOutFlags;
@@ -21,17 +24,20 @@ import android.widget.TextView;
 public class SimpleWindow extends StandOutWindow {
 	
 	String[] array;
-	
-	
+	private TimerTask mTask;
+    private Timer mTimer;
+    
+    @Override
+	public int getAppIcon() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	@Override
 	public String getAppName() {
 		return "SimpleWindow";
 	}
 
-	@Override
-	public int getAppIcon() {
-		return android.R.drawable.ic_menu_close_clear_cancel;
-	}
+	
 
 	@Override
 	public void createAndAttachView(int id, FrameLayout frame) {
@@ -74,17 +80,10 @@ public class SimpleWindow extends StandOutWindow {
 		return super.getFlags(id) /*| StandOutFlags.FLAG_BODY_MOVE_ENABLE*/ | StandOutFlags.FLAG_WINDOW_FOCUSABLE_DISABLE;
 	}
 
-	@Override
-	public String getPersistentNotificationMessage(int id) {
-		return "Click to close the SimpleWindow";
-	}
-
-	@Override
-	public Intent getPersistentNotificationIntent(int id) {
-		return StandOutWindow.getCloseIntent(this, SimpleWindow.class, id);
-	}
 	
 	
+	
+	//Receive data from NotiDetector
 	@Override
 	public void onReceiveData(int id, int requestCode, Bundle data,
 			Class<? extends StandOutWindow> fromCls, int fromId) 
@@ -93,8 +92,21 @@ public class SimpleWindow extends StandOutWindow {
 		
 			String changedText = data.getString("sysnotidata");
 			TextView status = (TextView) window.findViewById(R.id.textView2);
-			status.setTextSize(20);
 			status.setText(changedText);
+			mTask = new TimerTask() {
+	            @Override
+	            public void run() {
+	            	stopSelf();
+	            }
+	        };
+	         
+	        mTimer = new Timer();
+	         
+	        mTimer.schedule(mTask, 5000);
 		
 	}
+
+
+
+	
 }

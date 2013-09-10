@@ -2,28 +2,23 @@
 
 package com.simpleminds.popbell;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import wei.mark.standout.StandOutWindow;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
-import android.app.Notification;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.provider.Settings.SettingNotFoundException;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
-import android.widget.Toast;
-import android.provider.Settings;
-import android.app.PendingIntent;
 
 public class NotiDetector extends AccessibilityService {
+	
+	private TimerTask mTask;
+    private Timer mTimer;
+    
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
 	    System.out.println("onAccessibilityEvent");
@@ -43,10 +38,12 @@ public class NotiDetector extends AccessibilityService {
 	        	StandOutWindow.sendData(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
 	        	
 	        	
+	        	
 		    
 		        } catch (Exception e) {
 		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
 		        }
+	      
 	    }
 	    
 	    }
