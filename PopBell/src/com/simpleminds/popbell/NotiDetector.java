@@ -33,10 +33,11 @@ public class NotiDetector extends AccessibilityService {
 	        
 	        
 	        try {  
-	        	StandOutWindow.closeAll(this, SimpleWindow.class); // Close SimpleWindow
-	        	Bundle dataBundle=new Bundle();
-	        	dataBundle.putParcelable("sysnotidata", event.getParcelableData());
-	        	
+	        	// Close SimpleWindow
+	        	StandOutWindow.closeAll(this, SimpleWindow.class); 
+	        	Bundle dataBundle = new Bundle();
+	        	dataBundle.putString("sysnotidata", event.getText().toString());
+	     
 	        	//Send data to SimpleWindow
 	        	StandOutWindow.sendData(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
 	        	
