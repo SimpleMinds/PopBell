@@ -90,12 +90,11 @@ public class SimpleWindow extends StandOutWindow {
 			Class<? extends StandOutWindow> fromCls, int fromId) 
 	{
 		Window window = getWindow(id);
-		if(requestCode == 1);
-		{
+		
 			String changedText = data.getString("sysnotidata");
 			TextView status = (TextView) window.findViewById(R.id.textView2);
 			status.setTextSize(20);
 			status.setText(changedText);
-		}
+		
 	}
 }

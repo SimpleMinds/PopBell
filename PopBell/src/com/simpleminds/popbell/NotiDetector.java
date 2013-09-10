@@ -34,12 +34,14 @@ public class NotiDetector extends AccessibilityService {
 	        
 	        try {  
 	        	// Close SimpleWindow
-	        	StandOutWindow.closeAll(this, SimpleWindow.class); 
+	        	StandOutWindow.closeAll(this, SimpleWindow.class);
+	        	StandOutWindow.show(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID);
 	        	Bundle dataBundle = new Bundle();
 	        	dataBundle.putString("sysnotidata", event.getText().toString());
 	     
 	        	//Send data to SimpleWindow
 	        	StandOutWindow.sendData(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
+	        	
 	        	
 		    
 		        } catch (Exception e) {
