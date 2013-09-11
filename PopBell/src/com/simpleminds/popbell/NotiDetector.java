@@ -6,6 +6,7 @@ package com.simpleminds.popbell;
 
 import wei.mark.standout.StandOutWindow;
 
+import android.R.string;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.pm.ApplicationInfo;
@@ -24,7 +25,15 @@ public class NotiDetector extends AccessibilityService {
 	    if (event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
 	        System.out.println("notification: " + event.getText());
 	        
+	        String pkgnameforfilter = event.getPackageName().toString();
+	        String pkgitself = "com.simpleminds.popbell";
 	        
+	        //Filtering Package Name from Notification
+	        if(pkgnameforfilter == pkgitself)
+	        {
+	        	//Do Not send any data 
+	        }
+	        else{
 	        
 	        try {  
 	        	// Close SimpleWindow
@@ -42,14 +51,10 @@ public class NotiDetector extends AccessibilityService {
 	        	dataBundle.putString("pkgname", event.getPackageName().toString());
 	        	//Send data to SimpleWindow
 	        	StandOutWindow.sendData(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
-	        	
-	        	
-	        	
-		    
 		        } catch (Exception e) {
 		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
 		        }
-	      
+	        }
 	    }
 	    
 	    }
