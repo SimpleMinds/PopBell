@@ -6,6 +6,10 @@ import java.util.TimerTask;
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,10 +30,10 @@ public class SimpleWindow extends StandOutWindow {
 	}
 	@Override
 	public String getAppName() {
-		return "SimpleWindow";
+		return null;
 	}
 
-	
+
 
 	@Override
 	public void createAndAttachView(int id, FrameLayout frame) {
@@ -85,6 +89,11 @@ public class SimpleWindow extends StandOutWindow {
 			String changedText = data.getString("sysnotidata");
 			TextView status = (TextView) window.findViewById(R.id.textView2);
 			status.setText(changedText);
+			
+			String Appnametext = data.getString("appnamedata");
+			TextView appname = (TextView) window.findViewById(R.id.textView1);
+			appname.setText(Appnametext);
+			
 			mTask = new TimerTask() {
 	            @Override
 	            public void run() {
