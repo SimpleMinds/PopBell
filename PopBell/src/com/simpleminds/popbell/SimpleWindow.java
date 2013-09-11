@@ -11,10 +11,15 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SimpleWindow extends StandOutWindow {
@@ -86,13 +91,28 @@ public class SimpleWindow extends StandOutWindow {
 	{
 		Window window = getWindow(id);
 		
-			String changedText = data.getString("sysnotidata");
-			TextView status = (TextView) window.findViewById(R.id.textView2);
-			status.setText(changedText);
+		   
+			//Get Received String
+			String PkgName = data.getString("pkgname");
+			String NotiText = data.getString("sysnotidata");
+			TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
+			TextView NotiField = (TextView) window.findViewById(R.id.notitext);
+			ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
 			
-			String Appnametext = data.getString("appnamedata");
-			TextView appname = (TextView) window.findViewById(R.id.textView1);
-			appname.setText(Appnametext);
+			// Get App Name and App Icon
+			final PackageManager pm = getApplicationContext().getPackageManager();
+        	ApplicationInfo ai;
+        	try {
+        	    ai = pm.getApplicationInfo( (String) PkgName, 0);
+        	} catch (final NameNotFoundException e) {
+        	    ai = null;
+        	}
+        	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
+        	Drawable appicon = pm.getApplicationIcon(ai);
+        	
+        	AppNameField.setText(applicationName);
+        	NotiField.setText(NotiText);
+        	AppIconField.setImageDrawable(appicon);
 			
 			mTask = new TimerTask() {
 	            @Override

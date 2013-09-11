@@ -33,21 +33,13 @@ public class NotiDetector extends AccessibilityService {
 	        	StandOutWindow.show(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID);
 	        
 	        	// Get App Name
-	        	final PackageManager pm = getApplicationContext().getPackageManager();
-	        	ApplicationInfo ai;
-	        	try {
-	        	    ai = pm.getApplicationInfo( (String) event.getPackageName(), 0);
-	        	} catch (final NameNotFoundException e) {
-	        	    ai = null;
-	        	}
-	        	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
-	        	
+	        
 	        	// Create Bundle and put data
 	        	Bundle dataBundle = new Bundle();
 	        	// Get and Put Notification text 
 	        	dataBundle.putString("sysnotidata", event.getText().toString());
 	        	// Put App Name
-	        	dataBundle.putString("appnamedata", applicationName);
+	        	dataBundle.putString("pkgname", event.getPackageName().toString());
 	        	//Send data to SimpleWindow
 	        	StandOutWindow.sendData(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
 	        	
