@@ -40,6 +40,7 @@ public class NotiDetector extends AccessibilityService {
 	        	StandOutWindow.closeAll(this, SimpleWindow.class);
 	        	// Open SimpleWindow
 	        	StandOutWindow.show(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID);
+	        	
 	        
 	        	// Get App Name
 	        
@@ -51,6 +52,7 @@ public class NotiDetector extends AccessibilityService {
 	        	dataBundle.putString("pkgname", event.getPackageName().toString());
 	        	//Send data to SimpleWindow
 	        	StandOutWindow.sendData(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
+	        	
 		        } catch (Exception e) {
 		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
 		        }

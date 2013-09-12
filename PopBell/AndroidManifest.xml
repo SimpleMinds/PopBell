@@ -39,6 +39,8 @@
 </service>
   <service android:name=".SimpleWindow" >
         </service>
+        <service android:name=".NotiListOverlay" >
+        </service>
 <activity
             android:name=".StandOutExampleActivity"
             android:excludeFromRecents="true"
