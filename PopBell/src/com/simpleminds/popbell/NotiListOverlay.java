@@ -10,10 +10,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import wei.mark.standout.StandOutWindow;
+import wei.mark.standout.StandOutWindow.StandOutLayoutParams;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 
@@ -37,17 +39,44 @@ public class NotiListOverlay extends StandOutWindow  {
 		// TODO Auto-generated method stub
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.simple, frame, true);
-	}
+		
+		Window window = getWindow(id);
+		ImageView appicon = (ImageView) window.findViewById(R.id.appicon);
+	
+		ImageView back = (ImageView)view.findViewById(R.id.appicon);
+		back.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				new Thread(new Runnable() {         
+					public void run() {                 
+						
+						
+					}   
+				}).start();
+			}
+		});
+			
+			
+		}
+	
 
 	@Override
 	public int getFlags(int id) {
-		return StandOutFlags.FLAG_DECORATION_SYSTEM | StandOutFlags.FLAG_BODY_MOVE_ENABLE | StandOutFlags.FLAG_WINDOW_EDGE_LIMITS_ENABLE | StandOutFlags.FLAG_WINDOW_BRING_TO_FRONT_ON_TAP | StandOutFlags.FLAG_WINDOW_BRING_TO_FRONT_ON_TOUCH | StandOutFlags.FLAG_WINDOW_PINCH_RESIZE_ENABLE;
+		return StandOutFlags.FLAG_BODY_MOVE_ENABLE |
+				StandOutFlags.FLAG_WINDOW_EDGE_LIMITS_ENABLE | 
+				StandOutFlags.FLAG_WINDOW_BRING_TO_FRONT_ON_TAP | 
+				StandOutFlags.FLAG_WINDOW_BRING_TO_FRONT_ON_TOUCH | 
+				StandOutFlags.FLAG_WINDOW_PINCH_RESIZE_ENABLE;
 	}
 	
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return new StandOutLayoutParams(id, 100, 100,
+				StandOutLayoutParams.TOP, StandOutLayoutParams.LEFT);
+		
+		
 	}
 	//Receive data from NotiDetector
 	@Override
@@ -81,4 +110,6 @@ public class NotiListOverlay extends StandOutWindow  {
 		
 		
 	}
+	
+
 }
