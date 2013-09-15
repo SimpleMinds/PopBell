@@ -43,6 +43,8 @@
         </service>
         <service android:name=".DrawerOverlay">
             </service>
+             <service android:name=".LittleOverlay">
+            </service>
 <activity
             android:name=".StandOutExampleActivity"
             android:excludeFromRecents="true"

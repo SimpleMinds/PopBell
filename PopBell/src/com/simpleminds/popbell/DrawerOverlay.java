@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.StandOutWindow.StandOutLayoutParams;
+import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 
 
@@ -27,6 +28,10 @@ public class DrawerOverlay extends StandOutWindow{
 	public int getAppIcon() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public int getFlags(int id) {
+		return StandOutFlags.FLAG_DECORATION_SYSTEM;
 	}
 
 	@Override

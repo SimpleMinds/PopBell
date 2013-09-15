@@ -152,7 +152,7 @@ public class NotiListOverlay extends StandOutWindow  {
 		   
 			//Get Received String
 			String PkgName = data.getString("pkgname");
-			String NotiText = data.getString("sysnotidata");
+			String NotiText = data.getString("sysnotitext");
 			TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
 			TextView NotiField = (TextView) window.findViewById(R.id.notitext);
 			ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);

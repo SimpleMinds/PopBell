@@ -9,6 +9,8 @@ import wei.mark.standout.StandOutWindow;
 import android.R.string;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -49,13 +51,18 @@ public class NotiDetector extends AccessibilityService {
 	        	// Create Bundle and put data
 	        	Bundle dataBundle = new Bundle();
 	        	// Get and Put Notification text 
-	        	dataBundle.putString("sysnotidata", event.getText().toString());
+	        	dataBundle.putString("sysnotitext", event.getText().toString());
 	        	// Put App Name
 	        	dataBundle.putString("pkgname", event.getPackageName().toString());
 	        	//Send data to SimpleWindow
 	        	StandOutWindow.sendData(this, SimpleWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
 	        	StandOutWindow.sendData(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
 	        	
+	        	
+	        	Intent sendintent = new Intent(this, LittleOverlay.class);  
+	            sendintent.putExtras(dataBundle);
+	            PendingIntent pendingIntent = PendingIntent.getService(this, 12345, sendintent, PendingIntent.FLAG_UPDATE_CURRENT);
+	            pendingIntent.send();
 		        } catch (Exception e) {
 		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
 		        }
