@@ -1,5 +1,7 @@
 package com.simpleminds.popbell;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +24,48 @@ import wei.mark.standout.ui.Window;
 
 
 public class NotiListOverlay extends StandOutWindow  {
+	
+	//Class for using multiple OnClickListener
+	private class CompositeOnClickListener implements View.OnClickListener{
+	    List<View.OnClickListener> listeners;
 
+	    public CompositeOnClickListener(){
+	        listeners = new ArrayList<View.OnClickListener>();
+	    }
+
+	    public void addOnClickListener(View.OnClickListener listener){
+	        listeners.add(listener);
+	    }
+
+	    @Override
+	    public void onClick(View v){
+	       for(View.OnClickListener listener : listeners){
+	          listener.onClick(v);
+	       }
+	    }
+	}
+	
+	//Class for using multiple OnLongClickListener
+		private class CompositeOnLongClickListener implements View.OnLongClickListener{
+		    List<OnLongClickListener> listeners;
+
+		    public CompositeOnLongClickListener(){
+		        listeners = new ArrayList<View.OnLongClickListener>();
+		    }
+
+		    public void addOnLongClickListener(OnLongClickListener listener){
+		        listeners.add(listener);
+		    }
+
+		    @Override
+		    public boolean onLongClick(View v){
+		       for(View.OnLongClickListener listener : listeners){
+		          listener.onLongClick(v);
+		       }
+			return false;
+		    }
+		}
+		
 	@Override
 	public String getAppName() {
 		// TODO Auto-generated method stub
@@ -39,23 +83,43 @@ public class NotiListOverlay extends StandOutWindow  {
 		// TODO Auto-generated method stub
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.simple, frame, true);
-		
-		Window window = getWindow(id);
-		ImageView appicon = (ImageView) window.findViewById(R.id.appicon);
 	
-		ImageView back = (ImageView)view.findViewById(R.id.appicon);
-		back.setOnClickListener(new OnClickListener() {
-			@Override
+		ImageView appicon = (ImageView) view.findViewById(R.id.appicon);
+		
+		//OnClick for appicon
+		CompositeOnClickListener groupListener = new CompositeOnClickListener();
+		appicon.setOnClickListener(groupListener);
+		groupListener.addOnClickListener(new View.OnClickListener(){
+			   @Override
+			   public void onClick(View v){
+			      /**** Custom implementation ****/
+				   StandOutWindow.closeAll(NotiListOverlay.this, DrawerOverlay.class);
+					StandOutWindow.show(NotiListOverlay.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
+			   }
+			});
+		
+		//OnLongClick for appicon
+		CompositeOnLongClickListener LongListener = new CompositeOnLongClickListener();
+		appicon.setOnLongClickListener(LongListener);
+		LongListener.addOnLongClickListener(new View.OnLongClickListener(){
+			   @Override
+			   public boolean onLongClick(View v){
+			      /**** Custom implementation ****/
+				   stopSelf();
+					return false;
+			   }
+			});
+		/*
+		
+		appicon.setOnClickListener(new OnClickListener() {
+		@Override
 			public void onClick(View v) {
-				new Thread(new Runnable() {         
-					public void run() {                 
-						
-						
-					}   
-				}).start();
+				// TODO Auto-generated method stub
+				StandOutWindow.closeAll(NotiListOverlay.this, DrawerOverlay.class);
+				StandOutWindow.show(NotiListOverlay.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
 			}
 		});
-			
+		*/
 			
 		}
 	
@@ -73,7 +137,7 @@ public class NotiListOverlay extends StandOutWindow  {
 	public StandOutLayoutParams getParams(int id, Window window) {
 		// TODO Auto-generated method stub
 		
-		return new StandOutLayoutParams(id, 100, 100,
+		return new StandOutLayoutParams(id, 150, 150,
 				StandOutLayoutParams.TOP, StandOutLayoutParams.LEFT);
 		
 		
@@ -111,5 +175,7 @@ public class NotiListOverlay extends StandOutWindow  {
 		
 	}
 	
+	
+
 
 }

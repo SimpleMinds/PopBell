@@ -41,6 +41,8 @@
         </service>
         <service android:name=".NotiListOverlay" >
         </service>
+        <service android:name=".DrawerOverlay">
+            </service>
 <activity
             android:name=".StandOutExampleActivity"
             android:excludeFromRecents="true"

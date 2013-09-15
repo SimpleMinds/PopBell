@@ -1,17 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-<com.slidinglayer.SlidingLayer
-    xmlns:slidingLayer="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/slidingLayer1"
-    android:layout_width="@dimen/layer_width"
-    android:layout_height="match_parent"
-    slidingLayer:shadowDrawable="@drawable/sidebar_shadow"
-    slidingLayer:shadowWidth="@dimen/shadow_width"
-    slidingLayer:stickTo="left"
-    slidingLayer:closeOnTapEnabled="true">
-
-    …
-    …
-</com.slidinglayer.SlidingLayer>
+    android:layout_height="fill_parent"
+    android:background="@android:color/darker_gray" >
 </RelativeLayout>
