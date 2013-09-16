@@ -119,7 +119,7 @@ public class LittleOverlay extends Service {
 					break;
 			}
 			
-			return true;
+			return false;
 		}
 	};
 	
