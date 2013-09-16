@@ -133,39 +133,44 @@ public class LittleOverlay extends Service {
 		mPopupView = new ImageView(this);																
 		mPopupView.setImageResource(R.drawable.ic_launcher);	
 		mPopupView.setBackgroundColor(Color.argb(127, 0, 255, 255));								
-		
-		mPopupView.setOnTouchListener(mViewTouchListener);										
 		//OnClick for appicon
-				CompositeOnClickListener groupListener = new CompositeOnClickListener();
-				mPopupView.setOnClickListener(groupListener);
-				groupListener.addOnClickListener(new View.OnClickListener(){
-					   @Override
-					   public void onClick(View v){
-					      /**** Custom implementation ****/
-						   StandOutWindow.closeAll(LittleOverlay.this, DrawerOverlay.class);
-							StandOutWindow.show(LittleOverlay.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
-					   }
-					});
-				
-				//OnLongClick for appicon
-				CompositeOnLongClickListener LongListener = new CompositeOnLongClickListener();
-				mPopupView.setOnLongClickListener(LongListener);
-				LongListener.addOnLongClickListener(new View.OnLongClickListener(){
-					   @Override
-					   public boolean onLongClick(View v){
-					      /**** Custom implementation ****/
-						   stopSelf();
-							return false;
-					   }
-					});
+		CompositeOnClickListener groupListener = new CompositeOnClickListener();
+		mPopupView.setOnClickListener(groupListener);
+		groupListener.addOnClickListener(new View.OnClickListener(){
+			   @Override
+			   public void onClick(View v){
+			      /**** Custom implementation ****/
+				   System.out.println("onClick");
+				   StandOutWindow.closeAll(LittleOverlay.this, DrawerOverlay.class);
+					StandOutWindow.show(LittleOverlay.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
+			   }
+			});
+		
+		//OnLongClick for appicon
+		CompositeOnLongClickListener LongListener = new CompositeOnLongClickListener();
+		mPopupView.setOnLongClickListener(LongListener);
+		LongListener.addOnLongClickListener(new View.OnLongClickListener(){
+			   @Override
+			   public boolean onLongClick(View v){
+			      /**** Custom implementation ****/
+				   System.out.println("onLongClick");
+				   stopSelf();
+					return false;
+			   }
+			});
+		mPopupView.setOnTouchListener(mViewTouchListener);										
+		
 		
 		mParams = new WindowManager.LayoutParams(
-			WindowManager.LayoutParams.WRAP_CONTENT,
-			WindowManager.LayoutParams.WRAP_CONTENT,
-			WindowManager.LayoutParams.TYPE_PHONE,					
-			WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,		
-																				
-			PixelFormat.TRANSLUCENT);										
+				WindowManager.LayoutParams.WRAP_CONTENT,
+				WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                        | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+                        | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED
+                        | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
+                PixelFormat.TRANSLUCENT);			
 		mParams.gravity = Gravity.LEFT | Gravity.TOP;						
 		
 		mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);	
