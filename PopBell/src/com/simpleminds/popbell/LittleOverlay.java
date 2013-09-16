@@ -92,7 +92,7 @@ public class LittleOverlay extends Service {
     	}
     	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
     	Drawable appicon = pm.getApplicationIcon(ai);
-    	
+    	mPopupView.setImageDrawable(appicon);
 	}
 	
 	private OnTouchListener mViewTouchListener = new OnTouchListener() {

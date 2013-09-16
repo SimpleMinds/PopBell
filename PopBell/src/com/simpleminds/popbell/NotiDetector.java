@@ -48,7 +48,7 @@ public class NotiDetector extends AccessibilityService {
 	        	/*
 	        	StandOutWindow.show(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID);
 	        	 */
-	        	
+	        	startService(new Intent(this, LittleOverlay.class)); 
 	        	// Get App Name
 	        
 	        	// Create Bundle and put data
