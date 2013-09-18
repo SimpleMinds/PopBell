@@ -355,10 +355,11 @@ int layout activity_main 0x7f030018
 int layout body 0x7f030019
 int layout drawer 0x7f03001a
 int layout drop_down_list_item 0x7f03001b
-int layout simple 0x7f03001c
-int layout support_simple_spinner_dropdown_item 0x7f03001d
-int layout system_window_decorators 0x7f03001e
-int layout widgets 0x7f03001f
+int layout littleoverlay 0x7f03001c
+int layout simple 0x7f03001d
+int layout support_simple_spinner_dropdown_item 0x7f03001e
+int layout system_window_decorators 0x7f03001f
+int layout widgets 0x7f030020
 int menu main 0x7f0d0000
 int string abc_action_bar_home_description 0x7f060006
 int string abc_action_bar_up_description 0x7f060007

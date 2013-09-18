@@ -1134,10 +1134,11 @@ containing a value of this type.
         public static final int body=0x7f030019;
         public static final int drawer=0x7f03001a;
         public static final int drop_down_list_item=0x7f03001b;
-        public static final int simple=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
-        public static final int system_window_decorators=0x7f03001e;
-        public static final int widgets=0x7f03001f;
+        public static final int littleoverlay=0x7f03001c;
+        public static final int simple=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int system_window_decorators=0x7f03001f;
+        public static final int widgets=0x7f030020;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;

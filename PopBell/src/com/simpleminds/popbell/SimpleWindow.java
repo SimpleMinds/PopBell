@@ -6,14 +6,17 @@ import java.util.TimerTask;
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,9 +68,13 @@ public class SimpleWindow extends StandOutWindow {
 	public StandOutLayoutParams getParams(int id, Window window) {
 		/*return new StandOutLayoutParams(id, 200, 200,
 				StandOutLayoutParams.CENTER, StandOutLayoutParams.CENTER);*/
-		SharedPreferences pref = getSharedPreferences("display", 0);
-        array = pref.getString("xy", "0/0").split("/");
-		return new StandOutLayoutParams(id, Integer.parseInt(array[0])*7/8, Integer.parseInt(array[1])/8,
+		
+		WindowManager win = (WindowManager) getSystemService(Context.WINDOW_SERVICE); 
+	    Display display = win.getDefaultDisplay();
+	    int width = display.getWidth();
+	    int height = display.getHeight();
+
+		return new StandOutLayoutParams(id, width*7/8, height/8,
 				  StandOutLayoutParams.CENTER, StandOutLayoutParams.TOP + 20);
 	}
 

@@ -48,7 +48,7 @@ public class NotiDetector extends AccessibilityService {
 	        	/*
 	        	StandOutWindow.show(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID);
 	        	 */
-	        	startService(new Intent(this, LittleOverlay.class)); 
+	        	
 	        	// Get App Name
 	        
 	        	// Create Bundle and put data
@@ -63,10 +63,6 @@ public class NotiDetector extends AccessibilityService {
 	        	StandOutWindow.sendData(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
 	        	*/
 	        	
-	        	Intent sendintent = new Intent(this, LittleOverlay.class);  
-	            sendintent.putExtras(dataBundle);
-	            PendingIntent pendingIntent = PendingIntent.getService(this, 12345, sendintent, PendingIntent.FLAG_UPDATE_CURRENT);
-	            pendingIntent.send();
 		        } catch (Exception e) {
 		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
 		        }

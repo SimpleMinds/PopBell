@@ -30,11 +30,11 @@ public class LittleOverlay extends Service {
 	private ImageView mPopupView;							
 	private WindowManager.LayoutParams mParams;		
 	private WindowManager mWindowManager;			
-	
+
 	private float START_X, START_Y;							
 	private int PREV_X, PREV_Y;								
 	private int MAX_X = -1, MAX_Y = -1;					
-	
+
 	//Class for using multiple OnClickListener
 	private class CompositeOnClickListener implements View.OnClickListener{
 	    List<View.OnClickListener> listeners;
@@ -54,7 +54,7 @@ public class LittleOverlay extends Service {
 	       }
 	    }
 	}
-	
+
 	//Class for using multiple OnLongClickListener
 		private class CompositeOnLongClickListener implements View.OnLongClickListener{
 		    List<OnLongClickListener> listeners;
@@ -75,26 +75,10 @@ public class LittleOverlay extends Service {
 			return false;
 		    }
 		}
-		
+
+
 	
-	public void onReceive(Context context, Intent intent) {
-	    
-	    Bundle b = intent.getExtras();
-	    String pkgname = b.getString("pkgname");
-	    String sysnotitext = b.getString("sysnotitext");
-	    
-	    final PackageManager pm = getApplicationContext().getPackageManager();
-    	ApplicationInfo ai;
-    	try {
-    	    ai = pm.getApplicationInfo( (String) pkgname, 0);
-    	} catch (final NameNotFoundException e) {
-    	    ai = null;
-    	}
-    	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
-    	Drawable appicon = pm.getApplicationIcon(ai);
-    	mPopupView.setImageDrawable(appicon);
-	}
-	
+
 	private OnTouchListener mViewTouchListener = new OnTouchListener() {
 		@Override public boolean onTouch(View v, MotionEvent event) {
 			switch(event.getAction()) {
@@ -109,23 +93,23 @@ public class LittleOverlay extends Service {
 				case MotionEvent.ACTION_MOVE:
 					int x = (int)(event.getRawX() - START_X);	
 					int y = (int)(event.getRawY() - START_Y);	
-					
-					
+
+
 					mParams.x = PREV_X + x;
 					mParams.y = PREV_Y + y;
-					
+
 					optimizePosition();
 					mWindowManager.updateViewLayout(mPopupView, mParams);	
 					break;
 			}
-			
+
 			return false;
 		}
 	};
-	
+
 	@Override
 	public IBinder onBind(Intent arg0) { return null; }
-	
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -145,7 +129,7 @@ public class LittleOverlay extends Service {
 					StandOutWindow.show(LittleOverlay.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
 			   }
 			});
-		
+
 		//OnLongClick for appicon
 		CompositeOnLongClickListener LongListener = new CompositeOnLongClickListener();
 		mPopupView.setOnLongClickListener(LongListener);
@@ -159,8 +143,8 @@ public class LittleOverlay extends Service {
 			   }
 			});
 		mPopupView.setOnTouchListener(mViewTouchListener);										
-		
-		
+
+
 		mParams = new WindowManager.LayoutParams(
 				WindowManager.LayoutParams.WRAP_CONTENT,
 				WindowManager.LayoutParams.WRAP_CONTENT,
@@ -172,20 +156,20 @@ public class LittleOverlay extends Service {
                         | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
                 PixelFormat.TRANSLUCENT);			
 		mParams.gravity = Gravity.LEFT | Gravity.TOP;						
-		
+
 		mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);	
 		mWindowManager.addView(mPopupView, mParams);		
-		
+
 	}
-	
-	
+
+
 	private void setMaxPosition() {
 	DisplayMetrics matrix = new DisplayMetrics();
 	mWindowManager.getDefaultDisplay().getMetrics(matrix);
 	MAX_X = matrix.widthPixels - mPopupView.getWidth();
 	MAX_Y = matrix.heightPixels - mPopupView.getHeight();
 	}
-	
+
 
 	private void optimizePosition() {
 
@@ -194,12 +178,30 @@ public class LittleOverlay extends Service {
 		if(mParams.x < 0) mParams.x = 0;
 		if(mParams.y < 0) mParams.y = 0;
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		if(mWindowManager != null) {		
 			if(mPopupView != null) mWindowManager.removeView(mPopupView);
 		}
 		super.onDestroy();
+	}
+	
+	public void onReceive(Context context, Intent intent) {
+
+	    Bundle b = intent.getExtras();
+	    String pkgname = b.getString("pkgname");
+	    String sysnotitext = b.getString("sysnotitext");
+
+	    final PackageManager pm = getApplicationContext().getPackageManager();
+    	ApplicationInfo ai;
+    	try {
+    	    ai = pm.getApplicationInfo( (String) pkgname, 0);
+    	} catch (final NameNotFoundException e) {
+    	    ai = null;
+    	}
+    	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
+    	Drawable appicon = pm.getApplicationIcon(ai);
+    	mPopupView.setImageDrawable(appicon);
 	}
 }

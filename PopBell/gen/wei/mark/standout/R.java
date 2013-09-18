@@ -30,7 +30,7 @@ public final class R {
 	}
 	public static final class layout {
 		public static final int drop_down_list_item = 0x7f03001b;
-		public static final int system_window_decorators = 0x7f03001e;
+		public static final int system_window_decorators = 0x7f03001f;
 	}
 	public static final class string {
 		public static final int close = 0x7f060002;
