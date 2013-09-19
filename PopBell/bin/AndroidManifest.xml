@@ -39,12 +39,7 @@
 </service>
   <service android:name=".SimpleWindow" >
         </service>
-        <service android:name=".NotiListOverlay" >
-        </service>
-        <service android:name=".DrawerOverlay">
-            </service>
-             <service android:name=".LittleOverlay">
-            </service>
+       
 <activity
             android:name=".StandOutExampleActivity"
             android:excludeFromRecents="true"
