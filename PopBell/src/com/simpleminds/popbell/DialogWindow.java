@@ -63,8 +63,6 @@ public class DialogWindow extends StandOutWindow {
 		return null;
 	}
 
-
-
 	@Override
 	public void createAndAttachView(int id, FrameLayout frame) {
 		
@@ -72,8 +70,8 @@ public class DialogWindow extends StandOutWindow {
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.simple, frame, true);
 		
-		 TextView AppNameField = (TextView) view.findViewById(R.id.appnametext);
-		 TextView NotiField = (TextView) view.findViewById(R.id.notitext);
+		 final TextView AppNameField = (TextView) view.findViewById(R.id.appnametext);
+		 final TextView NotiField = (TextView) view.findViewById(R.id.notitext);
 		 ImageView AppIconField = (ImageView) view.findViewById(R.id.appicon);
 		
 		//show PinedDialogWindow
@@ -82,9 +80,8 @@ public class DialogWindow extends StandOutWindow {
 			public boolean onLongClick(View v) {
 				Log.d("PopBell", "DialogWindow Long Click");
 				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
-	        
 	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
-				
+	        	
 				return false;
 			}
 		});
@@ -94,10 +91,8 @@ public class DialogWindow extends StandOutWindow {
 			public boolean onLongClick(View v) {
 				Log.d("PopBell", "DialogWindow Long Click");
 				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
-	        
 	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
-	        	
-	        	
+
 				return false;
 			}
 		});
@@ -107,7 +102,6 @@ public class DialogWindow extends StandOutWindow {
 			public boolean onLongClick(View v) {
 				Log.d("PopBell", "DialogWindow Long Click");
 				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
-	        
 	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
 				
 				return false;
@@ -124,11 +118,8 @@ public class DialogWindow extends StandOutWindow {
 				}).start();
 			}
 		});*/
-		
-		
 	}
-	
-	
+
 	// the window will be centered
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
@@ -150,17 +141,13 @@ public class DialogWindow extends StandOutWindow {
 		return super.getFlags(id) | StandOutFlags.FLAG_WINDOW_FOCUS_INDICATOR_DISABLE;
 	}
 
-	
-	
-	
 	//Receive data from NotiDetector
 	@Override
 	public void onReceiveData(int id, int requestCode, Bundle data,
 			Class<? extends StandOutWindow> fromCls, int fromId) 
-	{
+	{		
 		Window window = getWindow(id);
-		
-		   
+
 			//Get Received String
 			String PkgName = data.getString("pkgname");
 			String NotiText = data.getString("sysnotitext");
@@ -182,7 +169,7 @@ public class DialogWindow extends StandOutWindow {
         	AppNameField.setText(applicationName);
         	NotiField.setText(NotiText);
         	AppIconField.setImageDrawable(appicon);
-			
+        	
 			mTask = new TimerTask() {
 	            @Override
 	            public void run() {
@@ -191,14 +178,8 @@ public class DialogWindow extends StandOutWindow {
 	        };
 	         
 	        mTimer = new Timer();
-	         
 	        mTimer.schedule(mTask, 5000);
-		
-	       
-	     
+
 	}
 
-
-
-	
 }

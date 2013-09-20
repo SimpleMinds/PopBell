@@ -31,6 +31,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,9 @@ import android.widget.TextView;
 public class PinedDialogWindow extends StandOutWindow {
 	
 	String[] array;
-    
+	public void getHiddenNotification(){
+		return;
+	}
     @Override
 	public int getAppIcon() {
 		// TODO Auto-generated method stub
@@ -54,8 +57,6 @@ public class PinedDialogWindow extends StandOutWindow {
 		return null;
 	}
 
-
-
 	@Override
 	public void createAndAttachView(int id, FrameLayout frame) {
 		
@@ -63,11 +64,35 @@ public class PinedDialogWindow extends StandOutWindow {
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.simple, frame, true);
 		
+		 final TextView AppNameField = (TextView) view.findViewById(R.id.appnametext);
+		 final TextView NotiField = (TextView) view.findViewById(R.id.notitext);
+		 ImageView AppIconField = (ImageView) view.findViewById(R.id.appicon);
+		
 		//show PinedDialogWindow
-		view.setOnLongClickListener(new OnLongClickListener() {
+		AppNameField.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
-				
+				Log.d("PopBell", "PinedDialogWindow Long Click");
+			   stopSelf();
+				return false;
+			}
+		});
+		
+		NotiField.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				Log.d("PopBell", "PinedDialogWindow Long Click");
+				stopSelf();
+
+				return false;
+			}
+		});
+		
+		AppIconField.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				Log.d("PopBell", "PinedDialogWindow Long Click");
+				stopSelf();
 				return false;
 			}
 		});
@@ -82,8 +107,7 @@ public class PinedDialogWindow extends StandOutWindow {
 				}).start();
 			}
 		});*/
-		
-		
+
 	}
 	
 	
@@ -119,27 +143,28 @@ public class PinedDialogWindow extends StandOutWindow {
 		Window window = getWindow(id);
 		
 		   
-			//Get Received String
-			String PkgName = data.getString("pkgname");
-			String NotiText = data.getString("sysnotitext");
-			TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
-			TextView NotiField = (TextView) window.findViewById(R.id.notitext);
-			ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
-			
-			// Get App Name and App Icon
-			final PackageManager pm = getApplicationContext().getPackageManager();
-        	ApplicationInfo ai;
-        	try {
-        	    ai = pm.getApplicationInfo( (String) PkgName, 0);
-        	} catch (final NameNotFoundException e) {
-        	    ai = null;
-        	}
-        	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
-        	Drawable appicon = pm.getApplicationIcon(ai);
+		//Get Received String
+		String PkgName = data.getString("pkgname");
+		String NotiText = data.getString("sysnotitext");
+		TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
+		TextView NotiField = (TextView) window.findViewById(R.id.notitext);
+		ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
+		
+		// Get App Name and App Icon
+		final PackageManager pm = getApplicationContext().getPackageManager();
+    	ApplicationInfo ai;
+    	try {
+    	    ai = pm.getApplicationInfo( (String) PkgName, 0);
+    	} catch (final NameNotFoundException e) {
+    	    ai = null;
+    	}
+    	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
+    	Drawable appicon = pm.getApplicationIcon(ai);
+    	
+    	AppNameField.setText(applicationName);
+    	NotiField.setText(NotiText);
+    	AppIconField.setImageDrawable(appicon);
         	
-        	AppNameField.setText(applicationName);
-        	NotiField.setText(NotiText);
-        	AppIconField.setImageDrawable(appicon);
 			
 		
 		

@@ -60,11 +60,13 @@ public class NotiDetector extends AccessibilityService {
 	        try {  
 	        	// Close SimpleWindow
 	        	StandOutWindow.closeAll(this, DialogWindow.class);
+	        	StandOutWindow.closeAll(this, PinedDialogWindow.class);
 	        	/*
 	        	StandOutWindow.closeAll(this, NotiListOverlay.class);
 	        	*/
 	        	// Open SimpleWindow
 	        	StandOutWindow.show(this, DialogWindow.class, StandOutWindow.DEFAULT_ID);
+	        	StandOutWindow.hide(this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
 	        	/*
 	        	StandOutWindow.show(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID);
 	        	 */
@@ -79,6 +81,7 @@ public class NotiDetector extends AccessibilityService {
 	        	dataBundle.putString("pkgname", event.getPackageName().toString());
 	        	//Send data to SimpleWindow
 	        	StandOutWindow.sendData(this, DialogWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
+	        	StandOutWindow.sendData(this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
 	        	
 	        	/*
 	        	StandOutWindow.sendData(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
