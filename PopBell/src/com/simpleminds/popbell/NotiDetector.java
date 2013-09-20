@@ -58,7 +58,7 @@ public class NotiDetector extends AccessibilityService {
 	        Parcelable parcelable = event.getParcelableData();
 	        
 	        //Filtering Package Name from Notification
-	        if(pkgnameforfilter == pkgitself)
+	        if(pkgnameforfilter.equals(pkgitself))
 	        {
 	        	//Do Not send any data 
 	        }
