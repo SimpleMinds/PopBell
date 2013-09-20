@@ -21,12 +21,18 @@ package com.simpleminds.popbell;
 
 
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import wei.mark.standout.StandOutWindow;
 
 import android.R.string;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -37,7 +43,8 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 public class NotiDetector extends AccessibilityService {
-	
+	private TimerTask mTask;
+    private Timer mTimer;
     
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -59,14 +66,16 @@ public class NotiDetector extends AccessibilityService {
 	        
 	        try {  
 	        	// Close SimpleWindow
-	        	StandOutWindow.closeAll(this, DialogWindow.class);
 	        	StandOutWindow.closeAll(this, PinedDialogWindow.class);
+	        	StandOutWindow.closeAll(this, DialogWindow.class);
+	        
 	        	/*
 	        	StandOutWindow.closeAll(this, NotiListOverlay.class);
 	        	*/
 	        	// Open SimpleWindow
+	        	
+	        	StandOutWindow.show(this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
 	        	StandOutWindow.show(this, DialogWindow.class, StandOutWindow.DEFAULT_ID);
-	        	StandOutWindow.hide(this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
 	        	/*
 	        	StandOutWindow.show(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID);
 	        	 */
@@ -80,13 +89,49 @@ public class NotiDetector extends AccessibilityService {
 	        	// Put App Name
 	        	dataBundle.putString("pkgname", event.getPackageName().toString());
 	        	//Send data to SimpleWindow
-	        	StandOutWindow.sendData(this, DialogWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
-	        	StandOutWindow.sendData(this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
 	        	
+	        	StandOutWindow.sendData(this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
+	        	StandOutWindow.sendData(this, DialogWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
 	        	/*
 	        	StandOutWindow.sendData(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
 	        	*/
 	        	
+	        	
+	        	
+	        	mTask = new TimerTask() {
+	        		//Check if DialogWindow is running
+	        		boolean isMyServiceRunning() {
+	            	    ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+	            	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+	            	        if (DialogWindow.class.getName().equals(service.service.getClassName())) {
+	            	            return true;
+	            	        }
+	            	    }
+	            	    return false;
+	            	}
+		            @Override
+		            public void run() {
+		            	
+		            	if(isMyServiceRunning()==true){
+		            		stopService(new Intent(NotiDetector.this, DialogWindow.class));
+		            		stopService(new Intent(NotiDetector.this, PinedDialogWindow.class));
+		            	}
+		            	else{
+		            		stopService(new Intent(NotiDetector.this, DialogWindow.class));
+		            	}
+		            	
+		            	
+		            	
+		
+		            }
+		        };
+		         
+		        mTimer = new Timer();
+		        mTimer.schedule(mTask, 5000);
+	        	
+	        	
+	        	
+	        
 		        } catch (Exception e) {
 		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
 		        }

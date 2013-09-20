@@ -29,6 +29,7 @@ import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.app.Instrumentation;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -41,6 +42,7 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -68,43 +70,15 @@ public class DialogWindow extends StandOutWindow {
 		
 		// create a new layout from body.xml
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.simple, frame, true);
-		
-		 final TextView AppNameField = (TextView) view.findViewById(R.id.appnametext);
-		 final TextView NotiField = (TextView) view.findViewById(R.id.notitext);
-		 ImageView AppIconField = (ImageView) view.findViewById(R.id.appicon);
-		
-		//show PinedDialogWindow
-		AppNameField.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				Log.d("PopBell", "DialogWindow Long Click");
-				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
-	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
-	        	
-				return false;
-			}
-		});
-		
-		NotiField.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				Log.d("PopBell", "DialogWindow Long Click");
-				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
-	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
+		View view = inflater.inflate(R.layout.dialog, frame, true);
 
-				return false;
-			}
-		});
-		
-		AppIconField.setOnLongClickListener(new OnLongClickListener() {
+		 ImageView PinBtn = (ImageView) view.findViewById(R.id.pinit);
+
+		 PinBtn.setOnClickListener(new OnClickListener() {
 			@Override
-			public boolean onLongClick(View v) {
-				Log.d("PopBell", "DialogWindow Long Click");
-				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
-	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
-				
-				return false;
+			public void onClick(View v) {
+				Log.d("PopBell", "DialogWindow Pinit Button");
+				stopSelf();
 			}
 		});
 		/*Button back = (Button)view.findViewById(R.id.button1);
@@ -170,16 +144,11 @@ public class DialogWindow extends StandOutWindow {
         	NotiField.setText(NotiText);
         	AppIconField.setImageDrawable(appicon);
         	
-			mTask = new TimerTask() {
-	            @Override
-	            public void run() {
-	            	stopSelf();
-	            }
-	        };
-	         
-	        mTimer = new Timer();
-	        mTimer.schedule(mTask, 5000);
+		
 
 	}
-
+	public boolean onCloseAll() {
+		Log.d("PopBell", "CloseAll DialodWindow");
+		return false;
+	}
 }

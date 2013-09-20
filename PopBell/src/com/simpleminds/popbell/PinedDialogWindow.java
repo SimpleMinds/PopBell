@@ -19,9 +19,6 @@
 
 package com.simpleminds.popbell;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
@@ -35,7 +32,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnLongClickListener;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -62,38 +59,17 @@ public class PinedDialogWindow extends StandOutWindow {
 		
 		// create a new layout from body.xml
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.simple, frame, true);
-		
-		 final TextView AppNameField = (TextView) view.findViewById(R.id.appnametext);
-		 final TextView NotiField = (TextView) view.findViewById(R.id.notitext);
-		 ImageView AppIconField = (ImageView) view.findViewById(R.id.appicon);
-		
-		//show PinedDialogWindow
-		AppNameField.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				Log.d("PopBell", "PinedDialogWindow Long Click");
-			   stopSelf();
-				return false;
-			}
-		});
-		
-		NotiField.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				Log.d("PopBell", "PinedDialogWindow Long Click");
-				stopSelf();
+		View view = inflater.inflate(R.layout.pined_dialog, frame, true);
 
-				return false;
-			}
-		});
-		
-		AppIconField.setOnLongClickListener(new OnLongClickListener() {
+		 ImageView CloseBtn = (ImageView) view.findViewById(R.id.closeit);
+
+		 CloseBtn.setOnClickListener(new OnClickListener() {
 			@Override
-			public boolean onLongClick(View v) {
-				Log.d("PopBell", "PinedDialogWindow Long Click");
+			public void onClick(View v) {
+				Log.d("PopBell", "PinedDialogWindow Closeit Button");
+				Log.d("PopBell", "PinedDialogWindow Close");
 				stopSelf();
-				return false;
+			
 			}
 		});
 		/*Button back = (Button)view.findViewById(R.id.button1);
@@ -165,13 +141,16 @@ public class PinedDialogWindow extends StandOutWindow {
     	NotiField.setText(NotiText);
     	AppIconField.setImageDrawable(appicon);
         	
-			
+    	
 		
 		
 	}
 
 
-
+	public boolean onCloseAll() {
+		Log.d("PopBell", "CloseAll PinedDialodWindow");
+		return false;
+	}
 	
 }
 
