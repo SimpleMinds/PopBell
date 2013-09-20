@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 MEMBERS OF THE SIMPLEMINDS TEAM
 
 Dong Ho, Gang <ceo@widestudio.co.kr>
-Young Bin, Han <sukso96100@gmail.com>
+Young Bin, Han <youngbin@widestudio.co.kr>
 Dong Ho, Kim <012403@naver.com>
 
 ====================
