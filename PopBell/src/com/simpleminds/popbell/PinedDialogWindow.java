@@ -26,7 +26,6 @@ import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -35,16 +34,15 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SimpleWindow extends StandOutWindow {
+public class PinedDialogWindow extends StandOutWindow {
 	
 	String[] array;
-	private TimerTask mTask;
-    private Timer mTimer;
     
     @Override
 	public int getAppIcon() {
@@ -65,7 +63,14 @@ public class SimpleWindow extends StandOutWindow {
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.simple, frame, true);
 		
-	
+		//show PinedDialogWindow
+		view.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				
+				return false;
+			}
+		});
 		/*Button back = (Button)view.findViewById(R.id.button1);
 		back.setOnClickListener(new OnClickListener() {
 			@Override
@@ -136,16 +141,7 @@ public class SimpleWindow extends StandOutWindow {
         	NotiField.setText(NotiText);
         	AppIconField.setImageDrawable(appicon);
 			
-			mTask = new TimerTask() {
-	            @Override
-	            public void run() {
-	            	stopSelf();
-	            }
-	        };
-	         
-	        mTimer = new Timer();
-	         
-	        mTimer.schedule(mTask, 5000);
+		
 		
 	}
 
@@ -153,3 +149,4 @@ public class SimpleWindow extends StandOutWindow {
 
 	
 }
+
