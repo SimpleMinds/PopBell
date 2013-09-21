@@ -30,6 +30,7 @@ import wei.mark.standout.ui.Window;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -55,6 +56,11 @@ public class DialogWindow extends StandOutWindow {
 	private TimerTask mTask;
     private Timer mTimer;
     
+    public boolean onShow(int id, Window window) {
+    	Log.d("PopBell", "DialogWindow Show");
+		return false;
+	}
+    
     @Override
 	public int getAppIcon() {
 		// TODO Auto-generated method stub
@@ -78,6 +84,9 @@ public class DialogWindow extends StandOutWindow {
 			@Override
 			public void onClick(View v) {
 				Log.d("PopBell", "DialogWindow Pinit Button");
+				
+				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
+	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
 				stopSelf();
 			}
 		});
@@ -144,6 +153,11 @@ public class DialogWindow extends StandOutWindow {
         	NotiField.setText(NotiText);
         	AppIconField.setImageDrawable(appicon);
         	
+        	SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+        	SharedPreferences.Editor ed = prefs.edit();
+        	ed.putString("string_pkgname", PkgName);
+        	ed.putString("string_notitext", NotiText);
+        	ed.commit();
 		
 
 	}

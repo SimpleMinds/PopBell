@@ -65,73 +65,26 @@ public class NotiDetector extends AccessibilityService {
 	        else{
 	        
 	        try {  
-	        	// Close SimpleWindow
-	        	StandOutWindow.closeAll(this, PinedDialogWindow.class);
+	        	//Close and Open Dialog Window
 	        	StandOutWindow.closeAll(this, DialogWindow.class);
-	        
-	        	/*
-	        	StandOutWindow.closeAll(this, NotiListOverlay.class);
-	        	*/
-	        	// Open SimpleWindow
-	        	
-	        	StandOutWindow.show(this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
 	        	StandOutWindow.show(this, DialogWindow.class, StandOutWindow.DEFAULT_ID);
-	        	/*
-	        	StandOutWindow.show(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID);
-	        	 */
-	        	
-	        	// Get App Name
-	        
 	        	// Create Bundle and put data
 	        	Bundle dataBundle = new Bundle();
 	        	// Get and Put Notification text 
 	        	dataBundle.putString("sysnotitext", event.getText().toString());
 	        	// Put App Name
 	        	dataBundle.putString("pkgname", event.getPackageName().toString());
-	        	//Send data to SimpleWindow
-	        	
-	        	StandOutWindow.sendData(this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
+	        	//Send data to DialogWindow
 	        	StandOutWindow.sendData(this, DialogWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
-	        	/*
-	        	StandOutWindow.sendData(this, NotiListOverlay.class, StandOutWindow.DEFAULT_ID, 2, dataBundle, null, 0);
-	        	*/
-	        	
-	        	
-	        	
+	        	//Close DialogWindow in a few seconds
 	        	mTask = new TimerTask() {
-	        		//Check if DialogWindow is running
-	        		boolean isMyServiceRunning() {
-	            	    ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-	            	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-	            	        if (DialogWindow.class.getName().equals(service.service.getClassName())) {
-	            	            return true;
-	            	        }
-	            	    }
-	            	    return false;
-	            	}
 		            @Override
 		            public void run() {
-		            	
-		            	if(isMyServiceRunning()==true){
 		            		stopService(new Intent(NotiDetector.this, DialogWindow.class));
-		            		stopService(new Intent(NotiDetector.this, PinedDialogWindow.class));
-		            	}
-		            	else{
-		            		stopService(new Intent(NotiDetector.this, DialogWindow.class));
-		            	}
-		            	
-		            	
-		            	
-		
 		            }
 		        };
-		         
 		        mTimer = new Timer();
 		        mTimer.schedule(mTask, 5000);
-	        	
-	        	
-	        	
-	        
 		        } catch (Exception e) {
 		            Log.e("SYSNOTIDETECTOR", "ERROR IN CODE:"+e.toString());
 		        }

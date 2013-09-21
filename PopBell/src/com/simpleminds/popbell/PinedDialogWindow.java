@@ -23,6 +23,7 @@ import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -105,29 +106,26 @@ public class PinedDialogWindow extends StandOutWindow {
 	// move the window by draggin(g the view
 	@Override
 	public int getFlags(int id) {
-		return super.getFlags(id) /*| StandOutFlags.FLAG_BODY_MOVE_ENABLE*/ | StandOutFlags.FLAG_WINDOW_FOCUSABLE_DISABLE;
+		return super.getFlags(id) | StandOutFlags.FLAG_BODY_MOVE_ENABLE | StandOutFlags.FLAG_WINDOW_FOCUSABLE_DISABLE;
 	}
 
 	
 	
 	
-	//Receive data from NotiDetector
-	@Override
-	public void onReceiveData(int id, int requestCode, Bundle data,
-			Class<? extends StandOutWindow> fromCls, int fromId) 
-	{
-		Window window = getWindow(id);
-		
-		   
-		//Get Received String
-		String PkgName = data.getString("pkgname");
-		String NotiText = data.getString("sysnotitext");
-		TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
+	public boolean onShow(int id, Window window) {
+    	Log.d("PopBell", "PinedDialogWindow Show");
+    	
+    	
+    	TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
 		TextView NotiField = (TextView) window.findViewById(R.id.notitext);
 		ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
-		
-		// Get App Name and App Icon
-		final PackageManager pm = getApplicationContext().getPackageManager();
+		//Get Data from preferences
+    	SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+    	String PkgName = prefs.getString("string_pkgname", "");
+    	String NotiText = prefs.getString("string_notitext", "");
+    	
+    	//get app icon and app name
+    	final PackageManager pm = getApplicationContext().getPackageManager();
     	ApplicationInfo ai;
     	try {
     	    ai = pm.getApplicationInfo( (String) PkgName, 0);
@@ -137,13 +135,11 @@ public class PinedDialogWindow extends StandOutWindow {
     	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
     	Drawable appicon = pm.getApplicationIcon(ai);
     	
+    	//set overay's data
     	AppNameField.setText(applicationName);
     	NotiField.setText(NotiText);
     	AppIconField.setImageDrawable(appicon);
-        	
-    	
-		
-		
+		return false;
 	}
 
 
