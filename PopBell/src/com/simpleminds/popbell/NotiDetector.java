@@ -67,7 +67,9 @@ public class NotiDetector extends AccessibilityService {
 	        try {  
 	        	//Close and Open Dialog Window
 	        	StandOutWindow.closeAll(this, DialogWindow.class);
+	        	StandOutWindow.closeAll(this, TouchTrigger.class);
 	        	StandOutWindow.show(this, DialogWindow.class, StandOutWindow.DEFAULT_ID);
+	        	StandOutWindow.show(this, TouchTrigger.class, StandOutWindow.DEFAULT_ID);
 	        	// Create Bundle and put data
 	        	Bundle dataBundle = new Bundle();
 	        	// Get and Put Notification text 
@@ -81,6 +83,7 @@ public class NotiDetector extends AccessibilityService {
 		            @Override
 		            public void run() {
 		            		stopService(new Intent(NotiDetector.this, DialogWindow.class));
+		            		stopService(new Intent(NotiDetector.this, TouchTrigger.class));
 		            }
 		        };
 		        mTimer = new Timer();
