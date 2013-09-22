@@ -19,43 +19,35 @@
 
 package com.simpleminds.popbell;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
-import android.app.Instrumentation;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.simpleminds.popbell.PinedDialogWindow;
 
 public class DialogWindow extends StandOutWindow {
 	
 	String[] array;
-	private TimerTask mTask;
-    private Timer mTimer;
-    
+	
     public boolean onShow(int id, Window window) {
     	Log.d("PopBell", "DialogWindow Show");
 		return false;
@@ -84,31 +76,17 @@ public class DialogWindow extends StandOutWindow {
 			@Override
 			public void onClick(View v) {
 				Log.d("PopBell", "DialogWindow Pinit Button");
-				
 				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
 	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
 				stopSelf();
 			}
 		});
-		/*Button back = (Button)view.findViewById(R.id.button1);
-		back.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				new Thread(new Runnable() {         
-					public void run() {                 
-						new Instrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_VOLUME_UP);
-					}   
-				}).start();
-			}
-		});*/
+
 	}
 
 	// the window will be centered
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
-		/*return new StandOutLayoutParams(id, 200, 200,
-				StandOutLayoutParams.CENTER, StandOutLayoutParams.CENTER);*/
-		
 		WindowManager win = (WindowManager) getSystemService(Context.WINDOW_SERVICE); 
 	    Display display = win.getDefaultDisplay();
 	    int width = display.getWidth();

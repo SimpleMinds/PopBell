@@ -69,7 +69,7 @@ public class PinedDialogWindow extends StandOutWindow {
 			public void onClick(View v) {
 				Log.d("PopBell", "PinedDialogWindow Closeit Button");
 				Log.d("PopBell", "PinedDialogWindow Close");
-				stopSelf();
+				close(getUniqueId());
 			
 			}
 		});
@@ -147,6 +147,16 @@ public class PinedDialogWindow extends StandOutWindow {
 		Log.d("PopBell", "CloseAll PinedDialodWindow");
 		return false;
 	}
+	
+	//add new PinedDialogWindow - Call this on DialogWindow
+	public Runnable OpenPinedWindow(int id) {
+	    return new Runnable() {
+	      @Override
+	      public void run() {
+	        StandOutWindow.show(PinedDialogWindow.this.getApplicationContext(), PinedDialogWindow.class, getUniqueId());
+	      }
+	    };
+	  }
 	
 }
 
