@@ -20,9 +20,6 @@
 package com.simpleminds.popbell;
 
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
@@ -35,7 +32,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -45,7 +41,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.simpleminds.popbell.PinedDialogWindow;
 
 public class DialogWindow extends StandOutWindow {
 	
