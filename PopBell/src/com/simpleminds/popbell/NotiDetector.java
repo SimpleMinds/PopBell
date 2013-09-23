@@ -31,6 +31,7 @@ import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -55,8 +56,6 @@ public class NotiDetector extends AccessibilityService {
 	        String pkgnameforfilter = event.getPackageName().toString();
 	        String pkgitself = "com.simpleminds.popbell";
 	        
-	        Parcelable parcelable = event.getParcelableData();
-	        
 	        //Filtering Package Name from Notification
 	        if(pkgnameforfilter.equals(pkgitself))
 	        {
@@ -65,6 +64,8 @@ public class NotiDetector extends AccessibilityService {
 	        else{
 	        
 	        try {  
+	        	
+	        	
 	        	//Close and Open Dialog Window
 	        	StandOutWindow.closeAll(this, DialogWindow.class);
 	        	StandOutWindow.closeAll(this, TouchTrigger.class);
@@ -76,6 +77,7 @@ public class NotiDetector extends AccessibilityService {
 	        	dataBundle.putString("sysnotitext", event.getText().toString());
 	        	// Put App Name
 	        	dataBundle.putString("pkgname", event.getPackageName().toString());
+	        	dataBundle.putParcelable("ParcelableData", event.getParcelableData());
 	        	//Send data to DialogWindow
 	        	StandOutWindow.sendData(this, DialogWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
 	        	//Close DialogWindow in a few seconds

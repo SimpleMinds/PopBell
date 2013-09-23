@@ -73,17 +73,6 @@ public class PinedDialogWindow extends StandOutWindow {
 			
 			}
 		});
-		/*Button back = (Button)view.findViewById(R.id.button1);
-		back.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				new Thread(new Runnable() {         
-					public void run() {                 
-						new Instrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_VOLUME_UP);
-					}   
-				}).start();
-			}
-		});*/
 
 	}
 	

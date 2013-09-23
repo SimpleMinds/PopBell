@@ -26,6 +26,8 @@ import java.util.TimerTask;
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
+import android.app.Notification;
+import android.app.PendingIntent.CanceledException;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -33,6 +35,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -112,6 +115,9 @@ public class DialogWindow extends StandOutWindow {
 			//Get Received String
 			String PkgName = data.getString("pkgname");
 			String NotiText = data.getString("sysnotitext");
+			
+			
+			
 			TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
 			TextView NotiField = (TextView) window.findViewById(R.id.notitext);
 			ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
@@ -130,6 +136,19 @@ public class DialogWindow extends StandOutWindow {
         	AppNameField.setText(applicationName);
         	NotiField.setText(NotiText);
         	AppIconField.setImageDrawable(appicon);
+        	
+        	final Notification n = (Notification) data.getParcelable("ParcelableData");
+        	AppIconField.setOnClickListener(new OnClickListener() {
+   			@Override
+   			public void onClick(View v) {
+   				try {
+					n.contentIntent.send();
+				} catch (CanceledException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+   			}
+   		});
         	
         	SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
         	SharedPreferences.Editor ed = prefs.edit();
