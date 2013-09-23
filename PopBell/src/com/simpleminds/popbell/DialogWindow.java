@@ -26,7 +26,6 @@ import wei.mark.standout.ui.Window;
 import android.app.Notification;
 import android.app.PendingIntent.CanceledException;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -141,17 +140,31 @@ public class DialogWindow extends StandOutWindow {
 				} catch (CanceledException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					Log.e("PopBell", "DialogWindow CanceledException", e);
 				}
+   				catch(java.lang.NullPointerException e){
+   					e.printStackTrace();
+   					Log.e("PopBell", "DialogWindow java.lang.NullPointerException", e);
+   				}
    			}
    		});
+        	final Bundle dataBundle = new Bundle();
+        	dataBundle.putParcelable("parcefromdialog", data.getParcelable("ParcelableData"));
+        	dataBundle.putString("pkgname", data.getString("pkgname"));
+        	dataBundle.putString("sysnotitext", data.getString("sysnotitext"));
         	
-        	SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
-        	SharedPreferences.Editor ed = prefs.edit();
-        	ed.putString("string_pkgname", PkgName);
-        	ed.putString("string_notitext", NotiText);
-        	ed.commit();
-		
+        	 ImageView PinBtn = (ImageView) window.findViewById(R.id.pinit);
 
+    		 PinBtn.setOnClickListener(new OnClickListener() {
+    			@Override
+    			public void onClick(View v) {
+    				Log.d("PopBell", "DialogWindow Pinit Button");
+    				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
+    	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
+    	        	StandOutWindow.sendData(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
+    				stopSelf();
+    			}
+    		});
 	}
 	public boolean onCloseAll() {
 		Log.d("PopBell", "CloseAll DialodWindow");
