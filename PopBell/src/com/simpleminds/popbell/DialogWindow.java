@@ -20,16 +20,21 @@
 package com.simpleminds.popbell;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.app.Notification;
 import android.app.PendingIntent.CanceledException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -129,6 +134,35 @@ public class DialogWindow extends StandOutWindow {
         	
         	AppNameField.setText(applicationName);
         	NotiField.setText(NotiText);
+        	// NotiField onClick
+    		NotiField.setOnClickListener(new OnClickListener() {
+
+    			@Override
+    			public void onClick(View v) {
+    				// if NotiText has URL, go to URL
+    				String NotiText = ((TextView) v).getText().toString();
+    				String urlString=null;
+    				if ((urlString=hasURL(NotiText))!=null) {
+    					Intent i = new Intent(Intent.ACTION_VIEW);
+    					Uri u = Uri.parse(urlString);
+    					i.setData(u);
+    					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    					startActivity(i);
+    				}
+    			}
+
+    			private String hasURL(String notiText) {
+    				String regex = "(http://([0-9a-zA-Z./@~?&=]+))";
+
+    				String urlString = null;
+    				Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+    				Matcher m = p.matcher(notiText);
+    				if (m.find()) {
+    					urlString = m.group(1);
+    				}
+    				return urlString;
+    			}
+    		});
         	AppIconField.setImageDrawable(appicon);
         	
         	final Notification n = (Notification) data.getParcelable("ParcelableData");
