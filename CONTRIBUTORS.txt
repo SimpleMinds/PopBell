@@ -10,6 +10,10 @@ All the contributors' information of this project will be written in English
 프로젝트에 기여하신 기여자분들의 정보는, 메인테이너들에 의해서 추가됩니다.
 이 프로젝트 기여자들의 정보는 모두 영어로 입력됩니다.
 
+For more accurate information about this project's contributors, visit following the URL below.
+이 프로젝트 기여자에 대한 좀 더 정확한 정보는, 아래 URL을 따라가세요.
+https://github.com/SimpleMinds/PopBell/graphs/contributors
+
 ====================
 Main contributors of this project
 이 프로젝트의 주요 기여자
