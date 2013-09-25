@@ -19,6 +19,9 @@
 
 package com.simpleminds.popbell;
 
+
+import com.fima.cardsui.views.CardUI;
+
 import wei.mark.standout.StandOutWindow;
 import android.os.Bundle;
 import android.app.Activity;
@@ -35,18 +38,51 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		Button setbtn = (Button)this.findViewById(R.id.button1);
-		setbtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);  
-				startActivity(intent);
-			}
-		});
-	}
-}
+
+    private CardUI mCardView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+            
+            // init CardView
+            mCardView = (CardUI) findViewById(R.id.cardsview);
+            mCardView.setSwipeable(false);
+            
+            MyPlayCard noticescard = new MyPlayCard(
+                    getString(R.string.main_accessbility_title), 
+                    getString(R.string.main_accessbility_desc), 
+                    "#FF0000", "#FF0000", false, true);
+            noticescard.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        	Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                            startActivity(intent);
+                        }
+                    });
+            mCardView.addCard(noticescard);
+            
+            MyPlayCard mealcard = new MyPlayCard(
+                    getString(R.string.main_appblacklist_title), 
+                    getString(R.string.main_appblacklist_desc), 
+                    "#FFA500", "#FFA500", false, true);
+            mealcard.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, AppBlackList.class);
+                            startActivity(intent);
+                        }
+                    });
+            mCardView.addCard(mealcard);
+
+            // draw cards
+            mCardView.refresh();
+    }
+    
+    
+
+        		 
+        // TODO Action to perform
+        }
