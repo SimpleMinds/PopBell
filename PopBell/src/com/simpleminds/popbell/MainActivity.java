@@ -51,31 +51,31 @@ public class MainActivity extends Activity {
             mCardView = (CardUI) findViewById(R.id.cardsview);
             mCardView.setSwipeable(false);
             
-            MyPlayCard noticescard = new MyPlayCard(
+            MyPlayCard accessbility = new MyPlayCard(
                     getString(R.string.main_accessbility_title), 
                     getString(R.string.main_accessbility_desc), 
                     "#FF0000", "#FF0000", false, true);
-            noticescard.setOnClickListener(new OnClickListener() {
+            accessbility.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
                         	Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
                             startActivity(intent);
                         }
                     });
-            mCardView.addCard(noticescard);
+            mCardView.addCard(accessbility);
             
-            MyPlayCard mealcard = new MyPlayCard(
+            MyPlayCard appblacklist = new MyPlayCard(
                     getString(R.string.main_appblacklist_title), 
                     getString(R.string.main_appblacklist_desc), 
                     "#FFA500", "#FFA500", false, true);
-            mealcard.setOnClickListener(new OnClickListener() {
+            appblacklist.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(MainActivity.this, AppBlackList.class);
                             startActivity(intent);
                         }
                     });
-            mCardView.addCard(mealcard);
+            mCardView.addCard(appblacklist);
 
             // draw cards
             mCardView.refresh();
