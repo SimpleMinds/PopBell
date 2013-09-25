@@ -19,16 +19,21 @@
 
 package com.simpleminds.popbell;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.app.Notification;
 import android.app.PendingIntent.CanceledException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -41,16 +46,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PinedDialogWindow extends StandOutWindow {
-	
+
 	String[] array;
-	public void getHiddenNotification(){
+
+	public void getHiddenNotification() {
 		return;
 	}
-    @Override
+
+	@Override
 	public int getAppIcon() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	@Override
 	public String getAppName() {
 		return null;
@@ -58,20 +66,20 @@ public class PinedDialogWindow extends StandOutWindow {
 
 	@Override
 	public void createAndAttachView(int id, FrameLayout frame) {
-		
+
 		// create a new layout from body.xml
-		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.pined_dialog, frame, true);
 
-		 ImageView CloseBtn = (ImageView) view.findViewById(R.id.closeit);
+		ImageView CloseBtn = (ImageView) view.findViewById(R.id.closeit);
 
-		 CloseBtn.setOnClickListener(new OnClickListener() {
+		CloseBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Log.d("PopBell", "PinedDialogWindow Closeit Button");
 				Log.d("PopBell", "PinedDialogWindow Close");
 				stopSelf();
-			
+
 			}
 		});
 
@@ -80,92 +88,130 @@ public class PinedDialogWindow extends StandOutWindow {
 	// the window will be centered
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
-		/*return new StandOutLayoutParams(id, 200, 200,
-				StandOutLayoutParams.CENTER, StandOutLayoutParams.CENTER);*/
-		
-		WindowManager win = (WindowManager) getSystemService(Context.WINDOW_SERVICE); 
-	    Display display = win.getDefaultDisplay();
-	    int width = display.getWidth();
-	    int height = display.getHeight();
+		/*
+		 * return new StandOutLayoutParams(id, 200, 200,
+		 * StandOutLayoutParams.CENTER, StandOutLayoutParams.CENTER);
+		 */
 
-		return new StandOutLayoutParams(id, width*7/8, StandOutLayoutParams.WRAP_CONTENT,
-				  StandOutLayoutParams.CENTER, StandOutLayoutParams.TOP + 20);
+		WindowManager win = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+		Display display = win.getDefaultDisplay();
+		int width = display.getWidth();
+		int height = display.getHeight();
+
+		return new StandOutLayoutParams(id, width * 7 / 8,
+				StandOutLayoutParams.WRAP_CONTENT, StandOutLayoutParams.CENTER,
+				StandOutLayoutParams.TOP + 20);
 	}
 
 	// move the window by draggin(g the view
 	@Override
 	public int getFlags(int id) {
-		return super.getFlags(id) | StandOutFlags.FLAG_BODY_MOVE_ENABLE | StandOutFlags.FLAG_WINDOW_FOCUSABLE_DISABLE;
+		return super.getFlags(id) | StandOutFlags.FLAG_BODY_MOVE_ENABLE
+				| StandOutFlags.FLAG_WINDOW_FOCUSABLE_DISABLE;
 	}
 
 	public boolean onShow(int id, Window window) {
-    	Log.d("PopBell", "PinedDialogWindow Show");
+		Log.d("PopBell", "PinedDialogWindow Show");
 		return false;
 	}
-
 
 	public boolean onCloseAll() {
 		Log.d("PopBell", "CloseAll PinedDialodWindow");
 		return false;
 	}
-	
-	//Receive data from NotiDetector
-		@Override
-		public void onReceiveData(int id, int requestCode, Bundle data,
-				Class<? extends StandOutWindow> fromCls, int fromId) 
-		{		
-			Window window = getWindow(id);
 
-				//Get Received String
-				String PkgName = data.getString("pkgname");
-				String NotiText = data.getString("sysnotitext");
+	// Receive data from NotiDetector
+	@Override
+	public void onReceiveData(int id, int requestCode, Bundle data,
+			Class<? extends StandOutWindow> fromCls, int fromId) {
+		Window window = getWindow(id);
 
-				TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
-				TextView NotiField = (TextView) window.findViewById(R.id.notitext);
-				ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
-				
-				// Get App Name and App Icon
-				final PackageManager pm = getApplicationContext().getPackageManager();
-	        	ApplicationInfo ai;
-	        	try {
-	        	    ai = pm.getApplicationInfo( (String) PkgName, 0);
-	        	} catch (final NameNotFoundException e) {
-	        	    ai = null;
-	        	}
-	        	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
-	        	Drawable appicon = pm.getApplicationIcon(ai);
-	        	
-	        	AppNameField.setText(applicationName);
-	        	NotiField.setText(NotiText);
-	        	AppIconField.setImageDrawable(appicon);
-	        	
-	        	final Notification n = (Notification) data.getParcelable("ParcelableData");
-	        	AppIconField.setOnClickListener(new OnClickListener() {
-	   			@Override
-	   			public void onClick(View v) {
-	   				try {
-						n.contentIntent.send();
-					} catch (CanceledException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						Log.e("PopBell", "PinedDialogWindow CanceledException", e);
-					}
-	   				catch(java.lang.NullPointerException e){
-	   					e.printStackTrace();
-						Log.e("PopBell", "PinedDialogWindow java.lang.NullPointerException", e);
-	   				}
-	   			}
-	   		});
+		// Get Received String
+		String PkgName = data.getString("pkgname");
+		String NotiText = data.getString("sysnotitext");
 
+		TextView AppNameField = (TextView) window
+				.findViewById(R.id.appnametext);
+		TextView NotiField = (TextView) window.findViewById(R.id.notitext);
+		ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
+
+		// Get App Name and App Icon
+		final PackageManager pm = getApplicationContext().getPackageManager();
+		ApplicationInfo ai;
+		try {
+			ai = pm.getApplicationInfo((String) PkgName, 0);
+		} catch (final NameNotFoundException e) {
+			ai = null;
 		}
-	//add new PinedDialogWindow - Call this on DialogWindow
+		final String applicationName = (String) (ai != null ? pm
+				.getApplicationLabel(ai) : "(unknown)");
+		Drawable appicon = pm.getApplicationIcon(ai);
+
+		AppNameField.setText(applicationName);
+		NotiField.setText(NotiText);
+		// NotiField onClick
+		NotiField.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// if NotiText has URL, go to URL
+				String NotiText = ((TextView) v).getText().toString();
+				String urlString=null;
+				if ((urlString=hasURL(NotiText))!=null) {
+					Intent i = new Intent(Intent.ACTION_VIEW);
+					Uri u = Uri.parse(urlString);
+					i.setData(u);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(i);
+				}
+			}
+
+			private String hasURL(String notiText) {
+				String regex = "(http://([0-9a-zA-Z./@~?&=]+))";
+
+				String urlString = null;
+				Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+				Matcher m = p.matcher(notiText);
+				if (m.find()) {
+					urlString = m.group(1);
+				}
+				return urlString;
+			}
+		});
+		AppIconField.setImageDrawable(appicon);
+
+		final Notification n = (Notification) data
+				.getParcelable("ParcelableData");
+		AppIconField.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
+					n.contentIntent.send();
+				} catch (CanceledException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					Log.e("PopBell", "PinedDialogWindow CanceledException", e);
+				} catch (java.lang.NullPointerException e) {
+					e.printStackTrace();
+					Log.e("PopBell",
+							"PinedDialogWindow java.lang.NullPointerException",
+							e);
+				}
+			}
+		});
+
+	}
+
+	// add new PinedDialogWindow - Call this on DialogWindow
 	public Runnable OpenPinedWindow(int id) {
-	    return new Runnable() {
-	      @Override
-	      public void run() {
-	        StandOutWindow.show(PinedDialogWindow.this.getApplicationContext(), PinedDialogWindow.class, getUniqueId());
-	      }
-	    };
-	  }
-	
+		return new Runnable() {
+			@Override
+			public void run() {
+				StandOutWindow.show(
+						PinedDialogWindow.this.getApplicationContext(),
+						PinedDialogWindow.class, getUniqueId());
+			}
+		};
+	}
+
 }
