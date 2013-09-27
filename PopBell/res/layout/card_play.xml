@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:adjustViewBounds="true"
-            android:background="@android:color/holo_red_dark"
+            android:background="@android:color/darker_gray"
             android:baselineAlignBottom="true"
             android:contentDescription="Stripe"
             android:scaleType="centerCrop" />
