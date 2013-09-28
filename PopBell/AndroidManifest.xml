@@ -92,6 +92,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.simpleminds.popbell.MainActivity" />
         </activity>
+        <activity
+            android:name="com.simpleminds.popbell.AddnewtoBlacklist"
+            android:label="@string/title_activity_addnewto_blacklist"
+            android:parentActivityName="com.simpleminds.popbell.AppBlackList" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simpleminds.popbell.AppBlackList" />
+        </activity>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@
     <string name="main_accessbility_desc">Enable PopBell AccessBility Service</string>
     <string name="main_appblacklist_title">App Blacklist</string>
     <string name="main_appblacklist_desc">Block specific apps to not receive notification from corresponding app</string>
-    
+    <string name="btn_add">Add</string>
+    <string name="title_activity_addnewto_blacklist">AddnewtoBlacklist</string>
 
 </resources>
