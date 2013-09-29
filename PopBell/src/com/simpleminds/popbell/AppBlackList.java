@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 
@@ -45,6 +46,14 @@ ListAdapter adapter = new SimpleCursorAdapter(this,
 		new int[] {R.id.appnametext, R.id.pkgnametext});
 setListAdapter(adapter);
 registerForContextMenu(getListView());
+}
+
+
+private void processDelete(long rowId) {
+	String[] args = {String.valueOf(rowId)};
+	
+	mHelper.getWritableDatabase().delete("singers", "_ID=?", args);
+	mCursor.requery();
 }
 @Override
 public void onDestroy() {

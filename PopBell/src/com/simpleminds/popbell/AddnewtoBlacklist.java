@@ -1,16 +1,21 @@
 package com.simpleminds.popbell;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
+import android.content.Context;
 
 public class AddnewtoBlacklist extends Activity {
 	private ListView mListAppInfo;
-	
+	private AppBlackListDBhelper mHelper = null;
+	Context c;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,7 +35,23 @@ public class AddnewtoBlacklist extends Activity {
                 // get selected item on the list
                 ApplicationInfo appInfo = (ApplicationInfo)appInfoAdapter.getItem(pos);
                 // launch the selected application
-                Utilities.launchApp(parent.getContext(), getPackageManager(), appInfo.packageName);
+                
+                ApplicationInfo ai;
+            	try {
+            	    ai = getPackageManager().getApplicationInfo(appInfo.packageName, 0);
+            	} catch (final NameNotFoundException e) {
+            	    ai = null;
+            	}
+            	final String applicationName = (String) (ai != null ? getPackageManager().getApplicationLabel(ai) : "(unknown)");
+            	
+            	
+            	ContentValues values = new ContentValues();
+            	values.put(AppBlackListDBhelper.APPNAME, applicationName);
+            	values.put(AppBlackListDBhelper.PKGNAME, appInfo.packageName);
+            	
+            	mHelper.getWritableDatabase().insert("appblacklist", AppBlackListDBhelper.APPNAME, values);
+
+        Toast.makeText(c, "appname:" + applicationName + "packagename:" + appInfo.packageName + "added", Toast.LENGTH_LONG);
             }
         });
     }
