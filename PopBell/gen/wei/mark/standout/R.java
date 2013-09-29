@@ -11,9 +11,9 @@ public final class R {
 		public static final int border = 0x7f020057;
 		public static final int border_focused = 0x7f020058;
 		public static final int close = 0x7f02005d;
-		public static final int corner = 0x7f02005f;
-		public static final int hide = 0x7f020063;
-		public static final int maximize = 0x7f020065;
+		public static final int corner = 0x7f020060;
+		public static final int hide = 0x7f020064;
+		public static final int maximize = 0x7f020066;
 	}
 	public static final class id {
 		public static final int body = 0x7f0a006b;

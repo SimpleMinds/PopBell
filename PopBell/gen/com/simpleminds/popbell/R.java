@@ -1166,18 +1166,21 @@ containing a value of this type.
         public static final int card_background_shadow=0x7f02005b;
         public static final int card_shadow=0x7f02005c;
         public static final int close=0x7f02005d;
-        public static final int closeit_light=0x7f02005e;
-        public static final int corner=0x7f02005f;
-        public static final int detector_left=0x7f020060;
-        public static final int detector_right=0x7f020061;
-        public static final int dialogbg=0x7f020062;
-        public static final int hide=0x7f020063;
-        public static final int ic_launcher=0x7f020064;
-        public static final int maximize=0x7f020065;
-        public static final int pinit_light=0x7f020066;
-        public static final int selectable_background_cardbank=0x7f020067;
-        public static final int sidebar_shadow=0x7f020068;
-        public static final int top_shadow=0x7f020069;
+        public static final int closeit=0x7f02005e;
+        public static final int closeit_light=0x7f02005f;
+        public static final int corner=0x7f020060;
+        public static final int detector_left=0x7f020061;
+        public static final int detector_right=0x7f020062;
+        public static final int dialogbg=0x7f020063;
+        public static final int hide=0x7f020064;
+        public static final int ic_launcher=0x7f020065;
+        public static final int maximize=0x7f020066;
+        public static final int pinit=0x7f020067;
+        public static final int pinit_light=0x7f020068;
+        public static final int popup=0x7f020069;
+        public static final int selectable_background_cardbank=0x7f02006a;
+        public static final int sidebar_shadow=0x7f02006b;
+        public static final int top_shadow=0x7f02006c;
     }
     public static final class id {
         public static final int ScrollView1=0x7f0a0051;
