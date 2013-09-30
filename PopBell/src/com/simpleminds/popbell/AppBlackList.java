@@ -1,20 +1,15 @@
 package com.simpleminds.popbell;
 
-import wei.mark.standout.StandOutWindow;
 import android.app.ListActivity;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-import com.simpleminds.popbell.AppBlackListDBhelper;
-
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.database.Cursor;
 
 public class AppBlackList extends ListActivity{
 	private AppBlackListDBhelper mHelper = null;

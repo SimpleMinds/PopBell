@@ -11,10 +11,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.content.Context;
+import android.database.Cursor;
 
 public class AddnewtoBlacklist extends Activity {
 	private ListView mListAppInfo;
 	private AppBlackListDBhelper mHelper = null;
+	private Cursor mCursor = null;
+	
 	Context c;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,9 @@ public class AddnewtoBlacklist extends Activity {
 		setContentView(R.layout.activity_addnewto_blacklist);
 		 // load list application
         mListAppInfo = (ListView)findViewById(R.id.listView1);
+        mHelper = new AppBlackListDBhelper(this);
+        mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, appname, pkgname FROM appblacklist ORDER BY pkgname", null);
+        
         // create new adapter
         AppInfoAdapter adapter = new AppInfoAdapter(this, Utilities.getInstalledApplication(this), getPackageManager());
         // set adapter to list view
@@ -46,12 +52,14 @@ public class AddnewtoBlacklist extends Activity {
             	
             	
             	ContentValues values = new ContentValues();
-            	values.put(AppBlackListDBhelper.APPNAME, applicationName);
-            	values.put(AppBlackListDBhelper.PKGNAME, appInfo.packageName);
+            	values.put(AppBlackListDBhelper.APPNAME, applicationName.toString());
+            	values.put(AppBlackListDBhelper.PKGNAME, appInfo.packageName.toString());
             	
             	mHelper.getWritableDatabase().insert("appblacklist", AppBlackListDBhelper.APPNAME, values);
-
-        Toast.makeText(c, "appname:" + applicationName + "packagename:" + appInfo.packageName + "added", Toast.LENGTH_LONG);
+            	mCursor.requery();
+            	
+            	finish();
+       // Toast.makeText(c, "appname:" + applicationName + "packagename:" + appInfo.packageName + "added", Toast.LENGTH_LONG);
             }
         });
     }
