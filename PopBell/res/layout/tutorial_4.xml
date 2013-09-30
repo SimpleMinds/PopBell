@@ -25,6 +25,6 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:text="@string/tutorial_4_desc" 
-        android:color="@android:color/black"/>
+        android:textColor="@android:color/black"/>
 
 </RelativeLayout>

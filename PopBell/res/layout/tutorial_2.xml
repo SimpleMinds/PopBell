@@ -9,7 +9,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center_horizontal"
-        android:text="@string/tutorial_2_desc" />
+        android:text="@string/tutorial_2_desc" 
+        android:textColor="@android:color/black"/>
 
     <ImageView
         android:id="@+id/imageView1"
@@ -17,7 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView1"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_action_warning" 
-        android:color="@android:color/black"/>
+        android:src="@drawable/ic_action_warning" />
 
 </RelativeLayout>
