@@ -45,7 +45,18 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-
+            //launch tutorial activity on firstrun
+            boolean firstrun = getSharedPreferences("BOOT_PREF", MODE_PRIVATE).getBoolean("firstrun", true);
+            
+            if (firstrun){
+            	Intent guide = new Intent(MainActivity.this, Tutorial.class); 
+    	    	 startActivity(guide);
+            	
+                getSharedPreferences("BOOT_PREF", MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("firstrun", false)
+                    .commit();
+            }
             
             // init CardView
             mCardView = (CardUI) findViewById(R.id.cardsview);
@@ -72,6 +83,17 @@ public class MainActivity extends Activity {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(MainActivity.this, AppBlackList.class);
+                            startActivity(intent);
+                        }
+                    });
+            MyPlayCard tutorial = new MyPlayCard(
+                    getString(R.string.main_tutorial_title), 
+                    getString(R.string.main_tutorial_desc), 
+                    "#ADD8E6", "#ADD8E6", false, true);
+            tutorial.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, Tutorial.class);
                             startActivity(intent);
                         }
                     });

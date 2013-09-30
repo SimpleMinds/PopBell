@@ -15,7 +15,18 @@
     <string name="btn_add">Add</string>
     <string name="title_activity_addnewto_blacklist">AddnewtoBlacklist</string>
     <string name="title_activity_remove_blacklist_item">RemoveBlacklistItem</string>
-<string name="ok">OK</string>
-	<string name="cancel">Cancel</string>
-	<string name="removecheck">Are you sure?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="removecheck">Are you sure?</string>
+    <string name="title_activity_tutorial">Tutorial</string>
+    <string name="tutorial_2_desc">Turn On the PopBell Service in Accessbility Settings first. \n to capture notifications</string>
+    <string name="tutorial_3_desc">When the notification detected by PopBell, \n An overlay will appear</string>
+    <string name="tutorial_4_desc">The Icon : \n Click it to launch corresponding event</string>
+    <string name="tutorial_5_desc">Pinit and Closeit button : \n Click it to pin or close overlay</string>
+    <string name="tutorial_6_desc">Ready to use PopBell : \n click close button to close tutorial</string>
+    <string name="btn_close">Close</string>
+    <string name="tutorial_1_desc">Slide from right to continue</string>
+    <string name="main_tutorial_title">Tutorial</string>
+    <string name="main_tutorial_desc">Click To see how to use PopBell</string>
+
 </resources>
