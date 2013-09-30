@@ -50,7 +50,7 @@ public class AddnewtoBlacklist extends Activity {
             	}
             	final String applicationName = (String) (ai != null ? getPackageManager().getApplicationLabel(ai) : "(unknown)");
             	
-            	
+            	//put values to db
             	ContentValues values = new ContentValues();
             	values.put(AppBlackListDBhelper.APPNAME, applicationName.toString());
             	values.put(AppBlackListDBhelper.PKGNAME, appInfo.packageName.toString());

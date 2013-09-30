@@ -1379,6 +1379,7 @@ containing a value of this type.
         public static final int addnewto_blacklist=0x7f0d0000;
         public static final int app_black_list=0x7f0d0001;
         public static final int main=0x7f0d0002;
+        public static final int remove_blacklist_item=0x7f0d0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1424,6 +1425,7 @@ containing a value of this type.
         public static final int action_settings=0x7f090013;
         public static final int app_name=0x7f090012;
         public static final int btn_add=0x7f09001d;
+        public static final int cancel=0x7f090021;
         public static final int close=0x7f090002;
         public static final int corner=0x7f090003;
         public static final int hello_world=0x7f090014;
@@ -1433,11 +1435,14 @@ containing a value of this type.
         public static final int main_appblacklist_desc=0x7f09001c;
         public static final int main_appblacklist_title=0x7f09001b;
         public static final int maximize=0x7f090004;
+        public static final int ok=0x7f090020;
+        public static final int removecheck=0x7f090022;
         public static final int sliding_pane_layout_summary=0x7f090017;
         public static final int sysnotidetector_desc=0x7f090016;
         public static final int sysnotidetector_title=0x7f090015;
         public static final int title_activity_addnewto_blacklist=0x7f09001e;
         public static final int title_activity_app_black_list=0x7f090018;
+        public static final int title_activity_remove_blacklist_item=0x7f09001f;
         public static final int window_icon=0x7f090000;
     }
     public static final class style {

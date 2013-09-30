@@ -598,6 +598,7 @@ int layout widgets 0x7f030031
 int menu addnewto_blacklist 0x7f0d0000
 int menu app_black_list 0x7f0d0001
 int menu main 0x7f0d0002
+int menu remove_blacklist_item 0x7f0d0003
 int string abc_action_bar_home_description 0x7f090006
 int string abc_action_bar_up_description 0x7f090007
 int string abc_action_menu_overflow_description 0x7f090008
@@ -614,6 +615,7 @@ int string abc_shareactionprovider_share_with_application 0x7f090010
 int string action_settings 0x7f090013
 int string app_name 0x7f090012
 int string btn_add 0x7f09001d
+int string cancel 0x7f090021
 int string close 0x7f090002
 int string corner 0x7f090003
 int string hello_world 0x7f090014
@@ -623,11 +625,14 @@ int string main_accessbility_title 0x7f090019
 int string main_appblacklist_desc 0x7f09001c
 int string main_appblacklist_title 0x7f09001b
 int string maximize 0x7f090004
+int string ok 0x7f090020
+int string removecheck 0x7f090022
 int string sliding_pane_layout_summary 0x7f090017
 int string sysnotidetector_desc 0x7f090016
 int string sysnotidetector_title 0x7f090015
 int string title_activity_addnewto_blacklist 0x7f09001e
 int string title_activity_app_black_list 0x7f090018
+int string title_activity_remove_blacklist_item 0x7f09001f
 int string window_icon 0x7f090000
 int style AppBaseTheme 0x7f080087
 int style AppTheme 0x7f080088

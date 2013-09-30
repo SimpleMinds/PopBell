@@ -14,5 +14,8 @@
     <string name="main_appblacklist_desc">Block specific apps to not receive notification from corresponding app</string>
     <string name="btn_add">Add</string>
     <string name="title_activity_addnewto_blacklist">AddnewtoBlacklist</string>
-
+    <string name="title_activity_remove_blacklist_item">RemoveBlacklistItem</string>
+<string name="ok">OK</string>
+	<string name="cancel">Cancel</string>
+	<string name="removecheck">Are you sure?</string>
 </resources>
