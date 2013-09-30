@@ -18,9 +18,6 @@
  */
 
 package com.simpleminds.popbell;
-
-
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,6 +35,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -46,9 +44,17 @@ import android.view.accessibility.AccessibilityEvent;
 public class NotiDetector extends AccessibilityService {
 	private TimerTask mTask;
     private Timer mTimer;
+    private AppBlackListDBhelper mHelper = null;
+	private Cursor mCursor = null;
     
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
+		
+		//load blacklist from db
+		mHelper = new AppBlackListDBhelper(this);
+		mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, appname, pkgname FROM appblacklist ORDER BY pkgname", null);
+		String[] blacklisted_pkgname =  { AppBlackListDBhelper.PKGNAME};
+		
 	    System.out.println("onAccessibilityEvent");
 	    if (event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
 	        System.out.println("notification: " + event.getText());
@@ -57,15 +63,14 @@ public class NotiDetector extends AccessibilityService {
 	        String pkgitself = "com.simpleminds.popbell";
 	        
 	        //Filtering Package Name from Notification
-	        if(pkgnameforfilter.equals(pkgitself))
-	        {
-	        	//Do Not send any data 
+	        if(pkgnameforfilter.equals(pkgitself)){
+	        	//Do Not Do Anything
+	        }
+	        else if(pkgnameforfilter.equals(blacklisted_pkgname)){
+	        	//Do Not Do Anything
 	        }
 	        else{
-	        
 	        try {  
-	        	
-	        	
 	        	//Close and Open Dialog Window
 	        	StandOutWindow.closeAll(this, DialogWindow.class);
 	        	StandOutWindow.closeAll(this, TouchTrigger.class);
@@ -95,7 +100,6 @@ public class NotiDetector extends AccessibilityService {
 		        }
 	        }
 	    }
-	    
 	    }
 	
 	@Override
