@@ -32,6 +32,7 @@
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:text="@string/tutorial_5_desc" />
+        android:text="@string/tutorial_5_desc" 
+        android:color="@android:color/black"/>
 
 </RelativeLayout>

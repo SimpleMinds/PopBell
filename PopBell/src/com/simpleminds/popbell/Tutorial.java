@@ -55,7 +55,7 @@ public class Tutorial extends Activity {
          
         @Override
         public int getCount() {
-            return 3;
+            return 6;
         }
         private View.OnClickListener mPagerListener = new View.OnClickListener() {
             @Override
