@@ -22,7 +22,25 @@ public class Tutorial extends Activity {
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(new PagerAdapterClass(getApplicationContext()));
 	}
-
+	   private void setCurrentInflateItem(int type){
+	        if(type==0){
+	            mPager.setCurrentItem(0);
+	        }else if(type==1){
+	            mPager.setCurrentItem(1);
+	        }
+	        else if(type==2){
+	            mPager.setCurrentItem(2);
+	        }
+	        else if(type==3){
+	            mPager.setCurrentItem(3);
+	        }
+	        else if(type==4){
+	            mPager.setCurrentItem(4);
+	        }
+	        else{
+	            mPager.setCurrentItem(5);
+	        }
+	    }
 	/**
      * PagerAdapter 
      */
@@ -74,7 +92,8 @@ public class Tutorial extends Activity {
             ((ViewPager)pager).removeView((View)view);
         }
          
-        public boolean isViewFromObject1(View pager, Object obj) {
+        @Override
+        public boolean isViewFromObject(View pager, Object obj) {
             return pager == obj; 
         }
  
@@ -82,13 +101,6 @@ public class Tutorial extends Activity {
         @Override public Parcelable saveState() { return null; }
         @Override public void startUpdate(View arg0) {}
         @Override public void finishUpdate(View arg0) {}
-
-		@Override
-		public boolean isViewFromObject(View arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			return false;
-		}
     }
      
-
 }

@@ -98,6 +98,7 @@ public class MainActivity extends Activity {
                         }
                     });
             mCardView.addCard(appblacklist);
+            mCardView.addCard(tutorial);
 
             // draw cards
             mCardView.refresh();
