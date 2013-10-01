@@ -62,7 +62,13 @@ public class Appinfo extends Activity {
                     getString(R.string.appinfo_notices_title),
                     getString(R.string.appinfo_notices_desc),
                     "#FFFFFF", "#000000", false, true);
-          
+            notices.setOnClickListener(new OnClickListener() {
+            	@Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Appinfo.this, Appinfo_Notices.class);
+                    startActivity(intent);
+                }
+            });
             mCardView.addCard(notices);
   
             // draw cards

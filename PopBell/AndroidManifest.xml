@@ -113,6 +113,46 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.simpleminds.popbell.MainActivity" />
         </activity>
+        <activity
+            android:name="com.simpleminds.popbell.Appinfo_Notices"
+            android:label="@string/notices"
+            android:parentActivityName="com.simpleminds.popbell.Appinfo" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simpleminds.popbell.Appinfo" />
+        </activity>
+        <activity
+            android:name="com.simpleminds.popbell.Doc_Notices"
+            android:label="@string/notices"
+            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simpleminds.popbell.Appinfo_Notices" />
+        </activity>
+        <activity
+            android:name="com.simpleminds.popbell.Doc_Readme"
+            android:label="@string/readme"
+            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simpleminds.popbell.Appinfo_Notices" />
+        </activity>
+        <activity
+            android:name="com.simpleminds.popbell.Doc_Contributors"
+            android:label="@string/contributors"
+            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simpleminds.popbell.Appinfo_Notices" />
+        </activity>
+        <activity
+            android:name="com.simpleminds.popbell.Doc_Copying"
+            android:label="@string/copying"
+            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simpleminds.popbell.Appinfo_Notices" />
+        </activity>
     </application>
 
 </manifest>

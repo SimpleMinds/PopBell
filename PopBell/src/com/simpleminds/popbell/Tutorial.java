@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
-import android.support.v4.view.PagerAdapter;
 
 public class Tutorial extends Activity {
 	private ViewPager mPager;
@@ -16,9 +15,7 @@ public class Tutorial extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tutorial);
-		
-
-        
+	
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(new PagerAdapterClass(getApplicationContext()));
 	}
@@ -102,5 +99,6 @@ public class Tutorial extends Activity {
         @Override public void startUpdate(View arg0) {}
         @Override public void finishUpdate(View arg0) {}
     }
+ 
      
 }
