@@ -29,8 +29,8 @@ public final class R {
 		public static final int window_icon = 0x7f0a0068;
 	}
 	public static final class layout {
-		public static final int drop_down_list_item = 0x7f030023;
-		public static final int system_window_decorators = 0x7f030031;
+		public static final int drop_down_list_item = 0x7f030024;
+		public static final int system_window_decorators = 0x7f030032;
 	}
 	public static final class string {
 		public static final int close = 0x7f090002;

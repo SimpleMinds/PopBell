@@ -27,8 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
         android:text="@string/tutorial_1_desc"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-       android:textColor="@android:color/black" />
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>

@@ -86,6 +86,8 @@ public class MainActivity extends Activity {
                             startActivity(intent);
                         }
                     });
+            mCardView.addCard(appblacklist);
+            
             MyPlayCard tutorial = new MyPlayCard(
                     getString(R.string.main_tutorial_title), 
                     getString(R.string.main_tutorial_desc), 
@@ -97,8 +99,22 @@ public class MainActivity extends Activity {
                             startActivity(intent);
                         }
                     });
-            mCardView.addCard(appblacklist);
+            
             mCardView.addCard(tutorial);
+            
+            MyPlayCard appinfo = new MyPlayCard(
+                    getString(R.string.main_appinfo_title), 
+                    getString(R.string.main_appinfo_desc), 
+                    "#000000", "#000000", false, true);
+            appinfo.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, Appinfo.class);
+                            startActivity(intent);
+                        }
+                    });
+            
+            mCardView.addCard(appinfo);
 
             // draw cards
             mCardView.refresh();

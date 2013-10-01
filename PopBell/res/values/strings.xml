@@ -12,6 +12,8 @@
     <string name="main_accessbility_desc">Enable PopBell AccessBility Service</string>
     <string name="main_appblacklist_title">App Blacklist</string>
     <string name="main_appblacklist_desc">Block specific apps to not receive notification from corresponding app</string>
+    <string name="main_appinfo_title">About this app</string>
+    <string name="main_appinfo_desc">Some information about this app</string>
     <string name="btn_add">Add</string>
     <string name="title_activity_addnewto_blacklist">AddnewtoBlacklist</string>
     <string name="title_activity_remove_blacklist_item">RemoveBlacklistItem</string>
@@ -28,5 +30,11 @@
     <string name="tutorial_1_desc">Slide from right to continue</string>
     <string name="main_tutorial_title">Tutorial</string>
     <string name="main_tutorial_desc">Click To see how to use PopBell</string>
+    <string name="title_activity_appinfo">Appinfo</string>
+    <string name="appinfo_version_title">App Version</string>
+    <string name="appinfo_github_title">Get Soruce Code</string>
+    <string name="appinfo_github_desc">Get the full source code from GitHub</string>
+    <string name="appinfo_notices_title">Notices</string>
+    <string name="appinfo_notices_desc">Some notices and document about this app and source codes</string>
 
 </resources>
