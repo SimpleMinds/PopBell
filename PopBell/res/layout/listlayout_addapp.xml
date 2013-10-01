@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageView1"
+        android:layout_toRightOf="@+id/icon"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -23,8 +23,8 @@
         android:id="@+id/pkgname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/appname"
+        android:layout_below="@+id/appname"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
