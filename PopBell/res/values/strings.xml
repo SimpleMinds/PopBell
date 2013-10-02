@@ -40,5 +40,8 @@
     <string name="readme">README</string>
     <string name="contributors">CONTRIBUTORS</string>
     <string name="copying">COPYING</string>
+    <string-array name="planets_array">
+        <item >sampleplanets_array</item>
+    </string-array>
 
 </resources>
