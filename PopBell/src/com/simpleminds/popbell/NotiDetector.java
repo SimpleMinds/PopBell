@@ -18,26 +18,18 @@
  */
 
 package com.simpleminds.popbell;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import wei.mark.standout.StandOutWindow;
-
-import android.R.string;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningServiceInfo;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
@@ -49,12 +41,16 @@ public class NotiDetector extends AccessibilityService {
     
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
-		
-		//load blacklist from db
+		//Load BlackList
 		mHelper = new AppBlackListDBhelper(this);
-		mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, appname, pkgname FROM appblacklist ORDER BY pkgname", null);
-		String[] blacklisted_pkgname =  { AppBlackListDBhelper.PKGNAME};
-		
+		mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, pkgname FROM appblacklist ORDER BY pkgname", null);
+		List<String> array = new ArrayList<String>();
+		while(mCursor.moveToNext()){
+		    String uname = mCursor.getString(mCursor.getColumnIndex("pkgname"));
+		    array.add(uname);
+		}
+
+		Log.d("DBVALUES", array.toString());
 	    System.out.println("onAccessibilityEvent");
 	    if (event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
 	        System.out.println("notification: " + event.getText());
@@ -64,10 +60,12 @@ public class NotiDetector extends AccessibilityService {
 	        
 	        //Filtering Package Name from Notification
 	        if(pkgnameforfilter.equals(pkgitself)){
-	        	//Do Not Do Anything
+	        	//Do Nothing
+	        	Log.d("SYSNOTIDETECTOR", "BLOCKED : PKG_ITSELF");
 	        }
-	        else if(pkgnameforfilter.equals(blacklisted_pkgname)){
-	        	//Do Not Do Anything
+	        else if(array.toString().contains(pkgnameforfilter)){
+	        	//Do Nothing
+	        	Log.d("SYSNOTIDETECTOR", "BLOCKED : PKG_BLACKLISTED");
 	        }
 	        else{
 	        try {  
@@ -100,6 +98,7 @@ public class NotiDetector extends AccessibilityService {
 		        }
 	        }
 	    }
+
 	    }
 	
 	@Override
