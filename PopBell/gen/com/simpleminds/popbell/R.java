@@ -1364,6 +1364,7 @@ containing a value of this type.
         public static final int custom=0x7f030022;
         public static final int dialog=0x7f030023;
         public static final int doclayout=0x7f030024;
+<<<<<<< HEAD
         public static final int draweroverlay_layout=0x7f030025;
         public static final int drop_down_list_item=0x7f030026;
         public static final int footer_fragment=0x7f030027;
@@ -1386,6 +1387,29 @@ containing a value of this type.
         public static final int tutorial_5=0x7f030038;
         public static final int tutorial_6=0x7f030039;
         public static final int widgets=0x7f03003a;
+=======
+        public static final int drop_down_list_item=0x7f030025;
+        public static final int footer_fragment=0x7f030026;
+        public static final int header=0x7f030027;
+        public static final int item_card=0x7f030028;
+        public static final int item_card_empty=0x7f030029;
+        public static final int item_card_empty_first=0x7f03002a;
+        public static final int item_card_empty_last=0x7f03002b;
+        public static final int item_play_card_empty_first=0x7f03002c;
+        public static final int item_stack=0x7f03002d;
+        public static final int listlayout_addapp=0x7f03002e;
+        public static final int littleoverlay=0x7f03002f;
+        public static final int pined_dialog=0x7f030030;
+        public static final int support_simple_spinner_dropdown_item=0x7f030031;
+        public static final int system_window_decorators=0x7f030032;
+        public static final int tutorial_1=0x7f030033;
+        public static final int tutorial_2=0x7f030034;
+        public static final int tutorial_3=0x7f030035;
+        public static final int tutorial_4=0x7f030036;
+        public static final int tutorial_5=0x7f030037;
+        public static final int tutorial_6=0x7f030038;
+        public static final int widgets=0x7f030039;
+>>>>>>> 223d6447277a6f8ba03ba5d9ed5d7e29dc054f70
     }
     public static final class menu {
         public static final int addnewto_blacklist=0x7f0f0000;

@@ -212,6 +212,7 @@ public final class R {
 	public static final class layout {
 		public static final int cards_view = 0x7f030020;
 		public static final int cards_view_multicolumn = 0x7f030021;
+<<<<<<< HEAD
 		public static final int footer_fragment = 0x7f030027;
 		public static final int header = 0x7f030028;
 		public static final int item_card = 0x7f030029;
@@ -220,6 +221,16 @@ public final class R {
 		public static final int item_card_empty_last = 0x7f03002c;
 		public static final int item_play_card_empty_first = 0x7f03002d;
 		public static final int item_stack = 0x7f03002e;
+=======
+		public static final int footer_fragment = 0x7f030026;
+		public static final int header = 0x7f030027;
+		public static final int item_card = 0x7f030028;
+		public static final int item_card_empty = 0x7f030029;
+		public static final int item_card_empty_first = 0x7f03002a;
+		public static final int item_card_empty_last = 0x7f03002b;
+		public static final int item_play_card_empty_first = 0x7f03002c;
+		public static final int item_stack = 0x7f03002d;
+>>>>>>> 223d6447277a6f8ba03ba5d9ed5d7e29dc054f70
 	}
 	public static final class style {
 		public static final int CardLightText = 0x7f090001;
