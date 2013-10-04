@@ -38,7 +38,7 @@ super.onCreate();
     @Override
     public void createAndAttachView(int id, FrameLayout frame) {
             // create a new layout from body.xml
-            mTouchDetector = new ImageView(this);                                         //뷰 생성
+            mTouchDetector = new ImageView(this);                                         
    mTouchDetector.setImageResource(R.drawable.detector_right);
    frame.addView(mTouchDetector);
     
@@ -51,10 +51,8 @@ super.onCreate();
                     
                     Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibe.vibrate(10);
-                            //패널열기
-                            Intent lsp = new Intent(getBaseContext(), SlidePanelActivity.class);
-                            lsp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            getApplication().startActivity(lsp);
+                           
+                            StandOutWindow.show(TouchTrigger.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
 
                 
             }
