@@ -583,7 +583,6 @@ int layout cards_view_multicolumn 0x7f030021
 int layout custom 0x7f030022
 int layout dialog 0x7f030023
 int layout doclayout 0x7f030024
-<<<<<<< HEAD
 int layout draweroverlay_layout 0x7f030025
 int layout drop_down_list_item 0x7f030026
 int layout footer_fragment 0x7f030027
@@ -606,29 +605,6 @@ int layout tutorial_4 0x7f030037
 int layout tutorial_5 0x7f030038
 int layout tutorial_6 0x7f030039
 int layout widgets 0x7f03003a
-=======
-int layout drop_down_list_item 0x7f030025
-int layout footer_fragment 0x7f030026
-int layout header 0x7f030027
-int layout item_card 0x7f030028
-int layout item_card_empty 0x7f030029
-int layout item_card_empty_first 0x7f03002a
-int layout item_card_empty_last 0x7f03002b
-int layout item_play_card_empty_first 0x7f03002c
-int layout item_stack 0x7f03002d
-int layout listlayout_addapp 0x7f03002e
-int layout littleoverlay 0x7f03002f
-int layout pined_dialog 0x7f030030
-int layout support_simple_spinner_dropdown_item 0x7f030031
-int layout system_window_decorators 0x7f030032
-int layout tutorial_1 0x7f030033
-int layout tutorial_2 0x7f030034
-int layout tutorial_3 0x7f030035
-int layout tutorial_4 0x7f030036
-int layout tutorial_5 0x7f030037
-int layout tutorial_6 0x7f030038
-int layout widgets 0x7f030039
->>>>>>> 223d6447277a6f8ba03ba5d9ed5d7e29dc054f70
 int menu addnewto_blacklist 0x7f0f0000
 int menu app_black_list 0x7f0f0001
 int menu appinfo 0x7f0f0002
