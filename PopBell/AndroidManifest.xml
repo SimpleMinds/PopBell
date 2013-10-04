@@ -21,14 +21,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     package="com.simpleminds.popbell"
     android:versionCode="1"
     android:versionName="1.0" >
-
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -37,37 +35,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <activity
             android:name="com.simpleminds.popbell.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <service
-            android:name="com.simpleminds.popbell.NotiDetector"
-            android:canRetrieveWindowContent="true"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
-            <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.accessibilityservice"
-                android:resource="@xml/sysnotidetector_service_config" />
-        </service>
-        <service android:name="com.simpleminds.popbell.DialogWindow" >
-        </service>
-        <service android:name="com.simpleminds.popbell.PinedDialogWindow" >
-        </service>
-        <service android:name="com.simpleminds.popbell.TouchTrigger" >
-        </service>
-
-        <activity
-            android:name="com.simpleminds.popbell.StandOutExampleActivity"
-            android:excludeFromRecents="true"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoDisplay" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -143,6 +110,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.simpleminds.popbell.Appinfo_Notices" />
         </activity>
-    </application>
-
+         <service
+            android:name="com.simpleminds.popbell.NotiDetector"
+            android:canRetrieveWindowContent="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/sysnotidetector_service_config" />
+        </service>
+        <service android:name="com.simpleminds.popbell.DialogWindow" >
+        </service>
+        <service android:name="com.simpleminds.popbell.PinedDialogWindow" >
+        </service>
+        <service android:name="com.simpleminds.popbell.TouchTrigger" >
+        </service>
+        <service android:name="com.simpleminds.popbell.DrawerOverlay" >
+        </service>
+    </application>  
 </manifest>

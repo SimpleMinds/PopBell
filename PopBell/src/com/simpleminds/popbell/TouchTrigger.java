@@ -51,10 +51,8 @@ super.onCreate();
                     
                     Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibe.vibrate(10);
-                           
-                            StandOutWindow.show(TouchTrigger.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
-
-                
+                    StandOutWindow.closeAll(TouchTrigger.this, DrawerOverlay.class);
+                    StandOutWindow.show(TouchTrigger.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
             }
             return true;
         }});
@@ -65,7 +63,7 @@ super.onCreate();
     @Override
     public StandOutLayoutParams getParams(int id, Window window) {
             return new StandOutLayoutParams(id, 10, 600,
-                            StandOutLayoutParams.RIGHT, StandOutLayoutParams.CENTER);
+                            StandOutLayoutParams.RIGHT, StandOutLayoutParams.TOP);
     }
 
     // move the window by dragging the view

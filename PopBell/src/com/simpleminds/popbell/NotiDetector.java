@@ -19,7 +19,6 @@
 
 package com.simpleminds.popbell;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,8 +26,13 @@ import java.util.TimerTask;
 import wei.mark.standout.StandOutWindow;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
@@ -36,8 +40,9 @@ import android.view.accessibility.AccessibilityEvent;
 public class NotiDetector extends AccessibilityService {
 	private TimerTask mTask;
     private Timer mTimer;
-    private AppBlackListDBhelper mHelper = null;
+	private AppBlackListDBhelper mHelper = null;
 	private Cursor mCursor = null;
+	private NotiListDBhelper mHelper2 = null;
     
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -69,11 +74,33 @@ public class NotiDetector extends AccessibilityService {
 	        }
 	        else{
 	        try {  
+	        	//Get app name
+	        	final PackageManager pm = getApplicationContext().getPackageManager();
+	        	ApplicationInfo ai;
+	        	try {
+	        	    ai = pm.getApplicationInfo( (String) event.getPackageName().toString(), 0);
+	        	} catch (final NameNotFoundException e) {
+	        	    ai = null;
+	        	}
+	        	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
+	        	
+	        	//put values to db
+	        	mHelper2 = new NotiListDBhelper(this);
+	            mCursor = mHelper2.getWritableDatabase().rawQuery("SELECT _ID, title, desc, eventcode FROM notilist ORDER BY title", null);
+            	ContentValues values = new ContentValues();
+            	values.put(NotiListDBhelper.TITLE, applicationName.toString());
+            	values.put(NotiListDBhelper.DESC, event.getText().toString());
+            	
+            	mHelper2.getWritableDatabase().insert("notilist",NotiListDBhelper.TITLE, values);
+            	mCursor.requery();
+	        	
 	        	//Close and Open Dialog Window
 	        	StandOutWindow.closeAll(this, DialogWindow.class);
 	        	StandOutWindow.closeAll(this, TouchTrigger.class);
 	        	StandOutWindow.show(this, DialogWindow.class, StandOutWindow.DEFAULT_ID);
 	        	StandOutWindow.show(this, TouchTrigger.class, StandOutWindow.DEFAULT_ID);
+	        	
+
 	        	// Create Bundle and put data
 	        	Bundle dataBundle = new Bundle();
 	        	// Get and Put Notification text 

@@ -1,5 +1,23 @@
-package com.simpleminds.popbell;
+/*
+ *PopBell Application for Android
+ *Copyright (C) 2013 SimpleMinds Team
+ *
+ *This program is free software; you can redistribute it and/or
+ *modify it under the terms of the GNU General Public License
+ *as published by the Free Software Foundation; either version 2
+ *of the License, or (at your option) any later version.
+ *
+ *This program is distributed in the hope that it will be useful,
+ *but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *GNU General Public License for more details.
+ *
+ *You should have received a copy of the GNU General Public License
+ *along with this program; if not, write to the Free Software
+ *Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
 
+package com.simpleminds.popbell;
 
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
@@ -40,18 +58,27 @@ public class DrawerOverlay extends StandOutWindow {
 
 		WindowManager win = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 		Display display = win.getDefaultDisplay();
-		//int width = display.getWidth();
+		int width = display.getWidth();
 		int height = display.getHeight();
 
-		return new StandOutLayoutParams(id, 400,
+		return new StandOutLayoutParams(id, width - 40,
 				height, StandOutLayoutParams.RIGHT,
-				StandOutLayoutParams.TOP + 20);
+				StandOutLayoutParams.TOP);
 	}
+	/*
 	@Override
 	public int getFlags(int id) {
 		return super.getFlags(id) | StandOutFlags.FLAG_WINDOW_FOCUSABLE_DISABLE;
 
 
+	}*/
+	@Override
+	public boolean onFocusChange(int id, Window window, boolean focus) {
+		if (focus) {
+			
+		} else {
+			stopSelf();
+		}
+		return false;
 	}
-
 }
