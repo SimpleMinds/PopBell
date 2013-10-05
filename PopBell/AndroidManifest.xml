@@ -136,6 +136,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         </service>
         <service android:name="com.simpleminds.popbell.TouchTrigger" >
         </service>
+        <receiver android:name=".PluginDataReceiver">
+            <intent-filter>
+                <action android:name="com.sompleminds.popbell.PLUGIN.PASSDATA">
+            </action></intent-filter>
+        </receiver>  
     </application>
 
 </manifest>

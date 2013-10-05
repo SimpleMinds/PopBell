@@ -1242,8 +1242,8 @@ containing a value of this type.
         public static final int id=0x7f0b004d;
         public static final int ifRoom=0x7f0b000a;
         public static final int image=0x7f0b0025;
-        public static final int imageView1=0x7f0b0046;
-        public static final int imageView2=0x7f0b0047;
+        public static final int imageView1=0x7f0b0047;
+        public static final int imageView2=0x7f0b0046;
         public static final int left_icon=0x7f0b0031;
         public static final int listMode=0x7f0b0001;
         public static final int listView=0x7f0b0052;

@@ -487,8 +487,8 @@ int id icon 0x7f0b0028
 int id id 0x7f0b004d
 int id ifRoom 0x7f0b000a
 int id image 0x7f0b0025
-int id imageView1 0x7f0b0046
-int id imageView2 0x7f0b0047
+int id imageView1 0x7f0b0047
+int id imageView2 0x7f0b0046
 int id left_icon 0x7f0b0031
 int id listMode 0x7f0b0001
 int id listView 0x7f0b0052
