@@ -22,7 +22,7 @@ public class DrawerActivity extends Activity {
 		
 		//load DB
 		mHelper = new NotiListDBhelper(this);
-		mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, title, desc, devntcode FROM notilist ORDER BY pkgname", null);
+		mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, title, desc FROM notilist ORDER BY title", null);
 		//title array
 		List<String> titlearray = new ArrayList<String>();
 		while(mCursor.moveToNext()){

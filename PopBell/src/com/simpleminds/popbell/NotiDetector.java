@@ -42,6 +42,7 @@ public class NotiDetector extends AccessibilityService {
     private Timer mTimer;
 	private AppBlackListDBhelper mHelper = null;
 	private Cursor mCursor = null;
+	private Cursor mCursor2 = null;
 	private NotiListDBhelper mHelper2 = null;
     
 	@Override
@@ -49,6 +50,8 @@ public class NotiDetector extends AccessibilityService {
 		//Load BlackList
 		mHelper = new AppBlackListDBhelper(this);
 		mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, pkgname FROM appblacklist ORDER BY pkgname", null);
+		
+		
 		List<String> array = new ArrayList<String>();
 		while(mCursor.moveToNext()){
 		    String uname = mCursor.getString(mCursor.getColumnIndex("pkgname"));
@@ -86,13 +89,13 @@ public class NotiDetector extends AccessibilityService {
 	        	
 	        	//put values to db
 	        	mHelper2 = new NotiListDBhelper(this);
-	            mCursor = mHelper2.getWritableDatabase().rawQuery("SELECT _ID, title, desc, eventcode FROM notilist ORDER BY title", null);
+	            mCursor2 = mHelper2.getWritableDatabase().rawQuery("SELECT _ID, title, desc FROM notilist ORDER BY title", null);
             	ContentValues values = new ContentValues();
             	values.put(NotiListDBhelper.TITLE, applicationName.toString());
             	values.put(NotiListDBhelper.DESC, event.getText().toString());
             	
-            	mHelper2.getWritableDatabase().insert("notilist",NotiListDBhelper.TITLE, values);
-            	mCursor.requery();
+            	mHelper2.getWritableDatabase().insert("notilist", NotiListDBhelper.TITLE, values);
+            	mCursor2.requery();
 	        	
 	        	//Close and Open Dialog Window
 	        	StandOutWindow.closeAll(this, DialogWindow.class);

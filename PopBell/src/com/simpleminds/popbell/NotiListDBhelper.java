@@ -28,21 +28,21 @@ public class NotiListDBhelper extends SQLiteOpenHelper{
 	private static final String DATABASE_NAME = "notilist.db";
 	static final String TITLE = "title";
 	static final String DESC = "desc";
-	static final String EVENTCODE = "eventcode";
+	//static final String EVENTCODE = "eventcode";
 	
 	public NotiListDBhelper(Context context) {
 		super(context, DATABASE_NAME, null, 1);
 	}
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL("CREATE TABLE appblacklist (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, desc TEXT, evnetcode TEXT);");
-		/* Insert Sample values to DB
+		db.execSQL("CREATE TABLE notilist (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, desc TEXT);");
+		// Insert Sample values to DB
 		ContentValues cv = new ContentValues();
 		
 		cv.put(TITLE, "Sample");
 		cv.put(DESC, "Sample list item from DB");
-		db.insert("appblacklist", TITLE, cv);
-		*/
+		db.insert("notilist", TITLE, cv);
+		//
 	}
 
 	@Override

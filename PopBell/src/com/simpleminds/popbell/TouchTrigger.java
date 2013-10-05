@@ -52,7 +52,8 @@ super.onCreate();
                     Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibe.vibrate(10);
                     Intent intent = new Intent(TouchTrigger.this, DrawerActivity.class);
-                    startActivity(intent);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	            	getApplication().startActivity(intent);
             }
             return true;
         }});
