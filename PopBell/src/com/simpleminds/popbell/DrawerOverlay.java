@@ -19,18 +19,31 @@
 
 package com.simpleminds.popbell;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import wei.mark.standout.StandOutWindow;
 import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.content.Context;
+import android.database.Cursor;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class DrawerOverlay extends StandOutWindow {
-
+	private NotiListDBhelper mHelper = null;
+	private Cursor mCursor = null;
+	private static final int DELETE_ID = Menu.FIRST + 3;
+	ListView lview;
+	ListAdapter_TitleAndDesc lviewAdapter;
+	
 	@Override
 	public String getAppName() {
 		// TODO Auto-generated method stub
@@ -50,7 +63,25 @@ public class DrawerOverlay extends StandOutWindow {
 		LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.draweroverlay_layout, frame, true);
 
+		
+		mHelper = new NotiListDBhelper(this);
+		mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, title, desc, devntcode FROM notilist ORDER BY pkgname", null);
+		//title array
+		List<String> titlearray = new ArrayList<String>();
+		while(mCursor.moveToNext()){
+		    String uname = mCursor.getString(mCursor.getColumnIndex("title"));
+		    titlearray.add(uname);
+		}
+		//desc array
+		List<String> descarray = new ArrayList<String>();
+		while(mCursor.moveToNext()){
+		    String uname = mCursor.getString(mCursor.getColumnIndex("desc"));
+		    descarray.add(uname);
+		     
+		}
 	}
+
+	
 
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {

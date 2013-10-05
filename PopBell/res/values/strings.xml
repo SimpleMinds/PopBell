@@ -40,8 +40,11 @@
     <string name="readme">README</string>
     <string name="contributors">CONTRIBUTORS</string>
     <string name="copying">COPYING</string>
+
     <string-array name="planets_array">
-        <item >sampleplanets_array</item>
+        <item>sampleplanets_array</item>
     </string-array>
+
+    <string name="title_activity_drawer">DrawerActivity</string>
 
 </resources>

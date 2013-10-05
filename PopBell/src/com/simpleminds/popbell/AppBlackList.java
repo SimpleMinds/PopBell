@@ -57,13 +57,13 @@ AddNew.setOnClickListener(new OnClickListener() {
 });
 
 mHelper = new AppBlackListDBhelper(this);
-mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, appname, pkgname FROM appblacklist ORDER BY pkgname", null);
+mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, appname, pkgname FROM appblacklist ORDER BY appname", null);
 @SuppressWarnings("deprecation")
 ListAdapter adapter = new SimpleCursorAdapter(this, 
 		R.layout.custom,
 		mCursor,
 		new String[] {AppBlackListDBhelper.APPNAME, AppBlackListDBhelper.PKGNAME},
-		new int[] {R.id.appnametext, R.id.pkgnametext});
+		new int[] {R.id.bigtext, R.id.smalltext});
 setListAdapter(adapter);
 registerForContextMenu(getListView());
 }

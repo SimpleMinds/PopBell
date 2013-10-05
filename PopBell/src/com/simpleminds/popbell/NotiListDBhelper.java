@@ -36,13 +36,13 @@ public class NotiListDBhelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE appblacklist (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, desc TEXT, evnetcode TEXT);");
-		
+		/* Insert Sample values to DB
 		ContentValues cv = new ContentValues();
 		
 		cv.put(TITLE, "Sample");
 		cv.put(DESC, "Sample list item from DB");
 		db.insert("appblacklist", TITLE, cv);
-
+		*/
 	}
 
 	@Override

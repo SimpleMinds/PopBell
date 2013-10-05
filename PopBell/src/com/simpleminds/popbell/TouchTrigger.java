@@ -51,8 +51,8 @@ super.onCreate();
                     
                     Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibe.vibrate(10);
-                    StandOutWindow.closeAll(TouchTrigger.this, DrawerOverlay.class);
-                    StandOutWindow.show(TouchTrigger.this, DrawerOverlay.class, StandOutWindow.DEFAULT_ID);
+                    Intent intent = new Intent(TouchTrigger.this, DrawerActivity.class);
+                    startActivity(intent);
             }
             return true;
         }});
