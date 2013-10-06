@@ -399,7 +399,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ====================
 This software includes following software components, which were obtained under the following terms and conditions: 
 
-v4 Support Library for Android
+v7 Appcompat Library for Android
 ----------
 Copyright (c) 2005-2008, The Android Open Source Project
 
