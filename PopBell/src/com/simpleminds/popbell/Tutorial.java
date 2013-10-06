@@ -28,7 +28,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 public class Tutorial extends ActionBarActivity {
+	
 	private ViewPager mPager;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +39,9 @@ public class Tutorial extends ActionBarActivity {
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(new PagerAdapterClass(getApplicationContext()));
 	}
-	   private void setCurrentInflateItem(int type){
+	
+	@SuppressWarnings("unused")
+	private void setCurrentInflateItem(int type){
 	        if(type==0){
 	            mPager.setCurrentItem(0);
 	        }else if(type==1){
@@ -113,7 +117,9 @@ public class Tutorial extends ActionBarActivity {
         }
  
         @Override public void restoreState(Parcelable arg0, ClassLoader arg1) {}
-        @Override public Parcelable saveState() { return null; }
+        @Override public Parcelable saveState() {
+        	return null;
+        }
         @Override public void startUpdate(View arg0) {}
         @Override public void finishUpdate(View arg0) {}
     }
