@@ -20,7 +20,7 @@ public final class R {
 		public static final int close = 0x7f0b006b;
 		public static final int content = 0x7f0b0066;
 		public static final int corner = 0x7f0b006d;
-		public static final int description = 0x7f0b0050;
+		public static final int description = 0x7f0b004f;
 		public static final int hide = 0x7f0b0069;
 		public static final int icon = 0x7f0b0028;
 		public static final int maximize = 0x7f0b006a;

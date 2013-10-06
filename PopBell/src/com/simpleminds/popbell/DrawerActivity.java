@@ -19,10 +19,10 @@
 package com.simpleminds.popbell;
 
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +34,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class DrawerActivity extends ActionBarActivity{
+public class DrawerActivity extends ListActivity{
 	private NotiListDBhelper mHelper = null;
 	private Cursor mCursor = null;
 	private static final int DELETE_ID = Menu.FIRST + 3;

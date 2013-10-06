@@ -20,15 +20,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simpleminds.popbell"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="0.1 beta" >
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -63,7 +64,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <activity
             android:name="com.simpleminds.popbell.Tutorial"
             android:label="@string/title_activity_tutorial"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
         <activity
             android:name="com.simpleminds.popbell.Appinfo"

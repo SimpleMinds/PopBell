@@ -893,10 +893,6 @@ containing a value of this type.
         public static final int action_bar_switch_padding=0x7f080044;
         public static final int action_confirm_button_margin=0x7f080064;
         /**  Default screen margins, per the Android Design guidelines. 
-
-         Customize dimensions originally defined in res/values/dimens.xml (such as
-         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
-    
          */
         public static final int activity_horizontal_margin=0x7f0800bc;
         public static final int activity_vertical_margin=0x7f0800bd;
@@ -1184,9 +1180,10 @@ containing a value of this type.
         public static final int top_shadow=0x7f02006a;
     }
     public static final class id {
-        public static final int ScrollView1=0x7f0b0054;
-        public static final int View01=0x7f0b004b;
-        public static final int View02=0x7f0b004a;
+        public static final int LinearLayout1=0x7f0b0062;
+        public static final int ScrollView1=0x7f0b0053;
+        public static final int View01=0x7f0b004a;
+        public static final int View02=0x7f0b0049;
         public static final int action_bar=0x7f0b001a;
         public static final int action_bar_activity_content=0x7f0b0015;
         public static final int action_bar_container=0x7f0b0019;
@@ -1201,28 +1198,27 @@ containing a value of this type.
         public static final int action_mode_bar_stub=0x7f0b002e;
         public static final int action_mode_close_button=0x7f0b0022;
         public static final int activity_chooser_view_content=0x7f0b0023;
-        public static final int addnew=0x7f0b0044;
+        public static final int addnew=0x7f0b0043;
         public static final int always=0x7f0b000b;
-        public static final int appicon=0x7f0b0059;
+        public static final int appicon=0x7f0b0058;
         public static final int appname=0x7f0b0063;
-        public static final int appnametext=0x7f0b0058;
-        public static final int background=0x7f0b0049;
+        public static final int appnametext=0x7f0b0057;
+        public static final int background=0x7f0b0048;
         public static final int beginning=0x7f0b0011;
-        public static final int bigtext=0x7f0b0056;
+        public static final int bigtext=0x7f0b0055;
         public static final int body=0x7f0b006c;
-        public static final int button1=0x7f0b0043;
-        public static final int cardContent=0x7f0b0060;
-        public static final int cardsview=0x7f0b0045;
+        public static final int cardContent=0x7f0b005f;
+        public static final int cardsview=0x7f0b0044;
         public static final int checkbox=0x7f0b002b;
         public static final int close=0x7f0b006b;
         public static final int closeit=0x7f0b0065;
         public static final int collapseActionView=0x7f0b000d;
         public static final int content=0x7f0b0066;
-        public static final int contentLayout=0x7f0b004f;
-        public static final int contents=0x7f0b005d;
+        public static final int contentLayout=0x7f0b004e;
+        public static final int contents=0x7f0b005c;
         public static final int corner=0x7f0b006d;
         public static final int default_activity_button=0x7f0b0026;
-        public static final int description=0x7f0b0050;
+        public static final int description=0x7f0b004f;
         public static final int dialog=0x7f0b000e;
         public static final int disableHome=0x7f0b0008;
         public static final int dropdown=0x7f0b000f;
@@ -1230,19 +1226,19 @@ containing a value of this type.
         public static final int end=0x7f0b0013;
         public static final int expand_activities_button=0x7f0b0024;
         public static final int expanded_menu=0x7f0b002a;
-        public static final int footer=0x7f0b005e;
+        public static final int footer=0x7f0b005d;
         public static final int hide=0x7f0b0069;
         public static final int home=0x7f0b0014;
         public static final int homeAsUp=0x7f0b0005;
         public static final int icon=0x7f0b0028;
-        public static final int id=0x7f0b004d;
+        public static final int id=0x7f0b004c;
         public static final int ifRoom=0x7f0b000a;
         public static final int image=0x7f0b0025;
-        public static final int imageView1=0x7f0b0047;
-        public static final int imageView2=0x7f0b0046;
+        public static final int imageView1=0x7f0b0046;
+        public static final int imageView2=0x7f0b0045;
         public static final int left_icon=0x7f0b0031;
         public static final int listMode=0x7f0b0001;
-        public static final int listView=0x7f0b0052;
+        public static final int listView=0x7f0b0051;
         public static final int listView1=0x7f0b0042;
         public static final int list_item=0x7f0b0027;
         public static final int maximize=0x7f0b006a;
@@ -1250,18 +1246,18 @@ containing a value of this type.
         public static final int never=0x7f0b0009;
         public static final int none=0x7f0b0010;
         public static final int normal=0x7f0b0000;
-        public static final int notitext=0x7f0b005a;
-        public static final int overflow=0x7f0b0051;
-        public static final int pager=0x7f0b0048;
-        public static final int pinit=0x7f0b005b;
+        public static final int notitext=0x7f0b0059;
+        public static final int overflow=0x7f0b0050;
+        public static final int pager=0x7f0b0047;
+        public static final int pinit=0x7f0b005a;
         public static final int pkgname=0x7f0b0064;
-        public static final int placeholder=0x7f0b005f;
+        public static final int placeholder=0x7f0b005e;
         public static final int progress_circular=0x7f0b0034;
         public static final int progress_horizontal=0x7f0b0035;
         public static final int radio=0x7f0b002d;
         public static final int right_container=0x7f0b0032;
         public static final int right_icon=0x7f0b0033;
-        public static final int scrollView=0x7f0b005c;
+        public static final int scrollView=0x7f0b005b;
         public static final int search_badge=0x7f0b0038;
         public static final int search_bar=0x7f0b0037;
         public static final int search_button=0x7f0b0039;
@@ -1276,15 +1272,15 @@ containing a value of this type.
         public static final int showCustom=0x7f0b0007;
         public static final int showHome=0x7f0b0004;
         public static final int showTitle=0x7f0b0006;
-        public static final int smalltext=0x7f0b0057;
+        public static final int smalltext=0x7f0b0056;
         public static final int split_action_bar=0x7f0b001c;
-        public static final int stackContainer=0x7f0b0062;
-        public static final int stackTitle=0x7f0b0061;
-        public static final int sticky=0x7f0b0053;
-        public static final int stripe=0x7f0b004e;
+        public static final int stackContainer=0x7f0b0061;
+        public static final int stackTitle=0x7f0b0060;
+        public static final int sticky=0x7f0b0052;
+        public static final int stripe=0x7f0b004d;
         public static final int submit_area=0x7f0b003f;
         public static final int tabMode=0x7f0b0002;
-        public static final int tableLayout=0x7f0b0055;
+        public static final int tableLayout=0x7f0b0054;
         public static final int textView1=0x7f0b006e;
         public static final int textView2=0x7f0b006f;
         public static final int title=0x7f0b0029;
@@ -1293,7 +1289,7 @@ containing a value of this type.
         public static final int top_action_bar=0x7f0b001e;
         public static final int up=0x7f0b001f;
         public static final int useLogo=0x7f0b0003;
-        public static final int view1=0x7f0b004c;
+        public static final int view1=0x7f0b004b;
         public static final int window_icon=0x7f0b0068;
         public static final int withText=0x7f0b000c;
     }
@@ -1479,28 +1475,12 @@ containing a value of this type.
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f090087;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090088;
+        public static final int AppTheme=0x7f09008a;
         public static final int CardLightText=0x7f090001;
         /** 
           <style name="CardTitle">
@@ -1596,6 +1576,8 @@ containing a value of this type.
         /**  Platform-independent theme providing an action bar in a dark-themed activity. 
          */
         public static final int Theme_AppCompat_Light_DarkActionBar=0x7f09007d;
+        public static final int Theme_AppCompat_Light_NoActionBar=0x7f090088;
+        public static final int Theme_AppCompat_Transparent=0x7f090089;
         /**  Base platform-dependent theme  
          */
         public static final int Theme_Base=0x7f090080;
