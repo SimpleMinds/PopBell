@@ -36,6 +36,8 @@
     <string name="appinfo_github_desc">GitHub에서 모든 소스코드 얻기</string>
     <string name="appinfo_notices_title">고지사항</string>
     <string name="appinfo_notices_desc">앱과 소스코드에 대한 고지사항과 라이센스</string>
+    <string name="appinfo_update_title">업데이트 확인</string>
+    <string name="appinfo_update_desc">Google Play에서 앱 업데이트 확인하기</string>
     <string name="notices">NOTICES</string>
     <string name="readme">README</string>
     <string name="contributors">CONTRIBUTORS</string>
