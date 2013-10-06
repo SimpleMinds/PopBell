@@ -60,6 +60,20 @@ public class Appinfo extends ActionBarActivity {
           
             mCardView.addCard(version);
             
+            MyPlayCard update = new MyPlayCard(
+                    getString(R.string.appinfo_update_title), 
+                    getString(R.string.appinfo_update_desc),
+                    "#FFFFFF", "#000000", false, true);
+            update.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                	Intent update = new Intent(Intent.ACTION_VIEW);
+                	update.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.simpleminds.popbell"));
+                    startActivity(update);
+                }
+            });
+            mCardView.addCard(update);
+            
             MyPlayCard github = new MyPlayCard(
                     getString(R.string.appinfo_github_title), 
                     getString(R.string.appinfo_github_desc),

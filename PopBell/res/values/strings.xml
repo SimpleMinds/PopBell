@@ -36,6 +36,8 @@
     <string name="appinfo_github_desc">Get the full source code from GitHub</string>
     <string name="appinfo_notices_title">Notices</string>
     <string name="appinfo_notices_desc">Some notices and document about this app and source codes</string>
+    <string name="appinfo_update_title">Check for updates</string>
+    <string name="appinfo_update_desc">Check for latest PopBell updates on Google Play</string>
     <string name="notices">NOTICES</string>
     <string name="readme">README</string>
     <string name="contributors">CONTRIBUTORS</string>
