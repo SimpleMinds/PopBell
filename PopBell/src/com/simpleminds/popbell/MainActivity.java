@@ -22,22 +22,13 @@ package com.simpleminds.popbell;
 
 import com.fima.cardsui.views.CardUI;
 
-import wei.mark.standout.StandOutWindow;
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Menu;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     private CardUI mCardView;
 

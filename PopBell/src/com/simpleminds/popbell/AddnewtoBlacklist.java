@@ -18,20 +18,19 @@
  */
 package com.simpleminds.popbell;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.content.Context;
 import android.database.Cursor;
 
-public class AddnewtoBlacklist extends Activity {
+public class AddnewtoBlacklist extends ActionBarActivity {
 	private ListView mListAppInfo;
 	private AppBlackListDBhelper mHelper = null;
 	private Cursor mCursor = null;

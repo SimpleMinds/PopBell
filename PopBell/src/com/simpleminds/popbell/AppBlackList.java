@@ -20,11 +20,11 @@
 package com.simpleminds.popbell;
 
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -34,9 +34,10 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class AppBlackList extends ListActivity{
+public class AppBlackList extends ActionBarActivity {
 	private AppBlackListDBhelper mHelper = null;
 	private Cursor mCursor = null;
 	private static final int DELETE_ID = Menu.FIRST + 3;
@@ -64,8 +65,9 @@ ListAdapter adapter = new SimpleCursorAdapter(this,
 		mCursor,
 		new String[] {AppBlackListDBhelper.APPNAME, AppBlackListDBhelper.PKGNAME},
 		new int[] {R.id.bigtext, R.id.smalltext});
-setListAdapter(adapter);
-registerForContextMenu(getListView());
+		ListView myList=(ListView)findViewById(android.R.id.list);
+		myList.setAdapter(adapter);
+		registerForContextMenu(myList);
 }
 
 

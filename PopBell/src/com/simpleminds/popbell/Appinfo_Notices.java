@@ -18,15 +18,15 @@
  */
 package com.simpleminds.popbell;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.fima.cardsui.views.CardUI;
 
-public class Appinfo_Notices extends Activity {
+public class Appinfo_Notices extends ActionBarActivity {
 
 	
     private CardUI mCardView;

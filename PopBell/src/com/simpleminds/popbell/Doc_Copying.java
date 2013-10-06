@@ -33,13 +33,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-public class Doc_Copying extends Activity {
+public class Doc_Copying extends ActionBarActivity {
 	
 	HttpPost httppost;
     StringBuffer buffer;

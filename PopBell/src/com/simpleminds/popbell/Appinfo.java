@@ -19,19 +19,17 @@
 
 package com.simpleminds.popbell;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.fima.cardsui.views.CardUI;
 
-public class Appinfo extends Activity {
+public class Appinfo extends ActionBarActivity {
 
 	
     private CardUI mCardView;

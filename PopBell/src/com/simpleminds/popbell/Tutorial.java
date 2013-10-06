@@ -18,16 +18,16 @@
  */
 package com.simpleminds.popbell;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 
-public class Tutorial extends Activity {
+public class Tutorial extends ActionBarActivity {
 	private ViewPager mPager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
