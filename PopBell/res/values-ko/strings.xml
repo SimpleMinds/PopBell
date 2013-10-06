@@ -20,7 +20,7 @@
     <string name="ok">확인</string>
     <string name="cancel">취소</string>
     <string name="removecheck">확실합니까?</string>
-    <string name="title_activity_tutorial">튜초리얼</string>
+    <string name="title_activity_tutorial">튜토리얼</string>
     <string name="tutorial_2_desc">접근성 서비스 설정에서, PopBell 접근성 서비스를 켜세요. \n 접근성 서비스를 켜야 시스템 알림을 감지하여 팝업으로 띄울 수 있습니다.</string>
     <string name="tutorial_3_desc">PopBell이 시스템 알림을 감지하거나, 플러그인으로부터 데이터를 받으면, \n 하나의 오버레이가 나타납니다.</string>
     <string name="tutorial_4_desc">아이콘을 클릭하여 해당 작업을 실행합니다.</string>
@@ -44,7 +44,7 @@
     <string-array name="planets_array">
         <item>sampleplanets_array</item>
     </string-array>
-
+    
     <string name="title_activity_drawer">DrawerActivity</string>
 
 </resources>
