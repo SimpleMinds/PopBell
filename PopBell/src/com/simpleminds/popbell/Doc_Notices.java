@@ -18,45 +18,95 @@
  */
 package com.simpleminds.popbell;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 
 public class Doc_Notices extends Activity {
-    /** Called when the activity is first created. */
+	
+	HttpPost httppost;
+    StringBuffer buffer;
+    HttpResponse response;
+    HttpClient httpclient;
+    private Handler handler;
+	String url;
+	TextView helloTxt;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doclayout);
-        
-        TextView helloTxt = (TextView)findViewById(R.id.contents);
-        helloTxt.setText(readTxt());
+        helloTxt = (TextView)findViewById(R.id.contents);
+        handler = new Handler();
+		new Thread(runnable).start();
     }
     
-    private String readTxt(){
-
-     InputStream inputStream = getResources().openRawResource(R.raw.notices);
-     
-     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-     
-     int i;
-  try {
-   i = inputStream.read();
-   while (i != -1)
-      {
-       byteArrayOutputStream.write(i);
-       i = inputStream.read();
-      }
-      inputStream.close();
-  } catch (IOException e) {
-   // TODO Auto-generated catch block
-   e.printStackTrace();
-  }
-  
-     return byteArrayOutputStream.toString();
-    }
+    Runnable runnable = new Runnable(){
+		public void run(){
+			DefaultHttpClient httpclient = new DefaultHttpClient();
+			url = "https://raw.github.com/SimpleMinds/PopBell/master/CONTRIBUTORS.txt";
+			HttpGet httppost = new HttpGet(url);
+			Log.d("url", url);
+			HttpResponse response = null;
+			try {
+				response = httpclient.execute(httppost);
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			HttpEntity ht = response.getEntity();
+			BufferedHttpEntity buf = null;
+			try {
+				buf = new BufferedHttpEntity(ht);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			InputStream is = null;
+			try {
+				is = buf.getContent();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			InputStreamReader isn = null;
+			try {
+				isn = new InputStreamReader(is, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			BufferedReader r = new BufferedReader(isn);
+			final StringBuilder total = new StringBuilder();
+			String line;
+			try {
+				while ((line = r.readLine()) != null){
+					total.append(line + "\n");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			handler.post(new Runnable(){
+				public void run(){
+					helloTxt.setText(total.toString());
+				}
+			});
+		}
+	};
 }
