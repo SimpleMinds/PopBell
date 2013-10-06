@@ -45,6 +45,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DialogWindow extends StandOutWindow {
 	
@@ -139,22 +140,28 @@ public class DialogWindow extends StandOutWindow {
 
     			@Override
     			public void onClick(View v) {
-    				// if NotiText has URL, go to URL
     				String NotiText = ((TextView) v).getText().toString();
-    				String urlString=null;
-    				if ((urlString=hasURL(NotiText))!=null) {
+    				String returnString=null;
+    				if ((returnString=hasURL(NotiText))!=null) {
+    					// if NotiText has URL, go to URL
     					Intent i = new Intent(Intent.ACTION_VIEW);
-    					Uri u = Uri.parse(urlString);
+    					Uri u = Uri.parse(returnString);
     					i.setData(u);
     					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     					startActivity(i);
+    				} else if((returnString=hasAuthenticationNumber(NotiText))!=null) {
+    					// if NotiText has AuthenticationNumber, copy to Clipboard
+    				    android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+    				    clipboard.setText(returnString);
+    				    
+    				    Toast.makeText(DialogWindow.this, returnString+" is copied", Toast.LENGTH_SHORT).show();
     				}
     			}
 
     			private String hasURL(String notiText) {
-    				String regex = "(http://([0-9a-zA-Z./@~?&=]+))";
-
     				String urlString = null;
+    				String regex = "((http|https)://([0-9a-zA-Z./@~?&=]+))";
+    				
     				Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
     				Matcher m = p.matcher(notiText);
     				if (m.find()) {
@@ -162,6 +169,21 @@ public class DialogWindow extends StandOutWindow {
     				}
     				return urlString;
     			}
+    			private String hasAuthenticationNumber(String notiText) {
+    				String authenticationNumberString=null;
+    				
+    				if(notiText.contains("인증")) {
+    					String regex = "(\\d{4,7})";
+    					
+    					Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+    					Matcher m = p.matcher(notiText);
+    					if(m.find()) {
+    						authenticationNumberString = m.group(1);
+    					}
+    				}
+    				return authenticationNumberString;
+    			}
+    			
     		});
         	AppIconField.setImageDrawable(appicon);
         	
