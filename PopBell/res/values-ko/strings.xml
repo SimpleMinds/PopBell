@@ -49,9 +49,9 @@
     </string-array>
     <string name="duplicationOccurred">이미 해당 애플리케이션이 추가되어 있습니다.</string>
     <string name="title_activity_drawer">DrawerActivity</string>
-    <string name="LodingText">문서를 읽는중입니다&#8230;\n(만약 문서파일이 불러와지지 않는다면, 네트워크 연결상태를 확인해보세요)</string>
+    <string name="LodingText">문서를 불러오는 중...&#8230;\n(만약 문서파일이 불러와지지 않는다면, 네트워크 연결상태를 확인해보세요)</string>
     <string name="subreadme">오픈소스 고지사항</string>
-    <string name="subnotice">사용한 라이브러리 라이센스</string>
-    <string name="subcopyng">PopBell 오픈소스 라이센스</string>
-    <string name="subcontributors">오픈소스 기여자 목록</string>
+    <string name="subnotice">개발에 사용된 외부 소프트웨어에 대한 제 3자 고지사항</string>
+    <string name="subcopyng">PopBell 에 적용된 오픈소스 라이센스</string>
+    <string name="subcontributors">오픈소스 프로젝트 기여자 목록</string>
 </resources>
