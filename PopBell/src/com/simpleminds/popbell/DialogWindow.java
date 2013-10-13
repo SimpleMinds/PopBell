@@ -48,9 +48,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class DialogWindow extends StandOutWindow {
-	
+
 	String[] array;
-	
+
     public boolean onShow(int id, Window window) {
     	Log.d("PopBell", "DialogWindow Show");
 		return false;
@@ -68,7 +68,7 @@ public class DialogWindow extends StandOutWindow {
 
 	@Override
 	public void createAndAttachView(int id, FrameLayout frame) {
-		
+
 		// create a new layout from body.xml
 		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.dialog, frame, true);
@@ -115,13 +115,13 @@ public class DialogWindow extends StandOutWindow {
 			//Get Received String
 			String PkgName = data.getString("pkgname");
 			String NotiText = data.getString("sysnotitext");
-			
-			
-			
+
+
+
 			TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
 			TextView NotiField = (TextView) window.findViewById(R.id.notitext);
 			ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
-			
+
 			// Get App Name and App Icon
 			final PackageManager pm = getApplicationContext().getPackageManager();
         	ApplicationInfo ai;
@@ -172,7 +172,7 @@ public class DialogWindow extends StandOutWindow {
     			private String hasAuthenticationNumber(String notiText) {
     				String authenticationNumberString=null;
     				
-    				if(notiText.contains("Ïù∏Ï¶ù")) {
+    				if(notiText.contains("¿Œ¡ı")) {
     					String regex = "(\\d{4,7})";
     					
     					Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);

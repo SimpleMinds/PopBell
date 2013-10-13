@@ -117,8 +117,8 @@ public class NotiDetector extends AccessibilityService {
 	        	mTask = new TimerTask() {
 		            @Override
 		            public void run() {
-		            		stopService(new Intent(NotiDetector.this, DialogWindow.class));
-		            		stopService(new Intent(NotiDetector.this, TouchTrigger.class));
+		            	stopService(new Intent(NotiDetector.this, DialogWindow.class));
+		            	stopService(new Intent(NotiDetector.this, TouchTrigger.class));
 		            }
 		        };
 		        mTimer = new Timer();

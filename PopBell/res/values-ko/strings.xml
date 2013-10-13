@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">PopBell</string>
     <string name="action_settings">Settings</string>
+    <string name="AppNameText">어플이름</string>
+    <string name="NotiData">알림 데이터</string>
     <string name="hello_world">Hello world!</string>
     <string name="sysnotidetector_title">PopBell - 시스템 알림 감지 서비스</string>
     <string name="sysnotidetector_desc">시스템 알림 감지 서비스 : 시스템 알림을 감지하여 팝업으로 출력합니다.</string>
@@ -34,19 +35,23 @@
     <string name="appinfo_version_title">앱 버전</string>
     <string name="appinfo_github_title">소스코드 얻기</string>
     <string name="appinfo_github_desc">GitHub에서 모든 소스코드 얻기</string>
+	<string name="appinfo_update_title">업데이트 확인</string>
+	<string name="appinfo_update_desc">Google Play에서 앱 업데이트 확인하기</string>
     <string name="appinfo_notices_title">고지사항</string>
     <string name="appinfo_notices_desc">앱과 소스코드에 대한 고지사항과 라이센스</string>
-    <string name="appinfo_update_title">업데이트 확인</string>
-    <string name="appinfo_update_desc">Google Play에서 앱 업데이트 확인하기</string>
     <string name="notices">NOTICES</string>
     <string name="readme">README</string>
     <string name="contributors">CONTRIBUTORS</string>
     <string name="copying">COPYING</string>
-
+    <string name="delete">삭제</string>
     <string-array name="planets_array">
         <item>sampleplanets_array</item>
     </string-array>
-    
+    <string name="duplicationOccurred">이미 해당 애플리케이션이 추가되어 있습니다.</string>
     <string name="title_activity_drawer">DrawerActivity</string>
-
+    <string name="LodingText">문서를 읽는중입니다&#8230;\n(만약 문서파일이 불러와지지 않는다면, 네트워크 연결상태를 확인해보세요)</string>
+    <string name="subreadme">오픈소스 고지사항</string>
+    <string name="subnotice">사용한 라이브러리 라이센스</string>
+    <string name="subcopyng">PopBell 오픈소스 라이센스</string>
+    <string name="subcontributors">오픈소스 기여자 목록</string>
 </resources>

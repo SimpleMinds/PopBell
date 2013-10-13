@@ -1,4 +1,4 @@
-<!-- 
+<!--
 PopBell Application for Android
 Copyright (C) 2013 SimpleMinds Team
 
@@ -17,30 +17,48 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/dialogbg" >
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialogbg"
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/appnametext"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/appicon"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#33B5E5" />
+        android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/notitext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/appnametext"
-        android:layout_below="@+id/appnametext"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@android:color/black" />
+        <ImageView
+            android:id="@+id/appicon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/appnametext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/AppNameText"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#33B5E5" />
+
+            <TextView
+                android:id="@+id/notitext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/NotiData"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/pinit"
@@ -49,15 +67,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/pinit" />
-
-    <ImageView
-        android:id="@+id/appicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:maxHeight="144dp"
-        android:maxWidth="144dp"
-        android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>

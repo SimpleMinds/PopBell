@@ -39,7 +39,8 @@ import android.widget.SimpleCursorAdapter;
 
 public class AppBlackList extends ActionBarActivity {
 	private AppBlackListDBhelper mHelper = null;
-	private Cursor mCursor = null;
+	private static Cursor mCursor = null;
+	private ListView myList;
 	private static final int DELETE_ID = Menu.FIRST + 3;
 	
 	@Override
@@ -66,7 +67,7 @@ public class AppBlackList extends ActionBarActivity {
 				mCursor,
 				new String[] {AppBlackListDBhelper.APPNAME, AppBlackListDBhelper.PKGNAME},
 				new int[] {R.id.bigtext, R.id.smalltext});
-		ListView myList=(ListView)findViewById(android.R.id.list);
+		myList = (ListView)findViewById(android.R.id.list);
 		myList.setAdapter(adapter);
 		registerForContextMenu(myList);
 	}
@@ -74,7 +75,7 @@ public class AppBlackList extends ActionBarActivity {
 	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-		menu.add(Menu.NONE, DELETE_ID, Menu.NONE, "Delete");
+		menu.add(Menu.NONE, DELETE_ID, Menu.NONE, getString(R.string.delete));
 	}
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
@@ -106,6 +107,7 @@ public class AppBlackList extends ActionBarActivity {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void processDelete(long rowId) {
 		String[] args = {String.valueOf(rowId)};
 		
@@ -115,8 +117,13 @@ public class AppBlackList extends ActionBarActivity {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		
 		mCursor.close();
 		mHelper.close();
+	}
+	@SuppressWarnings("deprecation")
+	static void refreshView() {
+
+		mCursor.requery();
+		
 	}
 }

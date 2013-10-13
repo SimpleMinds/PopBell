@@ -28,73 +28,58 @@ import com.fima.cardsui.views.CardUI;
 
 public class Appinfo_Notices extends ActionBarActivity {
 
-	
-    private CardUI mCardView;
+	private CardUI mCardView;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_appinfo_notices);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_appinfo_notices);
 
-            mCardView = (CardUI) findViewById(R.id.cardsview);
-            MyPlayCard readme = new MyPlayCard(
-                    getString(R.string.readme),
-                    "",
-                    "#FFFFFF", "#000000", false, true);
-            readme.setOnClickListener(new OnClickListener() {
-            	@Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Appinfo_Notices.this,Doc_Readme.class);
-                    startActivity(intent);
-                }
-            });
-            mCardView.addCard(readme);
-            
-            MyPlayCard notices = new MyPlayCard(
-                    getString(R.string.notices),
-                    "",
-                    "#FFFFFF", "#000000", false, true);
-            notices.setOnClickListener(new OnClickListener() {
-            	@Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Appinfo_Notices.this,Doc_Notices.class);
-                    startActivity(intent);
-                }
-            });
-            mCardView.addCard(notices);
-            
-            MyPlayCard copying = new MyPlayCard(
-                    getString(R.string.copying),
-                    "",
-                    "#FFFFFF", "#000000", false, true);
-            copying.setOnClickListener(new OnClickListener() {
-            	@Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Appinfo_Notices.this,Doc_Copying.class);
-                    startActivity(intent);
-                }
-            });
-            mCardView.addCard(copying);
-            
-            MyPlayCard contributors = new MyPlayCard(
-                    getString(R.string.contributors),
-                    "",
-                    "#FFFFFF", "#000000", false, true);
-            contributors.setOnClickListener(new OnClickListener() {
-            	@Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Appinfo_Notices.this,Doc_Contributors.class);
-                    startActivity(intent);
-                }
-            });
-            mCardView.addCard(contributors);
-  
-            // draw cards
-            mCardView.refresh();
-    }
-    
-    
+		mCardView = (CardUI) findViewById(R.id.cardsview);
+		MyPlayCard readme = new MyPlayCard(getString(R.string.readme), getString(R.string.subreadme), "#FFFFFF", "#000000", false, true);
+		readme.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Appinfo_Notices.this, Doc_Parsing.class);
+				intent.putExtra("Data", getString(R.string.readme));
+				startActivity(intent);
+			}
+		});
+		mCardView.addCard(readme);
 
-        		 
-        // TODO Action to perform
-        }
+		MyPlayCard notices = new MyPlayCard(getString(R.string.notices), getString(R.string.subnotice), "#FFFFFF", "#000000", false, true);
+		notices.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Appinfo_Notices.this, Doc_Parsing.class);
+				intent.putExtra("Data", getString(R.string.notices));
+				startActivity(intent);
+			}
+		});
+		mCardView.addCard(notices);
+
+		MyPlayCard copying = new MyPlayCard(getString(R.string.copying), getString(R.string.subcopyng), "#FFFFFF", "#000000", false, true);
+		copying.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Appinfo_Notices.this, Doc_Parsing.class);
+				intent.putExtra("Data", getString(R.string.copying));
+				startActivity(intent);
+			}
+		});
+		mCardView.addCard(copying);
+
+		MyPlayCard contributors = new MyPlayCard(getString(R.string.contributors), getString(R.string.subcontributors), "#FFFFFF", "#000000", false, true);
+		contributors.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Appinfo_Notices.this, Doc_Parsing.class);
+				intent.putExtra("Data", getString(R.string.contributors));
+				startActivity(intent);
+			}
+		});
+		mCardView.addCard(contributors);
+		// draw cards
+		mCardView.refresh();
+	}
+}

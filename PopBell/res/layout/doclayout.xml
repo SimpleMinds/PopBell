@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:textSize="18dp"
-    android:text="Loading Document...\n (If the Document is not able to load, Please Check your network connection)"
+    android:text="@string/LodingText"
     />
 
 </ScrollView>

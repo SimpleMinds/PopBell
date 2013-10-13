@@ -20,10 +20,10 @@ package com.simpleminds.popbell;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -66,12 +66,11 @@ public class Tutorial extends ActionBarActivity {
     private class PagerAdapterClass extends PagerAdapter{
          
         private LayoutInflater mInflater;
- 
         public PagerAdapterClass(Context c){
             super();
             mInflater = LayoutInflater.from(c);
         }
-         
+        
         @Override
         public int getCount() {
             return 6;
@@ -82,47 +81,43 @@ public class Tutorial extends ActionBarActivity {
                finish();
             }
         };
+        
         @Override
         public Object instantiateItem(View pager, int position) {
             View v = null;
             if(position==0){
                 v = mInflater.inflate(R.layout.tutorial_1, null);
-            }
-            else if(position==1){
-                v = mInflater.inflate(R.layout.tutorial_2, null);}
-            else if(position==2){
-                v = mInflater.inflate(R.layout.tutorial_3, null);}
-            else if(position==3){
-                v = mInflater.inflate(R.layout.tutorial_4, null);}
-            else if(position==4){
-                v = mInflater.inflate(R.layout.tutorial_5, null);}
-            else{
+            }else if(position==1){
+                v = mInflater.inflate(R.layout.tutorial_2, null);
+            }else if(position==2){
+                v = mInflater.inflate(R.layout.tutorial_3, null);
+            }else if(position==3){
+                v = mInflater.inflate(R.layout.tutorial_4, null);
+            }else if(position==4){
+                v = mInflater.inflate(R.layout.tutorial_5, null);
+            }else{
                 v = mInflater.inflate(R.layout.tutorial_6, null);
                 v.findViewById(R.id.close).setOnClickListener(mPagerListener);
             }
-             
             ((ViewPager)pager).addView(v, 0);
-             
             return v; 
         }
- 
         @Override
-        public void destroyItem(View pager, int position, Object view) {    
+        public void destroyItem(View pager, int position, Object view){
             ((ViewPager)pager).removeView((View)view);
         }
-         
+        
         @Override
-        public boolean isViewFromObject(View pager, Object obj) {
-            return pager == obj; 
+        public boolean isViewFromObject(View pager, Object obj){
+            return pager == obj;
         }
- 
-        @Override public void restoreState(Parcelable arg0, ClassLoader arg1) {}
-        @Override public Parcelable saveState() {
-        	return null;
-        }
-        @Override public void startUpdate(View arg0) {}
-        @Override public void finishUpdate(View arg0) {}
     }
- 
-     
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_MENU){
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }  
 }

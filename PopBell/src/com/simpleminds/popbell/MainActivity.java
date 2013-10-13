@@ -96,7 +96,7 @@ public class MainActivity extends ActionBarActivity {
             MyPlayCard appinfo = new MyPlayCard(
                     getString(R.string.main_appinfo_title), 
                     getString(R.string.main_appinfo_desc), 
-                    "#000000", "#000000", false, true);
+                    "#33B5E5", "#33B5E5", false, true);
             appinfo.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {

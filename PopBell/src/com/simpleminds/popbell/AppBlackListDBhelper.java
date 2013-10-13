@@ -24,7 +24,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class AppBlackListDBhelper extends SQLiteOpenHelper{
+public class AppBlackListDBhelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "appblacklist.db";
 	static final String APPNAME = "appname";
 	static final String PKGNAME = "pkgname";
@@ -43,7 +43,7 @@ public class AppBlackListDBhelper extends SQLiteOpenHelper{
 		db.insert("appblacklist", PKGNAME, cv);
 
 	}
-
+	
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("DROP TABLE IF EXISTS appblacklist");

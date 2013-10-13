@@ -44,7 +44,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class PinedDialogWindow extends StandOutWindow {
 
@@ -107,8 +106,7 @@ public class PinedDialogWindow extends StandOutWindow {
 	// move the window by draggin(g the view
 	@Override
 	public int getFlags(int id) {
-		return super.getFlags(id) | StandOutFlags.FLAG_BODY_MOVE_ENABLE
-				| StandOutFlags.FLAG_WINDOW_FOCUSABLE_DISABLE;
+		return super.getFlags(id) | StandOutFlags.FLAG_BODY_MOVE_ENABLE | StandOutFlags.FLAG_WINDOW_FOCUSABLE_DISABLE;
 	}
 
 	public boolean onShow(int id, Window window) {
@@ -126,13 +124,10 @@ public class PinedDialogWindow extends StandOutWindow {
 	public void onReceiveData(int id, int requestCode, Bundle data,
 			Class<? extends StandOutWindow> fromCls, int fromId) {
 		Window window = getWindow(id);
-
 		// Get Received String
 		String PkgName = data.getString("pkgname");
 		String NotiText = data.getString("sysnotitext");
-
-		TextView AppNameField = (TextView) window
-				.findViewById(R.id.appnametext);
+		TextView AppNameField = (TextView)window.findViewById(R.id.appnametext);
 		TextView NotiField = (TextView) window.findViewById(R.id.notitext);
 		ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
 
@@ -144,39 +139,29 @@ public class PinedDialogWindow extends StandOutWindow {
 		} catch (final NameNotFoundException e) {
 			ai = null;
 		}
-		final String applicationName = (String) (ai != null ? pm
-				.getApplicationLabel(ai) : "(unknown)");
+		final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
 		Drawable appicon = pm.getApplicationIcon(ai);
-
 		AppNameField.setText(applicationName);
 		NotiField.setText(NotiText);
 		// NotiField onClick
 		NotiField.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
+				// if NotiText has URL, go to URL
 				String NotiText = ((TextView) v).getText().toString();
-				String returnString=null;
-				if ((returnString=hasURL(NotiText))!=null) {
-					// if NotiText has URL, go to URL
+				String urlString=null;
+				if ((urlString=hasURL(NotiText))!=null) {
 					Intent i = new Intent(Intent.ACTION_VIEW);
-					Uri u = Uri.parse(returnString);
+					Uri u = Uri.parse(urlString);
 					i.setData(u);
 					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(i);
-				} else if((returnString=hasAuthenticationNumber(NotiText))!=null) {
-					// if NotiText has AuthenticationNumber, copy to Clipboard
-				    android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-				    clipboard.setText(returnString);
-				    
-				    Toast.makeText(PinedDialogWindow.this, returnString+" is copied", Toast.LENGTH_SHORT).show();
 				}
 			}
 
 			private String hasURL(String notiText) {
+				String regex = "(http://([0-9a-zA-Z./@~?&=]+))";
 				String urlString = null;
-				String regex = "((http|https)://([0-9a-zA-Z./@~?&=]+))";
-				
 				Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 				Matcher m = p.matcher(notiText);
 				if (m.find()) {
@@ -184,40 +169,20 @@ public class PinedDialogWindow extends StandOutWindow {
 				}
 				return urlString;
 			}
-			private String hasAuthenticationNumber(String notiText) {
-				String authenticationNumberString=null;
-				
-				if(notiText.contains("인증")) {
-					String regex = "(\\d{4,7})";
-					
-					Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-					Matcher m = p.matcher(notiText);
-					if(m.find()) {
-						authenticationNumberString = m.group(1);
-					}
-				}
-				return authenticationNumberString;
-			}
-			
 		});
 		AppIconField.setImageDrawable(appicon);
-
-		final Notification n = (Notification) data
-				.getParcelable("ParcelableData");
+		final Notification n = (Notification)data.getParcelable("ParcelableData");
 		AppIconField.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				try {
 					n.contentIntent.send();
 				} catch (CanceledException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					Log.e("PopBell", "PinedDialogWindow CanceledException", e);
 				} catch (java.lang.NullPointerException e) {
 					e.printStackTrace();
-					Log.e("PopBell",
-							"PinedDialogWindow java.lang.NullPointerException",
-							e);
+					Log.e("PopBell", "PinedDialogWindow java.lang.NullPointerException", e);
 				}
 			}
 		});
@@ -229,9 +194,7 @@ public class PinedDialogWindow extends StandOutWindow {
 		return new Runnable() {
 			@Override
 			public void run() {
-				StandOutWindow.show(
-						PinedDialogWindow.this.getApplicationContext(),
-						PinedDialogWindow.class, getUniqueId());
+				StandOutWindow.show(PinedDialogWindow.this.getApplicationContext(), PinedDialogWindow.class, getUniqueId());
 			}
 		};
 	}

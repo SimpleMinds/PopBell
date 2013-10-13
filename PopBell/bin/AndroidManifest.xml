@@ -19,8 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simpleminds.popbell"
-    android:versionCode="1"
-    android:versionName="0.1 beta" >
+    android:versionCode="4"
+    android:versionName="0.3 beta - GoldenPatch" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -40,7 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
             android:name="com.simpleminds.popbell.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />ㅂ
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -48,6 +48,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <activity
             android:name="com.simpleminds.popbell.AppBlackList"
             android:label="@string/title_activity_app_black_list"
+            android:theme="@style/Theme.Detecter"
             android:parentActivityName="com.simpleminds.popbell.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -56,6 +57,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <activity
             android:name="com.simpleminds.popbell.AddnewtoBlacklist"
             android:label="@string/title_activity_addnewto_blacklist"
+            android:theme="@style/Theme.Detecter"
             android:parentActivityName="com.simpleminds.popbell.AppBlackList" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -69,7 +71,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <activity
             android:name="com.simpleminds.popbell.Appinfo"
             android:label="@string/title_activity_appinfo"
-            android:parentActivityName="com.simpleminds.popbell.MainActivity" >
+            android:parentActivityName="com.simpleminds.popbell.MainActivity"
+            android:theme="@style/Theme.Info" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.simpleminds.popbell.MainActivity" />
@@ -77,38 +80,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <activity
             android:name="com.simpleminds.popbell.Appinfo_Notices"
             android:label="@string/notices"
-            android:parentActivityName="com.simpleminds.popbell.Appinfo" >
+            android:parentActivityName="com.simpleminds.popbell.Appinfo"
+            android:theme="@style/Theme.Info" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.simpleminds.popbell.Appinfo" />
         </activity>
         <activity
-            android:name="com.simpleminds.popbell.Doc_Notices"
+            android:name="com.simpleminds.popbell.Doc_Parsing"
             android:label="@string/notices"
-            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.simpleminds.popbell.Appinfo_Notices" />
-        </activity>
-        <activity
-            android:name="com.simpleminds.popbell.Doc_Readme"
-            android:label="@string/readme"
-            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.simpleminds.popbell.Appinfo_Notices" />
-        </activity>
-        <activity
-            android:name="com.simpleminds.popbell.Doc_Contributors"
-            android:label="@string/contributors"
-            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.simpleminds.popbell.Appinfo_Notices" />
-        </activity>
-        <activity
-            android:name="com.simpleminds.popbell.Doc_Copying"
-            android:label="@string/copying"
+            android:theme="@style/Theme.Info"
             android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -122,6 +103,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <service
             android:name="com.simpleminds.popbell.NotiDetector"
             android:canRetrieveWindowContent="true"
+            android:theme="@style/Theme.Detecter"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -140,7 +122,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <receiver android:name=".PluginDataReceiver">
             <intent-filter>
                 <action android:name="com.sompleminds.popbell.PLUGIN.PASSDATA">
-            </action></intent-filter>
+            	</action>
+            </intent-filter>
         </receiver>  
     </application>
 

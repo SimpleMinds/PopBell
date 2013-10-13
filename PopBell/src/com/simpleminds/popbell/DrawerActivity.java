@@ -69,7 +69,7 @@ public class DrawerActivity extends ListActivity{
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-		menu.add(Menu.NONE, DELETE_ID, Menu.NONE, "Delete");
+		menu.add(Menu.NONE, DELETE_ID, Menu.NONE, getString(R.string.delete));
 	}
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {

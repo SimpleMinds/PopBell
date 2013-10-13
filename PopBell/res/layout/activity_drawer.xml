@@ -1,4 +1,4 @@
-<!-- 
+<!--
 PopBell Application for Android
 Copyright (C) 2013 SimpleMinds Team
 
@@ -21,21 +21,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-<ImageView
-    android:id="@+id/imageView2"
-    android:layout_width="50dp"
-    android:layout_height="match_parent"
-    android:layout_alignParentLeft="true"
-    android:layout_toLeftOf="@+id/imageView1"/>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/imageView1" />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:src="#2c3e50" />
-
 
     <ListView
         android:id="@+id/android:list"
@@ -43,7 +42,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         android:layout_height="match_parent"
         android:layout_alignLeft="@+id/imageView1"
         android:layout_alignParentTop="true" >
-
     </ListView>
 
 </RelativeLayout>

@@ -16,6 +16,7 @@
  *along with this program; if not, write to the Free Software
  *Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 package com.simpleminds.popbell;
 
 import android.content.ContentValues;
@@ -25,17 +26,16 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.content.Context;
 import android.database.Cursor;
 
 public class AddnewtoBlacklist extends ActionBarActivity {
-	private ListView mListAppInfo;
 	private AppBlackListDBhelper mHelper = null;
 	private Cursor mCursor = null;
+	private ListView mListAppInfo;
 	
-	Context c;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,39 +44,62 @@ public class AddnewtoBlacklist extends ActionBarActivity {
         mListAppInfo = (ListView)findViewById(R.id.listView1);
         mHelper = new AppBlackListDBhelper(this);
         mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, appname, pkgname FROM appblacklist ORDER BY pkgname", null);
-        
+
         // create new adapter
         AppInfoAdapter adapter = new AppInfoAdapter(this, Utilities.getInstalledApplication(this), getPackageManager());
         // set adapter to list view
         mListAppInfo.setAdapter(adapter);
         // implement event when an item on list view is selected
-        mListAppInfo.setOnItemClickListener(new OnItemClickListener() {
+        mListAppInfo.setOnItemClickListener(new OnItemClickListener(){
             @Override
-            public void onItemClick(AdapterView parent, View view, int pos, long id) {
-                // get the list adapter
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long id){
+            	/*
+            	 * Note : When the application is added, you must verify whether the app is duplicated.
+            	 * This may not be an important thing, but this is a bug...
+            	 */
+            	boolean passable = true;
+            	String refString;
+            	
+            	mCursor.moveToLast();
+            	int count = mCursor.getPosition();
+            	mCursor.moveToFirst();
+
+            	// get the list adapter
                 AppInfoAdapter appInfoAdapter = (AppInfoAdapter)parent.getAdapter();
                 // get selected item on the list
                 ApplicationInfo appInfo = (ApplicationInfo)appInfoAdapter.getItem(pos);
                 // launch the selected application
                 
                 ApplicationInfo ai;
-            	try {
+            	try{
             	    ai = getPackageManager().getApplicationInfo(appInfo.packageName, 0);
-            	} catch (final NameNotFoundException e) {
+            	}catch(final NameNotFoundException e){
             	    ai = null;
             	}
             	final String applicationName = (String) (ai != null ? getPackageManager().getApplicationLabel(ai) : "(unknown)");
+            	// Logic
+            	for(int k = 0; k < count; k++){
+            		mCursor.moveToPosition(k);
+            		refString = mCursor.getString(1);
+            		if (refString.equals(applicationName)) passable = false;
+            	}
             	
-            	//put values to db
-            	ContentValues values = new ContentValues();
-            	values.put(AppBlackListDBhelper.APPNAME, applicationName.toString());
-            	values.put(AppBlackListDBhelper.PKGNAME, appInfo.packageName.toString());
-            	
-            	mHelper.getWritableDatabase().insert("appblacklist", AppBlackListDBhelper.APPNAME, values);
-            	mCursor.requery();
-            	
+            	if(passable){
+            		//put values to db
+            		ContentValues values = new ContentValues();
+            		values.put(AppBlackListDBhelper.APPNAME, applicationName.toString());
+            		values.put(AppBlackListDBhelper.PKGNAME, appInfo.packageName.toString());
+            		mHelper.getWritableDatabase().insert("appblacklist", AppBlackListDBhelper.APPNAME, values);
+            	}else{
+            		Toast.makeText(getApplicationContext(), getString(R.string.duplicationOccurred), Toast.LENGTH_SHORT).show();
+            	}
+            	// Why requery in here? this activity will be closed after this..
+            	mHelper.close();
+            	mCursor.close();
+            	// TODO Let's refresh view. If this logic has errors, then modify this code.
+            	AppBlackList.refreshView();
             	finish();
-       // Toast.makeText(c, "appname:" + applicationName + "packagename:" + appInfo.packageName + "added", Toast.LENGTH_LONG);
+            	// Toast.makeText(c, "appname:" + applicationName + "packagename:" + appInfo.packageName + "added", Toast.LENGTH_LONG);
             }
         });
     }

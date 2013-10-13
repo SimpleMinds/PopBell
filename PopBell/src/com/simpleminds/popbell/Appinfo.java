@@ -44,7 +44,6 @@ public class Appinfo extends ActionBarActivity {
 				try {
 					app_ver = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
 				} catch (NameNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
          
@@ -67,9 +66,15 @@ public class Appinfo extends ActionBarActivity {
             update.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                	Intent update = new Intent(Intent.ACTION_VIEW);
-                	update.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.simpleminds.popbell"));
-                    startActivity(update);
+                	try{
+                		Intent update = new Intent(Intent.ACTION_VIEW);
+                    	update.setData(Uri.parse("market://details?id=" + getPackageName()));
+                        startActivity(update);
+                	}catch(android.content.ActivityNotFoundException e){
+                		Intent update = new Intent(Intent.ACTION_VIEW);
+                		update.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
+                		startActivity(update);
+                	}
                 }
             });
             mCardView.addCard(update);
@@ -105,9 +110,4 @@ public class Appinfo extends ActionBarActivity {
             // draw cards
             mCardView.refresh();
     }
-    
-    
-
-        		 
-        // TODO Action to perform
-        }
+}

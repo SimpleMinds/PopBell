@@ -23,6 +23,8 @@ import wei.mark.standout.constants.StandOutFlags;
 import wei.mark.standout.ui.Window;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.view.MotionEvent;
@@ -56,9 +58,13 @@ super.onCreate();
     @Override
     public void createAndAttachView(int id, FrameLayout frame) {
             // create a new layout from body.xml
-            mTouchDetector = new ImageView(this);                                         
-   mTouchDetector.setImageResource(R.drawable.detector_right);
-   frame.addView(mTouchDetector);
+            mTouchDetector = new ImageView(this);
+            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.detector_left); // 비트맵 이미지를 만든다.
+            int width=(int)(100); // 가로 사이즈 지정
+            int height=(int)(200); // 세로 사이즈 지정
+            Bitmap resizedbitmap = Bitmap.createScaledBitmap(bmp, width, height, true);
+            mTouchDetector.setImageResource(R.drawable.detector_right);
+            frame.addView(mTouchDetector);
     
    mTouchDetector.setOnTouchListener(new OnTouchListener(){
    
@@ -81,7 +87,7 @@ super.onCreate();
     // the window will be centered
     @Override
     public StandOutLayoutParams getParams(int id, Window window) {
-            return new StandOutLayoutParams(id, 10, 600,
+            return new StandOutLayoutParams(id, 100, 6000,
                             StandOutLayoutParams.RIGHT, StandOutLayoutParams.TOP);
     }
 
