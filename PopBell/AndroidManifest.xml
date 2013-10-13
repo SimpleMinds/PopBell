@@ -103,7 +103,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <service
             android:name="com.simpleminds.popbell.NotiDetector"
             android:canRetrieveWindowContent="true"
-            android:theme="@style/Theme.Detecter"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
