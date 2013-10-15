@@ -70,7 +70,7 @@ public class TouchTrigger extends StandOutWindow {
 				case MotionEvent.ACTION_DOWN:
 
 					Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-					vibe.vibrate(1000);
+					vibe.vibrate(10);
 					Intent intent = new Intent(TouchTrigger.this, DrawerActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					getApplication().startActivity(intent);
@@ -83,7 +83,7 @@ public class TouchTrigger extends StandOutWindow {
 	// the window will be centered
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
-		return new StandOutLayoutParams(id, 100, 6000, StandOutLayoutParams.RIGHT, StandOutLayoutParams.TOP);
+		return new StandOutLayoutParams(id, 50, 6000, StandOutLayoutParams.RIGHT, StandOutLayoutParams.TOP);
 	}
 
 	// move the window by dragging the view
