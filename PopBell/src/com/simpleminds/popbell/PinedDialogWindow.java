@@ -95,7 +95,9 @@ public class PinedDialogWindow extends StandOutWindow {
 
 		WindowManager win = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 		Display display = win.getDefaultDisplay();
+		@SuppressWarnings("deprecation")
 		int width = display.getWidth();
+		@SuppressWarnings({ "deprecation", "unused" })
 		int height = display.getHeight();
 
 		return new StandOutLayoutParams(id, width * 7 / 8,

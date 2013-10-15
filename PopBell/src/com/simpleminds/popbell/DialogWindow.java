@@ -19,7 +19,7 @@
 
 package com.simpleminds.popbell;
 
-
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,16 +51,17 @@ public class DialogWindow extends StandOutWindow {
 
 	String[] array;
 
-    public boolean onShow(int id, Window window) {
-    	Log.d("PopBell", "DialogWindow Show");
+	public boolean onShow(int id, Window window) {
+		Log.d("PopBell", "DialogWindow Show");
 		return false;
 	}
-    
-    @Override
+
+	@Override
 	public int getAppIcon() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	@Override
 	public String getAppName() {
 		return null;
@@ -70,17 +71,19 @@ public class DialogWindow extends StandOutWindow {
 	public void createAndAttachView(int id, FrameLayout frame) {
 
 		// create a new layout from body.xml
-		LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.dialog, frame, true);
 
-		 ImageView PinBtn = (ImageView) view.findViewById(R.id.pinit);
+		ImageView PinBtn = (ImageView) view.findViewById(R.id.pinit);
 
-		 PinBtn.setOnClickListener(new OnClickListener() {
+		PinBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Log.d("PopBell", "DialogWindow Pinit Button");
-				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
-	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
+				StandOutWindow.closeAll(DialogWindow.this,
+						PinedDialogWindow.class);
+				StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class,
+						StandOutWindow.DEFAULT_ID);
 				stopSelf();
 			}
 		});
@@ -90,138 +93,159 @@ public class DialogWindow extends StandOutWindow {
 	// the window will be centered
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
-		WindowManager win = (WindowManager) getSystemService(Context.WINDOW_SERVICE); 
-	    Display display = win.getDefaultDisplay();
-	    int width = display.getWidth();
-	    int height = display.getHeight();
+		WindowManager win = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+		Display display = win.getDefaultDisplay();
+		int width = display.getWidth();
+		int height = display.getHeight();
 
-		return new StandOutLayoutParams(id, width*7/8, StandOutLayoutParams.WRAP_CONTENT,
-				  StandOutLayoutParams.CENTER, StandOutLayoutParams.TOP + 20);
+		return new StandOutLayoutParams(id, width * 7 / 8,
+				StandOutLayoutParams.WRAP_CONTENT, StandOutLayoutParams.CENTER,
+				StandOutLayoutParams.TOP + 20);
 	}
 
 	// move the window by draggin(g the view
 	@Override
 	public int getFlags(int id) {
-		return super.getFlags(id) | StandOutFlags.FLAG_WINDOW_FOCUS_INDICATOR_DISABLE;
+		return super.getFlags(id)
+				| StandOutFlags.FLAG_WINDOW_FOCUS_INDICATOR_DISABLE;
 	}
 
-	//Receive data from NotiDetector
+	// Receive data from NotiDetector
 	@Override
 	public void onReceiveData(int id, int requestCode, Bundle data,
-			Class<? extends StandOutWindow> fromCls, int fromId) 
-	{		
+			Class<? extends StandOutWindow> fromCls, int fromId) {
 		Window window = getWindow(id);
 
-			//Get Received String
-			String PkgName = data.getString("pkgname");
-			String NotiText = data.getString("sysnotitext");
+		// Get Received String
+		String PkgName = data.getString("pkgname");
+		String NotiText = data.getString("sysnotitext");
 
+		TextView AppNameField = (TextView) window
+				.findViewById(R.id.appnametext);
+		TextView NotiField = (TextView) window.findViewById(R.id.notitext);
+		ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
+		getResources().getConfiguration().locale.getLanguage();
 
+		// Get App Name and App Icon
+		final PackageManager pm = getApplicationContext().getPackageManager();
+		ApplicationInfo ai;
+		try {
+			ai = pm.getApplicationInfo((String) PkgName, 0);
+		} catch (final NameNotFoundException e) {
+			ai = null;
+		}
+		final String applicationName = (String) (ai != null ? pm
+				.getApplicationLabel(ai) : "(unknown)");
+		Drawable appicon = pm.getApplicationIcon(ai);
 
-			TextView AppNameField = (TextView) window.findViewById(R.id.appnametext);
-			TextView NotiField = (TextView) window.findViewById(R.id.notitext);
-			ImageView AppIconField = (ImageView) window.findViewById(R.id.appicon);
+		AppNameField.setText(applicationName);
+		NotiField.setText(NotiText);
+		// NotiField onClick
+		NotiField.setOnClickListener(new OnClickListener() {
 
-			// Get App Name and App Icon
-			final PackageManager pm = getApplicationContext().getPackageManager();
-        	ApplicationInfo ai;
-        	try {
-        	    ai = pm.getApplicationInfo( (String) PkgName, 0);
-        	} catch (final NameNotFoundException e) {
-        	    ai = null;
-        	}
-        	final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai) : "(unknown)");
-        	Drawable appicon = pm.getApplicationIcon(ai);
-        	
-        	AppNameField.setText(applicationName);
-        	NotiField.setText(NotiText);
-        	// NotiField onClick
-    		NotiField.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String NotiText = ((TextView) v).getText().toString();
+				String returnString = null;
+				if ((returnString = hasURL(NotiText)) != null) {
+					// if NotiText has URL, go to URL
+					Intent i = new Intent(Intent.ACTION_VIEW);
+					Uri u = Uri.parse(returnString);
+					i.setData(u);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(i);
+				} else if ((returnString = hasAuthenticationNumber(NotiText)) != null) {
+					// if NotiText has AuthenticationNumber, copy to Clipboard
+					android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+					clipboard.setText(returnString);
+					if (getResources().getConfiguration().locale
+							.equals(Locale.KOREA)) {
+						Toast.makeText(DialogWindow.this,
+								"인증번호 \"" + returnString + "\" 복사되었습니다",
+								Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(
+								DialogWindow.this,
+								"Certificate Number \"" + returnString
+										+ "\" is copied", Toast.LENGTH_SHORT)
+								.show();
+					}
+				}
+			}
 
-    			@Override
-    			public void onClick(View v) {
-    				String NotiText = ((TextView) v).getText().toString();
-    				String returnString=null;
-    				if ((returnString=hasURL(NotiText))!=null) {
-    					// if NotiText has URL, go to URL
-    					Intent i = new Intent(Intent.ACTION_VIEW);
-    					Uri u = Uri.parse(returnString);
-    					i.setData(u);
-    					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    					startActivity(i);
-    				} else if((returnString=hasAuthenticationNumber(NotiText))!=null) {
-    					// if NotiText has AuthenticationNumber, copy to Clipboard
-    				    android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-    				    clipboard.setText(returnString);
-    				    
-    				    Toast.makeText(DialogWindow.this, returnString+" is copied", Toast.LENGTH_SHORT).show();
-    				}
-    			}
+			private String hasURL(String notiText) {
+				String urlString = null;
+				String regex = "((http|https)://([0-9a-zA-Z./@~?&=]+))";
 
-    			private String hasURL(String notiText) {
-    				String urlString = null;
-    				String regex = "((http|https)://([0-9a-zA-Z./@~?&=]+))";
-    				
-    				Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-    				Matcher m = p.matcher(notiText);
-    				if (m.find()) {
-    					urlString = m.group(1);
-    				}
-    				return urlString;
-    			}
-    			private String hasAuthenticationNumber(String notiText) {
-    				String authenticationNumberString=null;
-    				
-    				if(notiText.contains("인증")) {
-    					String regex = "(\\d{4,7})";
-    					
-    					Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-    					Matcher m = p.matcher(notiText);
-    					if(m.find()) {
-    						authenticationNumberString = m.group(1);
-    					}
-    				}
-    				return authenticationNumberString;
-    			}
-    			
-    		});
-        	AppIconField.setImageDrawable(appicon);
-        	
-        	final Notification n = (Notification) data.getParcelable("ParcelableData");
-        	AppIconField.setOnClickListener(new OnClickListener() {
-   			@Override
-   			public void onClick(View v) {
-   				try {
+				Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+				Matcher m = p.matcher(notiText);
+				if (m.find()) {
+					urlString = m.group(1);
+				}
+				return urlString;
+			}
+
+			private String hasAuthenticationNumber(String notiText) {
+				String authenticationNumberString = null;
+
+				if (notiText.contains("인증")) {
+					String regex = "(\\d{4,7})";
+
+					Pattern p = Pattern
+							.compile(regex, Pattern.CASE_INSENSITIVE);
+					Matcher m = p.matcher(notiText);
+					if (m.find()) {
+						authenticationNumberString = m.group(1);
+					}
+				}
+				return authenticationNumberString;
+			}
+
+		});
+		AppIconField.setImageDrawable(appicon);
+
+		final Notification n = (Notification) data
+				.getParcelable("ParcelableData");
+		AppIconField.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
 					n.contentIntent.send();
 				} catch (CanceledException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					Log.e("PopBell", "DialogWindow CanceledException", e);
+				} catch (java.lang.NullPointerException e) {
+					e.printStackTrace();
+					Log.e("PopBell",
+							"DialogWindow java.lang.NullPointerException", e);
 				}
-   				catch(java.lang.NullPointerException e){
-   					e.printStackTrace();
-   					Log.e("PopBell", "DialogWindow java.lang.NullPointerException", e);
-   				}
-   			}
-   		});
-        	final Bundle dataBundle = new Bundle();
-        	dataBundle.putParcelable("parcefromdialog", data.getParcelable("ParcelableData"));
-        	dataBundle.putString("pkgname", data.getString("pkgname"));
-        	dataBundle.putString("sysnotitext", data.getString("sysnotitext"));
-        	
-        	 ImageView PinBtn = (ImageView) window.findViewById(R.id.pinit);
+			}
+		});
+		final Bundle dataBundle = new Bundle();
+		dataBundle.putParcelable("parcefromdialog",
+				data.getParcelable("ParcelableData"));
+		dataBundle.putString("pkgname", data.getString("pkgname"));
+		dataBundle.putString("sysnotitext", data.getString("sysnotitext"));
 
-    		 PinBtn.setOnClickListener(new OnClickListener() {
-    			@Override
-    			public void onClick(View v) {
-    				Log.d("PopBell", "DialogWindow Pinit Button");
-    				StandOutWindow.closeAll(DialogWindow.this, PinedDialogWindow.class);
-    	        	StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID);
-    	        	StandOutWindow.sendData(DialogWindow.this, PinedDialogWindow.class, StandOutWindow.DEFAULT_ID, 1, dataBundle, null, 0);
-    				stopSelf();
-    			}
-    		});
+		ImageView PinBtn = (ImageView) window.findViewById(R.id.pinit);
+
+		PinBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.d("PopBell", "DialogWindow Pinit Button");
+				StandOutWindow.closeAll(DialogWindow.this,
+						PinedDialogWindow.class);
+				StandOutWindow.show(DialogWindow.this, PinedDialogWindow.class,
+						StandOutWindow.DEFAULT_ID);
+				StandOutWindow.sendData(DialogWindow.this,
+						PinedDialogWindow.class, StandOutWindow.DEFAULT_ID, 1,
+						dataBundle, null, 0);
+				stopSelf();
+			}
+		});
 	}
+
 	public boolean onCloseAll() {
 		Log.d("PopBell", "CloseAll DialodWindow");
 		return false;

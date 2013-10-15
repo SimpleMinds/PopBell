@@ -76,7 +76,6 @@ public class DrawerActivity extends ListActivity{
 		switch (item.getItemId()) {
 			case DELETE_ID:
 				AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-	
 				delete(info.id);
 				return(true);
 		}

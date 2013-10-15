@@ -107,7 +107,6 @@ public class AppBlackList extends ActionBarActivity {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	private void processDelete(long rowId) {
 		String[] args = {String.valueOf(rowId)};
 		

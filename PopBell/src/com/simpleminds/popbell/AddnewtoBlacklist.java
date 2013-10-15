@@ -44,7 +44,7 @@ public class AddnewtoBlacklist extends ActionBarActivity {
         mListAppInfo = (ListView)findViewById(R.id.listView1);
         mHelper = new AppBlackListDBhelper(this);
         mCursor = mHelper.getWritableDatabase().rawQuery("SELECT _ID, appname, pkgname FROM appblacklist ORDER BY pkgname", null);
-
+        
         // create new adapter
         AppInfoAdapter adapter = new AppInfoAdapter(this, Utilities.getInstalledApplication(this), getPackageManager());
         // set adapter to list view
