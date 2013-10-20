@@ -41,7 +41,7 @@ public class AppBlackList extends ActionBarActivity {
 	private AppBlackListDBhelper mHelper = null;
 	private static Cursor mCursor = null;
 	private ListView myList;
-	private static final int DELETE_ID = Menu.FIRST + 3;
+	private final int DELETE_ID = Menu.FIRST + 3;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

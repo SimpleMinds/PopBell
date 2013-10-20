@@ -78,7 +78,7 @@ public class AddnewtoBlacklist extends ActionBarActivity {
             	}
             	final String applicationName = (String) (ai != null ? getPackageManager().getApplicationLabel(ai) : "(unknown)");
             	// Logic
-            	for(int k = 0; k < count; k++){
+            	for(int k = 0; k < count; k++) {
             		mCursor.moveToPosition(k);
             		refString = mCursor.getString(1);
             		if (refString.equals(applicationName)) passable = false;
@@ -90,14 +90,14 @@ public class AddnewtoBlacklist extends ActionBarActivity {
             		values.put(AppBlackListDBhelper.APPNAME, applicationName.toString());
             		values.put(AppBlackListDBhelper.PKGNAME, appInfo.packageName.toString());
             		mHelper.getWritableDatabase().insert("appblacklist", AppBlackListDBhelper.APPNAME, values);
+                	// TODO Let's refresh view. If this logic has errors, then modify this code.
+            		// ADD : if passable is false, this is not needed!
+                	AppBlackList.refreshView();
             	}else{
             		Toast.makeText(getApplicationContext(), getString(R.string.duplicationOccurred), Toast.LENGTH_SHORT).show();
             	}
-            	// Why requery in here? this activity will be closed after this..
             	mHelper.close();
             	mCursor.close();
-            	// TODO Let's refresh view. If this logic has errors, then modify this code.
-            	AppBlackList.refreshView();
             	finish();
             	// Toast.makeText(c, "appname:" + applicationName + "packagename:" + appInfo.packageName + "added", Toast.LENGTH_LONG);
             }

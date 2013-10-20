@@ -39,9 +39,9 @@ public class MainActivity extends ActionBarActivity {
             //launch tutorial activity on firstrun
             boolean firstrun = getSharedPreferences("BOOT_PREF", MODE_PRIVATE).getBoolean("firstrun", true);
             
-            if (firstrun){
+            if (firstrun) {
             	Intent guide = new Intent(MainActivity.this, Tutorial.class); 
-    	    	 startActivity(guide);
+    	    	startActivity(guide);
             	
                 getSharedPreferences("BOOT_PREF", MODE_PRIVATE)
                     .edit()
@@ -111,8 +111,4 @@ public class MainActivity extends ActionBarActivity {
             mCardView.refresh();
     }
     
-    
-
-        		 
-        // TODO Action to perform
-        }
+}
