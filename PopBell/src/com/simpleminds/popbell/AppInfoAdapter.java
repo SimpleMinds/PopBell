@@ -31,10 +31,10 @@ import android.widget.TextView;
  
 public class AppInfoAdapter extends BaseAdapter {
     private Context mContext;
-    private List mListAppInfo;
+    private List<ApplicationInfo> mListAppInfo;
     private PackageManager mPackManager;
  
-    public AppInfoAdapter(Context c, List list, PackageManager pm) {
+    public AppInfoAdapter(Context c, List<ApplicationInfo> list, PackageManager pm) {
         mContext = c;
         mListAppInfo = list;
         mPackManager = pm;

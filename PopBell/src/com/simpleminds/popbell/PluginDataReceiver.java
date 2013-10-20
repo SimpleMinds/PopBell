@@ -31,8 +31,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class PluginDataReceiver extends BroadcastReceiver {
-	private Cursor mCursor2 = null;
-	private NotiListDBhelper mHelper2 = null;
+	private Cursor mCursor = null;
+	private NotiListDBhelper mHelper = null;
 	private TimerTask mTask;
 	private Timer mTimer;
 
@@ -52,17 +52,19 @@ public class PluginDataReceiver extends BroadcastReceiver {
 					+ PackageName + "/" + Notiid + "/" + Title + "/" + Desc);
 
 			// put values to db
-			mHelper2 = new NotiListDBhelper(context);
-			mCursor2 = mHelper2.getWritableDatabase().rawQuery(
+			mHelper = new NotiListDBhelper(context);
+			mCursor = mHelper.getWritableDatabase().rawQuery(
 					"SELECT _ID, title, desc FROM notilist ORDER BY title",
 					null);
 			ContentValues values = new ContentValues();
 			values.put(NotiListDBhelper.TITLE, Title);
 			values.put(NotiListDBhelper.DESC, Desc);
 
-			mHelper2.getWritableDatabase().insert("notilist",
+			mHelper.getWritableDatabase().insert("notilist",
 					NotiListDBhelper.TITLE, values);
-			mCursor2.requery();
+			mCursor.requery();
+			mCursor.close();
+			mHelper.close();
 
 			// Close and Open Dialog Window
 			StandOutWindow.closeAll(context, DialogWindow.class);

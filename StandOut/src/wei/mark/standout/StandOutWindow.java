@@ -1111,7 +1111,13 @@ public abstract class StandOutWindow extends Service {
 
 		// add view to internal map
 		sWindowCache.putCache(id, getClass(), window);
-
+		/*
+		 * FIXME This part is 'Persistent Notification'.
+		 * This suggests 'StandOutWindow' Service can be unloaded
+		 * Thus the application must use its own persistent notification ability.
+		 * This can affect to low-memory devices.
+		 */
+		/*
 		// get the persistent notification
 		Notification notification = getPersistentNotification(id);
 
@@ -1142,8 +1148,10 @@ public abstract class StandOutWindow extends Service {
 						+ "memory situations.");
 			}
 		}
-
-		focus(id);
+		*/
+		
+		// This makes problem.. cannot use keyboard properly.
+		//focus(id);
 
 		return window;
 	}
