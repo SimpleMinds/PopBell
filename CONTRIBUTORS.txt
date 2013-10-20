@@ -38,3 +38,7 @@ Contributors of this project
 N : Jeong Hoon, Rhim
 E : ssep4u@gmail.com
 D : Teacher of Korea Digital Media High School
+
+N : Chan Ho, Jeon
+E : charlie1024@naver.com
+D : PopBell Open Source Project Contributor
