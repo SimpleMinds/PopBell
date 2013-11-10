@@ -19,8 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simpleminds.popbell"
-    android:versionCode="5"
-    android:versionName="0.4 beta" >
+    android:versionCode="6"
+    android:versionName="0.5 beta" >
 
     <uses-sdk
         android:minSdkVersion="8"
