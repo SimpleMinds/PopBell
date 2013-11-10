@@ -60,5 +60,7 @@
     <string name="title_activity_drawer_settings">Drawer Settings</string>
     <string name="drawer_toggle">Turn On Notification Drawer</string>
     <string name="drawer_useleft">Use Left Notification Drawer</string>
+    <string name="main_drawersettings_title">Notification Drawer</string>
+    <string name="main_drawersettings_desc">Customize Notification Drawer Settings</string>
 
 </resources>
