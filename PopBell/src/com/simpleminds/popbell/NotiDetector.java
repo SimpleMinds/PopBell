@@ -134,9 +134,10 @@ public class NotiDetector extends AccessibilityService {
 						public void run() {
 							stopService(new Intent(NotiDetector.this,
 									DialogWindow.class));
-							if(draweron){
 								stopService(new Intent(NotiDetector.this,
-									TouchTrigger.class));}else{}
+									TouchTrigger.class));
+								StandOutWindow.closeAll(NotiDetector.this, DialogWindow.class);
+								StandOutWindow.closeAll(NotiDetector.this, TouchTrigger.class);
 						}
 					};
 					mTimer = new Timer();
@@ -146,7 +147,6 @@ public class NotiDetector extends AccessibilityService {
 				}
 			}
 		}
-
 	}
 
 	@Override
