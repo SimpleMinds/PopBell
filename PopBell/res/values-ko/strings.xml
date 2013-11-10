@@ -56,6 +56,7 @@
     <string name="subcontributors">오픈소스 프로젝트 기여자 목록</string>
     <string name="title_activity_drawer_settings">알림서랍 설정</string>
     <string name="drawer_toggle">알림서랍 켜기</string>
+    <string name="drawer_useleft">왼쪽 알림서랍 사용하기</string>
     <string name="main_drawersettings_title">알림 서랍 설정</string>
     <string name="main_drawersettings_desc">알림서랍 설정 변경하기</string>
 </resources>

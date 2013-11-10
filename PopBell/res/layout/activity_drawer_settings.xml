@@ -29,4 +29,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         android:layout_height="wrap_content"
         android:text="@string/drawer_toggle" />
 
+    <CheckBox
+        android:id="@+id/useleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/drawer_useleft" />
+
 </LinearLayout>

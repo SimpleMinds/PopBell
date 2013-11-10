@@ -33,6 +33,7 @@ import android.widget.ImageView;
 
 public class TouchTrigger extends StandOutWindow {
 	private ImageView mTouchDetector;
+	
 
 	@Override
 	public String getAppName() {
@@ -57,9 +58,15 @@ public class TouchTrigger extends StandOutWindow {
 
 	@Override
 	public void createAndAttachView(int id, FrameLayout frame) {
+		boolean Useleft = getSharedPreferences("pref", Context.MODE_PRIVATE).getBoolean("useleft", true);
 		// create a new layout from body.xml
 		mTouchDetector = new ImageView(this);
-		mTouchDetector.setImageResource(R.drawable.detector_right);
+		if(Useleft){
+			mTouchDetector.setImageResource(R.drawable.detector_left);
+		}else{
+			mTouchDetector.setImageResource(R.drawable.detector_right);
+		}
+		
 		frame.addView(mTouchDetector);
 
 		mTouchDetector.setOnTouchListener(new OnTouchListener() {
@@ -83,7 +90,13 @@ public class TouchTrigger extends StandOutWindow {
 	// the window will be centered
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
-		return new StandOutLayoutParams(id, 50, 6000, StandOutLayoutParams.RIGHT, StandOutLayoutParams.TOP);
+		boolean Useleft = getSharedPreferences("pref", Context.MODE_PRIVATE).getBoolean("useleft", true);
+		if(Useleft){
+			return new StandOutLayoutParams(id, 50, 6000, StandOutLayoutParams.LEFT, StandOutLayoutParams.TOP);
+		}else{
+			return new StandOutLayoutParams(id, 50, 6000, StandOutLayoutParams.RIGHT, StandOutLayoutParams.TOP);
+		}
+		
 	}
 
 	// move the window by dragging the view

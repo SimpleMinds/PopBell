@@ -38,8 +38,11 @@ public class DrawerSettings extends ActionBarActivity {
 		// Load Preference Value
 		SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
 		CheckBox Toggle = (CheckBox)findViewById(R.id.toggle);
+		CheckBox Useleft = (CheckBox)findViewById(R.id.useleft);
 		Boolean Toggle_Boolean = pref.getBoolean("toggledata", false);
+		Boolean Toggle_Useleft = pref.getBoolean("useleft", false);
 		Toggle.setChecked(Toggle_Boolean);
+		Useleft.setChecked(Toggle_Useleft);
 	
 	}
 
@@ -47,9 +50,11 @@ public class DrawerSettings extends ActionBarActivity {
     	super.onStop();
     	SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE); // Save UI State
     	SharedPreferences.Editor editor = pref.edit(); // Load Editor
-    	CheckBox check2 = (CheckBox)findViewById(R.id.toggle);
+    	CheckBox check1 = (CheckBox)findViewById(R.id.toggle);
+    	CheckBox check2 = (CheckBox)findViewById(R.id.useleft);
                 // Input values
-    	editor.putBoolean("toggledata", check2.isChecked());
+    	editor.putBoolean("toggledata", check1.isChecked());
+    	editor.putBoolean("useleft", check2.isChecked());
     	editor.commit(); // Save calues
     }
 

@@ -20,6 +20,8 @@
 package com.simpleminds.popbell;
 
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,9 +52,20 @@ import android.widget.Toast;
 public class DialogWindow extends StandOutWindow {
 
 	String[] array;
+	private TimerTask mTask;
+	private Timer mTimer;
 
 	public boolean onShow(int id, Window window) {
 		Log.d("PopBell", "DialogWindow Show");
+		
+		mTask = new TimerTask() {
+			@Override
+			public void run() {
+				stopSelf();
+			}
+		};
+		mTimer = new Timer();
+		mTimer.schedule(mTask, 5000);
 		return false;
 	}
 
@@ -161,7 +174,7 @@ public class DialogWindow extends StandOutWindow {
 					if (getResources().getConfiguration().locale
 							.equals(Locale.KOREA)) {
 						Toast.makeText(DialogWindow.this,
-								"ÀÎÁõ¹øÈ£ \"" + returnString + "\" º¹»çµÇ¾ú½À´Ï´Ù",
+								"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ \"" + returnString + "\" ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½Ï´ï¿½",
 								Toast.LENGTH_SHORT).show();
 					} else {
 						Toast.makeText(
@@ -188,7 +201,7 @@ public class DialogWindow extends StandOutWindow {
 			private String hasAuthenticationNumber(String notiText) {
 				String authenticationNumberString = null;
 
-				if (notiText.contains("ÀÎÁõ")) {
+				if (notiText.contains("ï¿½ï¿½ï¿½ï¿½")) {
 					String regex = "(\\d{4,7})";
 
 					Pattern p = Pattern

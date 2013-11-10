@@ -59,5 +59,6 @@
     <string name="subcontributors">Open Source Contributor List</string>
     <string name="title_activity_drawer_settings">Drawer Settings</string>
     <string name="drawer_toggle">Turn On Notification Drawer</string>
+    <string name="drawer_useleft">Use Left Notification Drawer</string>
 
 </resources>
