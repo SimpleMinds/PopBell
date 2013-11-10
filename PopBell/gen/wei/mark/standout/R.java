@@ -8,12 +8,12 @@ package wei.mark.standout;
 
 public final class R {
 	public static final class drawable {
-		public static final int border = 0x7f020069;
-		public static final int border_focused = 0x7f02006a;
-		public static final int close = 0x7f020081;
-		public static final int corner = 0x7f020083;
-		public static final int hide = 0x7f020087;
-		public static final int maximize = 0x7f02008d;
+		public static final int border = 0x7f02006f;
+		public static final int border_focused = 0x7f020070;
+		public static final int close = 0x7f02008d;
+		public static final int corner = 0x7f02008f;
+		public static final int hide = 0x7f020093;
+		public static final int maximize = 0x7f02009a;
 	}
 	public static final class id {
 		public static final int body = 0x7f080069;
