@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">PopBell</string>
     <string name="action_settings">Settings</string>
     <string name="AppNameText">AppName</string>
@@ -37,21 +38,26 @@
     <string name="appinfo_github_desc">Get the full source code from GitHub</string>
     <string name="appinfo_notices_title">Notices</string>
     <string name="appinfo_notices_desc">Some notices and document about this app and source codes</string>
-	<string name="appinfo_update_title">Check for updates</string>
-	<string name="appinfo_update_desc">Check for latest PopBell updates on Google Play</string>
+    <string name="appinfo_update_title">Check for updates</string>
+    <string name="appinfo_update_desc">Check for latest PopBell updates on Google Play</string>
     <string name="notices">NOTICES</string>
     <string name="readme">README</string>
     <string name="contributors">CONTRIBUTORS</string>
     <string name="copying">COPYING</string>
-	<string name="delete">Delete</string>
+    <string name="delete">Delete</string>
+
     <string-array name="planets_array">
         <item>sampleplanets_array</item>
     </string-array>
-	<string name="duplicationOccurred">This application is already added.</string>
+
+    <string name="duplicationOccurred">This application is already added.</string>
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="LodingText">Loading Document&#8230;\n(If the Document is not able to load, Please Check your Network connection)</string>
     <string name="subreadme">Open Source Details</string>
     <string name="subnotice">Using library Licence</string>
     <string name="subcopyng">PopBell Open Source Licence</string>
     <string name="subcontributors">Open Source Contributor List</string>
+    <string name="title_activity_drawer_settings">Drawer Settings</string>
+    <string name="drawer_toggle">Turn On Notification Drawer</string>
+
 </resources>

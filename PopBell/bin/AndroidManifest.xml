@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -40,16 +40,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
             android:name="com.simpleminds.popbell.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />ㅂ
-
+                <action android:name="android.intent.action.MAIN" />
+ㅂ
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.simpleminds.popbell.AppBlackList"
             android:label="@string/title_activity_app_black_list"
-            android:theme="@style/Theme.Detecter"
-            android:parentActivityName="com.simpleminds.popbell.MainActivity" >
+            android:parentActivityName="com.simpleminds.popbell.MainActivity"
+            android:theme="@style/Theme.Detecter" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.simpleminds.popbell.MainActivity" />
@@ -57,8 +57,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <activity
             android:name="com.simpleminds.popbell.AddnewtoBlacklist"
             android:label="@string/title_activity_addnewto_blacklist"
-            android:theme="@style/Theme.Detecter"
-            android:parentActivityName="com.simpleminds.popbell.AppBlackList" >
+            android:parentActivityName="com.simpleminds.popbell.AppBlackList"
+            android:theme="@style/Theme.Detecter" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.simpleminds.popbell.AppBlackList" />
@@ -89,18 +89,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <activity
             android:name="com.simpleminds.popbell.Doc_Parsing"
             android:label="@string/notices"
-            android:theme="@style/Theme.Info"
-            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices" >
+            android:parentActivityName="com.simpleminds.popbell.Appinfo_Notices"
+            android:theme="@style/Theme.Info" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.simpleminds.popbell.Appinfo_Notices" />
         </activity>
         <activity
             android:name="com.simpleminds.popbell.DrawerActivity"
+            android:excludeFromRecents="true"
             android:label="@string/title_activity_drawer"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" 
-            android:excludeFromRecents="true">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
+
         <service
             android:name="com.simpleminds.popbell.NotiDetector"
             android:canRetrieveWindowContent="true"
@@ -119,12 +120,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         </service>
         <service android:name="com.simpleminds.popbell.TouchTrigger" >
         </service>
-        <receiver android:name=".PluginDataReceiver">
+
+        <receiver android:name="com.simpleminds.popbell.PluginDataReceiver" >
             <intent-filter>
-                <action android:name="com.sompleminds.popbell.PLUGIN.PASSDATA">
-            	</action>
+                <action android:name="com.sompleminds.popbell.PLUGIN.PASSDATA" >
+                </action>
             </intent-filter>
-        </receiver>  
+        </receiver>
+
+        <activity
+            android:name="com.simpleminds.popbell.DrawerSettings"
+            android:label="@string/title_activity_drawer_settings"
+            android:parentActivityName="com.simpleminds.popbell.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.simpleminds.popbell.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -79,6 +79,19 @@ public class MainActivity extends ActionBarActivity {
                     });
             mCardView.addCard(appblacklist);
             
+            MyPlayCard drawerset = new MyPlayCard(
+                    getString(R.string.main_drawersettings_title), 
+                    getString(R.string.main_drawersettings_desc), 
+                    "#16A085", "#16A085", false, true);
+            drawerset.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, DrawerSettings.class);
+                            startActivity(intent);
+                        }
+                    });
+            mCardView.addCard(drawerset);
+            
             MyPlayCard tutorial = new MyPlayCard(
                     getString(R.string.main_tutorial_title), 
                     getString(R.string.main_tutorial_desc), 
