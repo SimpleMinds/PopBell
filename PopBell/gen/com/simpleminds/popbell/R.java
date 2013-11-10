@@ -1311,7 +1311,6 @@ containing a value of this type.
         public static final int body=0x7f080069;
         public static final int cardContent=0x7f08005c;
         public static final int cardsview=0x7f080044;
-        public static final int checkBox1=0x7f080047;
         public static final int checkbox=0x7f08002b;
         public static final int close=0x7f080068;
         public static final int closeit=0x7f080062;
@@ -1388,6 +1387,7 @@ containing a value of this type.
         public static final int title=0x7f080029;
         public static final int title_container=0x7f080030;
         public static final int titlebar=0x7f080064;
+        public static final int toggle=0x7f080047;
         public static final int top_action_bar=0x7f08001e;
         public static final int up=0x7f08001f;
         public static final int useLogo=0x7f080003;

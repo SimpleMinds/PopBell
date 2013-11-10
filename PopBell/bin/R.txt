@@ -556,7 +556,6 @@ int id bigtext 0x7f080051
 int id body 0x7f080069
 int id cardContent 0x7f08005c
 int id cardsview 0x7f080044
-int id checkBox1 0x7f080047
 int id checkbox 0x7f08002b
 int id close 0x7f080068
 int id closeit 0x7f080062
@@ -633,6 +632,7 @@ int id textView2 0x7f08006c
 int id title 0x7f080029
 int id title_container 0x7f080030
 int id titlebar 0x7f080064
+int id toggle 0x7f080047
 int id top_action_bar 0x7f08001e
 int id up 0x7f08001f
 int id useLogo 0x7f080003

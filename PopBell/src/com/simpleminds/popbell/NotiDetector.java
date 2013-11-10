@@ -28,6 +28,7 @@ import wei.mark.standout.StandOutWindow;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -47,6 +48,9 @@ public class NotiDetector extends AccessibilityService {
 
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
+		//Load DrawerSettings pref data
+		final boolean draweron = getSharedPreferences("pref", Context.MODE_PRIVATE).getBoolean("toggledata", true);
+		
 		// Load BlackList
 		mHelper = new AppBlackListDBhelper(this);
 		mCursor = mHelper.getWritableDatabase().rawQuery(
@@ -106,8 +110,10 @@ public class NotiDetector extends AccessibilityService {
 					StandOutWindow.closeAll(this, TouchTrigger.class);
 					StandOutWindow.show(this, DialogWindow.class,
 							StandOutWindow.DEFAULT_ID);
-					StandOutWindow.show(this, TouchTrigger.class,
-							StandOutWindow.DEFAULT_ID);
+					if(draweron){
+						StandOutWindow.show(this, TouchTrigger.class,
+								StandOutWindow.DEFAULT_ID);
+					}else{}
 
 					// Create Bundle and put data
 					Bundle dataBundle = new Bundle();
@@ -128,8 +134,9 @@ public class NotiDetector extends AccessibilityService {
 						public void run() {
 							stopService(new Intent(NotiDetector.this,
 									DialogWindow.class));
-							stopService(new Intent(NotiDetector.this,
-									TouchTrigger.class));
+							if(draweron){
+								stopService(new Intent(NotiDetector.this,
+									TouchTrigger.class));}else{}
 						}
 					};
 					mTimer = new Timer();
