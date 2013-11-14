@@ -68,4 +68,5 @@
         <item>midddle</item>
         <item>bottom</item>
     </string-array>
+    <string name="toichtrigger_size">Size of Touch Trigger:</string>
 </resources>

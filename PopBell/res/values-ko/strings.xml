@@ -65,4 +65,5 @@
         <item>중간</item>
         <item>아래쪽</item>
     </string-array>
+    <string name="toichtrigger_size">터치트리거 크기:</string>
 </resources>
