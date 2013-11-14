@@ -59,4 +59,10 @@
     <string name="drawer_useleft">왼쪽 알림서랍 사용하기</string>
     <string name="main_drawersettings_title">알림 서랍 설정</string>
     <string name="main_drawersettings_desc">알림서랍 설정 변경하기</string>
+    <string name="touchtrigger_align_title">터치트리거 위치:</string>
+    <string-array name="touchtrigger_align">
+        <item>위쪽</item>
+        <item>중간</item>
+        <item>아래쪽</item>
+    </string-array>
 </resources>

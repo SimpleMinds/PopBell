@@ -91,10 +91,22 @@ public class TouchTrigger extends StandOutWindow {
 	@Override
 	public StandOutLayoutParams getParams(int id, Window window) {
 		boolean Useleft = getSharedPreferences("pref", Context.MODE_PRIVATE).getBoolean("useleft", true);
+		String Triggerpos = getSharedPreferences("pref", Context.MODE_PRIVATE).getString("touchtrigger_align", "");
+		int triggerpos = 0;
+		if(Triggerpos.equals("top")){
+			triggerpos = StandOutLayoutParams.TOP;
+		}
+		else if(Triggerpos.equals("middle")){
+			triggerpos = StandOutLayoutParams.CENTER;
+		}
+		else{
+			triggerpos = StandOutLayoutParams.BOTTOM;
+			}
+		
 		if(Useleft){
-			return new StandOutLayoutParams(id, 50, 6000, StandOutLayoutParams.LEFT, StandOutLayoutParams.TOP);
+			return new StandOutLayoutParams(id, StandOutLayoutParams.WRAP_CONTENT, StandOutLayoutParams.WRAP_CONTENT, StandOutLayoutParams.LEFT, triggerpos);
 		}else{
-			return new StandOutLayoutParams(id, 50, 6000, StandOutLayoutParams.RIGHT, StandOutLayoutParams.TOP);
+			return new StandOutLayoutParams(id, StandOutLayoutParams.WRAP_CONTENT, StandOutLayoutParams.WRAP_CONTENT, StandOutLayoutParams.RIGHT, triggerpos);
 		}
 		
 	}

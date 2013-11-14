@@ -62,5 +62,10 @@
     <string name="drawer_useleft">Use Left Notification Drawer</string>
     <string name="main_drawersettings_title">Notification Drawer</string>
     <string name="main_drawersettings_desc">Customize Notification Drawer Settings</string>
-
+    <string name="touchtrigger_align_title">Position of Touch Trigger:</string>
+<string-array name="touchtrigger_align">
+        <item>top</item>
+        <item>midddle</item>
+        <item>bottom</item>
+    </string-array>
 </resources>

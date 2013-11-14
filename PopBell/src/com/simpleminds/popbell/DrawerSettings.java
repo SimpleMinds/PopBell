@@ -20,9 +20,14 @@ package com.simpleminds.popbell;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.annotation.TargetApi;
@@ -44,7 +49,41 @@ public class DrawerSettings extends ActionBarActivity {
 		Toggle.setChecked(Toggle_Boolean);
 		Useleft.setChecked(Toggle_Useleft);
 	
+	
+	
+
+	  Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+	  spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+	  public void onItemSelected(AdapterView<?> parent, View view, 
+	            int pos, long id) {
+		  SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE); // Save UI State
+	    	SharedPreferences.Editor editor = pref.edit(); 
+		  if(pos == 0){
+			  editor.putString("touchtrigger_align", "top");
+			  editor.commit();
+			  Log.d("touchtrigger_align", "top");
+		  }
+		  else if(pos ==1){
+			  editor.putString("touchtrigger_align", "middle");
+			  editor.commit();
+			  Log.d("touchtrigger_align", "middle");
+		  }
+		  else{
+			  editor.putString("touchtrigger_align", "bottom");
+			  editor.commit();
+			  Log.d("touchtrigger_align", "bottom");
+		  }
+	        // An item was selected. You can retrieve the selected item using
+	        // parent.getItemAtPosition(pos)
+	    }
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
+	  });}
+	  
 
 	public void onStop(){ 
     	super.onStop();
