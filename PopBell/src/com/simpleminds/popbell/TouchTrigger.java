@@ -92,7 +92,7 @@ public class TouchTrigger extends StandOutWindow {
 	public StandOutLayoutParams getParams(int id, Window window) {
 		boolean Useleft = getSharedPreferences("pref", Context.MODE_PRIVATE).getBoolean("useleft", true);
 		String Triggerpos = getSharedPreferences("pref", Context.MODE_PRIVATE).getString("touchtrigger_align", "");
-		int triggerpos = 0;
+		int triggerpos = StandOutLayoutParams.CENTER;
 		if(Triggerpos.equals("top")){
 			triggerpos = StandOutLayoutParams.TOP;
 		}
